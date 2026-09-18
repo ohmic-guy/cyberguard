@@ -1,21 +1,21 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
 
-from pydantic import BaseModel, ConfigDict, Field
-
-from ..events.event_types import EventMetadata, EventPayload, InputModality, ThreatCategory
 from .base_ml_model import BaseMLModel
 
 
-class DetectionResult(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
+@dataclass
+class DetectionResult:
     label: str
-    confidence: float = Field(ge=0.0, le=1.0)
-    category: ThreatCategory = ThreatCategory.UNKNOWN
-    indicators: list[str] = Field(default_factory=list)
-    metadata: EventMetadata = Field(default_factory=dict)
+    confidence: float
+    indicators: list[str] = field(default_factory=list)
+    metadata: dict = field(default_factory=dict)
+
+    def __post_init__(self) -> None:
+        if not 0.0 <= self.confidence <= 1.0:
+            raise ValueError("confidence must be between 0 and 1")
 
 
 class BaseDetector(ABC):
@@ -23,9 +23,9 @@ class BaseDetector(ABC):
         self._model = model
 
     @abstractmethod
-    async def detect(self, payload: EventPayload) -> DetectionResult:
+    async def detect(self, payload: dict) -> DetectionResult:
         """Detect threats in the supplied event payload."""
 
     @abstractmethod
-    def input_type(self) -> InputModality:
+    def input_type(self) -> str:
         """Return the input modality supported by this detector."""
