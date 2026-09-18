@@ -1,16 +1,29 @@
-from abc import ABC, abstractmethod
-from agentscope.agents import AgentBase
+from __future__ import annotations
+
+from abc import ABCMeta, abstractmethod
+
+try:
+    from agentscope.agents import AgentBase
+except ModuleNotFoundError:
+    from agentscope.agent import AgentBase
 from agentscope.message import Msg
 
-class BaseCyberAgent(AgentBase, ABC):
+
+class CyberAgentMeta(type(AgentBase), ABCMeta):
+    """Metaclass bridge for AgentScope agents with abstract methods."""
+
+
+class BaseCyberAgent(AgentBase, metaclass=CyberAgentMeta):
+    """Base AgentScope contract for all CyberGuard agents."""
+
     @abstractmethod
     def reply(self, x: Msg | None = None) -> Msg:
-        pass
+        """AgentScope entry point. Heavy work should run in async tasks."""
 
     @abstractmethod
     def subscribes_to(self) -> list[str]:
-        pass
+        """Redis stream keys this agent consumes."""
 
     @abstractmethod
     def emits_to(self) -> list[str]:
-        pass
+        """Redis stream keys this agent publishes to."""

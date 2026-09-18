@@ -1,58 +1,84 @@
-from pydantic import BaseModel, Field
+from __future__ import annotations
+
+from datetime import datetime, timezone
 from enum import Enum
-from datetime import datetime
-import uuid
+from typing import TypeAlias
+from uuid import uuid4
+
+from pydantic import BaseModel, ConfigDict, Field
+
+
+EventPayload: TypeAlias = dict[str, object]
+EventMetadata: TypeAlias = dict[str, object]
+
+
+def utc_now() -> datetime:
+    return datetime.now(timezone.utc)
+
 
 class ThreatCategory(str, Enum):
-    PHISHING    = "phishing"
-    DEEPFAKE    = "deepfake"
+    PHISHING = "phishing"
+    DEEPFAKE = "deepfake"
     LOG_ANOMALY = "log_anomaly"
-    API_ABUSE   = "api_abuse"
-    UNKNOWN     = "unknown"
+    API_ABUSE = "api_abuse"
+    UNKNOWN = "unknown"
+
 
 class InputModality(str, Enum):
-    EMAIL      = "email"
-    URL        = "url"
-    SMS        = "sms"
-    QR         = "qr"
-    IMAGE      = "image"
-    VIDEO      = "video"
-    AUDIO      = "audio"
-    AUTH_LOG   = "auth_log"
+    EMAIL = "email"
+    URL = "url"
+    SMS = "sms"
+    QR = "qr"
+    IMAGE = "image"
+    VIDEO = "video"
+    AUDIO = "audio"
+    AUTH_LOG = "auth_log"
     SYSTEM_LOG = "system_log"
-    API_LOG    = "api_log"
+    API_LOG = "api_log"
+
 
 class RiskLevel(str, Enum):
-    SAFE     = "safe"
-    LOW      = "low"
-    MEDIUM   = "medium"
-    HIGH     = "high"
+    SAFE = "safe"
+    LOW = "low"
+    MEDIUM = "medium"
+    HIGH = "high"
     CRITICAL = "critical"
 
+
 class EventStatus(str, Enum):
-    RECEIVED   = "received"
+    RECEIVED = "received"
     PROCESSING = "processing"
-    SCORED     = "scored"
-    COMPLETE   = "complete"
-    ESCALATED  = "escalated"
-    FAILED     = "failed"
+    SCORED = "scored"
+    COMPLETE = "complete"
+    ESCALATED = "escalated"
+    FAILED = "failed"
+
 
 class ThreatEvent(BaseModel):
-    event_id:   str      = Field(default_factory=lambda: str(uuid.uuid4()))
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
-    category:   ThreatCategory = ThreatCategory.UNKNOWN
-    modality:   InputModality
-    status:     EventStatus    = EventStatus.RECEIVED
-    source:     str
-    payload:    dict
-    label:               str | None   = None
-    confidence:          float | None = None
-    indicators:          list[str]    = []
-    risk_level:          RiskLevel | None = None
-    score_factors:       list[str]    = []
-    explanation:         str | None   = None
-    recommended_actions: list[str]    = []
-    mitre_mapping:       list[str]    = []
-    error_message:       str | None   = None
-    failed_agent:        str | None   = None
+    """Core event envelope passed between CyberGuard components.
+
+    Treat instances as immutable and use model_copy(update={...}) for state
+    transitions so pipeline steps do not mutate shared event references.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    event_id: str = Field(default_factory=lambda: str(uuid4()))
+    created_at: datetime = Field(default_factory=utc_now)
+    updated_at: datetime = Field(default_factory=utc_now)
+    category: ThreatCategory = ThreatCategory.UNKNOWN
+    modality: InputModality
+    status: EventStatus = EventStatus.RECEIVED
+    source: str
+    payload: EventPayload = Field(default_factory=dict)
+    label: str | None = None
+    confidence: float | None = Field(default=None, ge=0.0, le=1.0)
+    indicators: list[str] = Field(default_factory=list)
+    risk_level: RiskLevel | None = None
+    score_factors: list[str] = Field(default_factory=list)
+    explanation: str | None = None
+    recommended_actions: list[str] = Field(default_factory=list)
+    mitre_mapping: list[str] = Field(default_factory=list)
+    metadata: EventMetadata = Field(default_factory=dict)
+    error_message: str | None = None
+    failed_agent: str | None = None

@@ -1,11 +1,14 @@
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from core.events.event_types import ThreatEvent, RiskLevel
+
+from ..events.event_types import RiskLevel, ThreatEvent
 
 class BaseScorer(ABC):
     @abstractmethod
     def score(self, event: ThreatEvent) -> tuple[RiskLevel, float]:
-        pass
+        """Calculate the event risk level and numeric score."""
 
     @abstractmethod
     def explain_score(self, event: ThreatEvent) -> list[str]:
-        pass
+        """Return human-readable factors that contributed to the score."""
