@@ -1,11 +1,4 @@
-from __future__ import annotations
-
 from abc import ABC, abstractmethod
-from typing import TypeAlias
-
-
-ModelInput: TypeAlias = dict[str, object]
-ModelPrediction: TypeAlias = dict[str, object]
 
 
 class BaseMLModel(ABC):
@@ -14,7 +7,7 @@ class BaseMLModel(ABC):
         """Load model resources required for inference."""
 
     @abstractmethod
-    async def predict(self, input_data: ModelInput) -> ModelPrediction:
+    async def predict(self, input_data: dict) -> dict:
         """Run inference and return a model-specific prediction payload."""
 
     @abstractmethod
