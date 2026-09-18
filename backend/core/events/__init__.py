@@ -17,7 +17,6 @@ from .streams import (
     THREAT_DETECTED,
     THREAT_ESCALATED,
     THREAT_SCORED,
-    StreamName,
 )
 
 __all__ = [
@@ -31,7 +30,6 @@ __all__ = [
     "PHISHING_INPUT",
     "RAW_INPUT",
     "RiskLevel",
-    "StreamName",
     "StreamEntry",
     "StreamKey",
     "THREAT_COMPLETE",

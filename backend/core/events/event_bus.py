@@ -10,10 +10,7 @@ except ImportError:
     from config import settings
 
 from .event_types import ThreatEvent
-from .streams import StreamName
-
-
-StreamKey = StreamName | str
+StreamKey = str
 StreamEntry = tuple[str, ThreatEvent]
 
 
@@ -66,8 +63,6 @@ class EventBus:
 
     @staticmethod
     def _stream_value(stream: StreamKey) -> str:
-        if isinstance(stream, StreamName):
-            return stream.value
         return stream
 
     @staticmethod
