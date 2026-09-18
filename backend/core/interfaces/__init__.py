@@ -2,7 +2,7 @@ from .base_agent import BaseCyberAgent
 from .base_detector import BaseDetector, DetectionResult
 from .base_ml_model import BaseMLModel
 from .base_scorer import BaseScorer
-from .llm_provider import LLMContext, LLMProvider
+from .llm_provider import LLMProvider
 
 __all__ = [
     "BaseCyberAgent",
@@ -10,6 +10,5 @@ __all__ = [
     "BaseMLModel",
     "BaseScorer",
     "DetectionResult",
-    "LLMContext",
     "LLMProvider",
 ]
