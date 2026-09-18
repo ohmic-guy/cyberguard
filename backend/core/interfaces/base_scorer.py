@@ -4,6 +4,7 @@ from abc import ABC, abstractmethod
 
 from ..events.event_types import RiskLevel, ThreatEvent
 
+
 class BaseScorer(ABC):
     @abstractmethod
     def score(self, event: ThreatEvent) -> tuple[RiskLevel, float]:
