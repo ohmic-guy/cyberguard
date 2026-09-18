@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-from abc import ABCMeta, abstractmethod
+from abc import ABC, ABCMeta, abstractmethod
 
-try:
-    from agentscope.agents import AgentBase
-except ModuleNotFoundError:
-    from agentscope.agent import AgentBase
+from agentscope.agent import AgentBase
 from agentscope.message import Msg
 
 
@@ -13,7 +10,7 @@ class CyberAgentMeta(type(AgentBase), ABCMeta):
     """Metaclass bridge for AgentScope agents with abstract methods."""
 
 
-class BaseCyberAgent(AgentBase, metaclass=CyberAgentMeta):
+class BaseCyberAgent(AgentBase, ABC, metaclass=CyberAgentMeta):
     """Base AgentScope contract for all CyberGuard agents."""
 
     @abstractmethod
