@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+*.env
+
+# Data — never commit datasets
+backend/data/phishing/*/raw/
+backend/data/phishing/*/processed/
+backend/data/deepfake/image/real/
+backend/data/deepfake/image/fake/
+backend/data/deepfake/video/real/
+backend/data/deepfake/video/fake/
+backend/data/deepfake/audio/genuine/
+backend/data/deepfake/audio/spoof/
+backend/data/logs/*/raw/
+backend/data/logs/*/processed/
+!backend/data/**/.gitkeep
+
+# Node
+node_modules/
+.next/
+frontend/.env.local
+
+# IDE
+.vscode/
+.idea/
+*.DS_Store
