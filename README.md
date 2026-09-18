@@ -1,7 +1,7 @@
 # CyberGuard
 AI-Powered Cyber Threat, Phishing & Digital Impersonation Detection and Response System
 
-**B.Put Hackathon · Problem Statement 9**
+**BPUT Hackathon · Problem Statement 9**
 
 ## Stack
 - AgentScope 1.0.21 · Python 3.11 · FastAPI · Next.js 14 · MongoDB · Redis Streams · JWT
