@@ -1,6 +1,7 @@
 fastapi>=0.111.0
 uvicorn[standard]>=0.30.0
 agentscope==1.0.21
+mcp>=1.13,<2.0
 pydantic>=2.0.0
 pydantic-settings>=2.0.0
 redis[hiredis]>=5.0.0

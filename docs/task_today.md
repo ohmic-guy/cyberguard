@@ -4,11 +4,11 @@
 
 ## Current Task
 
-**Title:** 
+**Title:** Complete Ommkar orchestration and Dev 1 phishing foundations
 
 ## Goal
 
-Describe one concrete outcome.
+Implement the shared orchestration boundary and the phishing detection path using the existing ThreatEvent, BaseDetector, BaseMLModel, EventBus, and canonical stream contracts.
 
 ## Context
 
@@ -28,20 +28,20 @@ Only modify:
 
 ## Required Behaviour
 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Route supported input modalities to the correct canonical stream and escalate unknown modalities.
+- [ ] Implement phishing detectors for email, URL, SMS, and QR inputs through injected BaseMLModel instances.
+- [ ] Process phishing events into immutable detected events and escalate detector failures.
 
 ## Acceptance Criteria
 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] No agent-to-agent calls or inline Redis stream names are introduced.
+- [ ] Valid phishing events produce label, confidence, and indicators on `threat.detected`.
+- [ ] Operational failures produce `threat.escalated` events with the failed agent and error message.
 
 ## Tests / Verification
 
-- [ ] 
-- [ ] 
+- [ ] Run Python compilation/static validation for changed backend files.
+- [ ] Run focused detector and routing checks with injected fake dependencies.
 
 ## Forbidden Changes
 
