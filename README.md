@@ -20,8 +20,8 @@ cd backend && pip install -r requirements.txt && uvicorn main:app --reload
 | Phishing ML | [ Dev 1 ] |
 | Deepfake ML | [ Dev 2 ] |
 | Log Analysis ML | [ Dev 3 ] |
-| FastAPI + Ingestion | [ Dev 4 ] |
-| Frontend Dashboard | [ Dev 5 ] |
+| FastAPI + Ingestion | Sitesh & Kunal |
+| Frontend Dashboard | Kunal Meher |
 
 ## Docs
 - Master documentation: `docs/CyberGuard_Master_Documentation.docx`
