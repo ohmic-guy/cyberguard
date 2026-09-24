@@ -13,6 +13,8 @@ docker compose up -d
 cd backend && pip install -r requirements.txt && uvicorn main:app --reload
 ```
 
+For NVIDIA GPU support, uncomment `torch>=2.0.0` in `backend/requirements.txt` before installing the requirements.
+
 ## Team
 | Role | Developer |
 |------|-----------|

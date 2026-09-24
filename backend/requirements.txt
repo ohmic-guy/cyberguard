@@ -9,7 +9,8 @@ motor>=3.4.0
 python-jose[cryptography]>=3.3.0
 python-multipart>=0.0.9
 transformers>=4.40.0
-torch>=2.0.0
+# NVIDIA GPU/CUDA support: uncomment this line before installing if you use an NVIDIA GPU.
+# torch>=2.0.0
 scikit-learn>=1.4.0
 Pillow>=10.0.0
 librosa>=0.10.0
