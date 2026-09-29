@@ -44,27 +44,32 @@ export default function ThreatsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-mono">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#2a2a3a]">
         <div>
-          <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white font-mono flex items-center gap-2">
-            <span>Threat Incidents & Telemetry Stream</span>
-            <span className="text-xs font-bold text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded">
-              {threats.length} Events
+          <div className="flex items-center gap-3 flex-wrap">
+            <h1
+              className="cyber-glitch text-xl sm:text-2xl font-orbitron font-black tracking-widest text-white uppercase"
+              data-text="THREAT INCIDENTS & TELEMETRY STREAM"
+            >
+              THREAT INCIDENTS & TELEMETRY STREAM
+            </h1>
+            <span className="cyber-chamfer-sm text-xs font-bold text-[#00ff88] bg-[#00ff88]/15 border border-[#00ff88]/50 px-2.5 py-0.5 uppercase tracking-wider shadow-[0_0_8px_rgba(0,255,136,0.2)]">
+              {threats.length} EVENTS
             </span>
-          </h1>
-          <p className="text-xs text-slate-400 mt-1">
-            Real-time feed of multi-agent scored threats across Email, URLs, Biometric Media, and System Logs.
+          </div>
+          <p className="text-xs text-slate-400 mt-1.5 font-mono">
+            &gt; Real-time feed of multi-agent scored threats across Email, URLs, Biometric Media, and System Logs.
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <Button
             variant="outline"
             size="sm"
             onClick={handleExportJSON}
-            className="text-xs font-mono gap-1.5 text-slate-300"
+            className="text-xs font-mono gap-1.5"
             disabled={!threats.length}
           >
             <Download className="h-3.5 w-3.5" />
@@ -74,7 +79,7 @@ export default function ThreatsPage() {
             variant="outline"
             size="sm"
             onClick={refetch}
-            className="text-xs font-mono gap-1.5 text-slate-300"
+            className="text-xs font-mono gap-1.5"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Sync

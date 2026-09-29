@@ -19,29 +19,29 @@ export function ProgressBar({
   const percentage = Math.min(Math.max(Math.round((value / max) * 100), 0), 100);
 
   const getBarColor = () => {
-    if (colorVariant === 'cyan') return 'bg-cyan-500 shadow-[0_0_8px_rgba(6,182,212,0.5)]';
-    if (colorVariant === 'danger') return 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]';
-    if (colorVariant === 'warning') return 'bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]';
-    if (colorVariant === 'emerald') return 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]';
+    if (colorVariant === 'cyan') return 'bg-[#00d4ff] shadow-[0_0_10px_rgba(0,212,255,0.7)]';
+    if (colorVariant === 'danger') return 'bg-[#ff3366] shadow-[0_0_10px_rgba(255,51,102,0.7)]';
+    if (colorVariant === 'warning') return 'bg-[#ffb800] shadow-[0_0_10px_rgba(255,184,0,0.7)]';
+    if (colorVariant === 'emerald') return 'bg-[#00ff88] shadow-[0_0_10px_rgba(0,255,136,0.7)]';
 
     // Auto variant
-    if (percentage >= 80) return 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.6)]';
-    if (percentage >= 50) return 'bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]';
-    if (percentage >= 25) return 'bg-sky-500 shadow-[0_0_8px_rgba(56,189,248,0.4)]';
-    return 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]';
+    if (percentage >= 80) return 'bg-[#ff3366] shadow-[0_0_12px_rgba(255,51,102,0.8)]';
+    if (percentage >= 50) return 'bg-[#ffb800] shadow-[0_0_10px_rgba(255,184,0,0.7)]';
+    if (percentage >= 25) return 'bg-[#00d4ff] shadow-[0_0_10px_rgba(0,212,255,0.7)]';
+    return 'bg-[#00ff88] shadow-[0_0_10px_rgba(0,255,136,0.7)]';
   };
 
   return (
-    <div className={cn('w-full space-y-1', className)} {...props}>
+    <div className={cn('w-full space-y-1.5 font-mono', className)} {...props}>
       {showLabel && (
-        <div className="flex justify-between text-xs font-mono text-slate-400">
+        <div className="flex justify-between text-xs tracking-wider uppercase text-slate-400">
           <span>Confidence Score</span>
-          <span className="font-semibold text-white">{percentage}%</span>
+          <span className="font-bold text-[#00ff88]">{percentage}%</span>
         </div>
       )}
-      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800/90 border border-slate-700/50">
+      <div className="cyber-chamfer-sm h-2.5 w-full overflow-hidden bg-[#12121a] border border-[#2a2a3a]">
         <div
-          className={cn('h-full rounded-full transition-all duration-500', getBarColor())}
+          className={cn('h-full transition-all duration-500', getBarColor())}
           style={{ width: `${percentage}%` }}
         />
       </div>
@@ -68,16 +68,16 @@ export function ConfidenceGauge({
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   const getColor = () => {
-    if (percentage >= 85) return '#EF4444'; // Critical red
-    if (percentage >= 65) return '#F97316'; // High orange
-    if (percentage >= 40) return '#F59E0B'; // Medium amber
-    return '#10B981'; // Safe green
+    if (percentage >= 85) return '#ff3366'; // Critical red
+    if (percentage >= 65) return '#ff8800'; // High orange
+    if (percentage >= 40) return '#ffb800'; // Medium amber
+    return '#00ff88'; // Safe electric green
   };
 
   const strokeColor = getColor();
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center font-mono">
       <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
         <svg width={size} height={size} className="-rotate-90">
           {/* Background circle */}
@@ -85,11 +85,11 @@ export function ConfidenceGauge({
             cx={size / 2}
             cy={size / 2}
             r={radius}
-            stroke="#1E293B"
+            stroke="#1c1c2e"
             strokeWidth={strokeWidth}
             fill="transparent"
           />
-          {/* Active progress */}
+          {/* Active progress with neon glow */}
           <circle
             cx={size / 2}
             cy={size / 2}
@@ -98,17 +98,23 @@ export function ConfidenceGauge({
             strokeWidth={strokeWidth}
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
-            strokeLinecap="round"
+            strokeLinecap="square"
             fill="transparent"
-            style={{ transition: 'stroke-dashoffset 0.8s ease' }}
+            style={{
+              transition: 'stroke-dashoffset 0.8s ease',
+              filter: `drop-shadow(0 0 6px ${strokeColor})`,
+            }}
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <span className="text-xl font-bold font-mono tracking-tight text-white">{percentage}%</span>
-          <span className="text-[10px] uppercase font-mono text-slate-400">Score</span>
+          <span className="text-xl font-orbitron font-bold tracking-tight text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
+            {percentage}%
+          </span>
+          <span className="text-[9px] uppercase font-mono tracking-widest text-slate-400">SCORE</span>
         </div>
       </div>
-      {label && <span className="mt-1.5 text-xs font-medium text-slate-400 font-mono">{label}</span>}
+      {label && <span className="mt-2 text-xs font-bold tracking-wider text-slate-400 uppercase">{label}</span>}
     </div>
   );
 }
+

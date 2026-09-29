@@ -4,10 +4,11 @@ import { RiskLevel, EventStatus } from '@/types/threat';
 import { RISK_LEVEL_CONFIG, STATUS_CONFIG } from '@/lib/constants';
 
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  variant?: 'default' | 'outline' | 'cyber' | 'risk' | 'status';
+  variant?: 'default' | 'outline' | 'cyber' | 'risk' | 'status' | 'neon';
   risk?: RiskLevel;
   status?: EventStatus;
   size?: 'sm' | 'md' | 'lg';
+  chamfer?: boolean;
 }
 
 export function Badge({
@@ -16,13 +17,14 @@ export function Badge({
   risk,
   status,
   size = 'md',
+  chamfer = true,
   children,
   ...props
 }: BadgeProps) {
   const sizeClasses = {
-    sm: 'text-[10px] px-1.5 py-0.5 font-medium tracking-wide',
-    md: 'text-xs px-2.5 py-1 font-semibold tracking-wide',
-    lg: 'text-sm px-3 py-1.5 font-bold tracking-wider',
+    sm: 'text-[9px] px-2 py-0.5 font-bold tracking-wider',
+    md: 'text-[11px] px-2.5 py-1 font-bold tracking-wider',
+    lg: 'text-xs px-3.5 py-1.5 font-black tracking-widest',
   };
 
   if (variant === 'risk' && risk) {
@@ -30,7 +32,8 @@ export function Badge({
     return (
       <span
         className={cn(
-          'inline-flex items-center gap-1.5 rounded border uppercase font-mono transition-all',
+          'inline-flex items-center gap-1.5 border uppercase font-mono transition-all duration-200 select-none',
+          chamfer ? 'cyber-chamfer-sm' : 'rounded-none',
           sizeClasses[size],
           config.badgeBg,
           config.badgeText,
@@ -40,7 +43,13 @@ export function Badge({
         )}
         {...props}
       >
-        <span className={cn('h-1.5 w-1.5 rounded-full', config.dotBg, risk === 'critical' && 'animate-ping')} />
+        <span
+          className={cn(
+            'h-1.5 w-1.5 rounded-full',
+            config.dotBg,
+            risk === 'critical' ? 'animate-ping' : 'animate-pulse'
+          )}
+        />
         {config.label}
       </span>
     );
@@ -51,14 +60,17 @@ export function Badge({
     return (
       <span
         className={cn(
-          'inline-flex items-center gap-1.5 rounded-full border border-slate-700/60 font-mono transition-all',
+          'inline-flex items-center gap-1.5 border font-mono uppercase transition-all duration-200 select-none',
+          chamfer ? 'cyber-chamfer-sm' : 'rounded-none',
           sizeClasses[size],
           config.color,
           className
         )}
         {...props}
       >
-        {config.pulse && <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse" />}
+        {config.pulse && (
+          <span className="h-1.5 w-1.5 rounded-full bg-[#00d4ff] shadow-[0_0_6px_#00d4ff] animate-pulse" />
+        )}
         {config.label}
       </span>
     );
@@ -67,11 +79,17 @@ export function Badge({
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-md font-mono transition-colors',
+        'inline-flex items-center font-mono uppercase tracking-wider transition-colors select-none',
+        chamfer ? 'cyber-chamfer-sm' : 'rounded-none',
         sizeClasses[size],
-        variant === 'default' && 'bg-slate-800/80 text-slate-200 border border-slate-700',
-        variant === 'outline' && 'border border-slate-600/80 text-slate-300 bg-transparent',
-        variant === 'cyber' && 'bg-cyan-950/40 text-cyan-300 border border-cyan-500/30 shadow-[0_0_8px_rgba(6,182,212,0.15)]',
+        variant === 'default' &&
+        'bg-[#12121a] text-slate-200 border border-[#2a2a3a]',
+        variant === 'outline' &&
+        'border border-[#2a2a3a] text-slate-300 bg-transparent hover:border-[#00ff88]/50',
+        variant === 'cyber' &&
+        'bg-[#00ff88]/15 text-[#00ff88] border border-[#00ff88]/50 shadow-[0_0_10px_rgba(0,255,136,0.25)]',
+        variant === 'neon' &&
+        'bg-[#ff00ff]/15 text-[#ff00ff] border border-[#ff00ff]/50 shadow-[0_0_10px_rgba(255,0,255,0.25)]',
         className
       )}
       {...props}
@@ -80,3 +98,4 @@ export function Badge({
     </span>
   );
 }
+

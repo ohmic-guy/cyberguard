@@ -15,7 +15,7 @@ export default function DashboardLayout({
   const { isConnected, latestEvent, triggerManualSimulation } = useWebSocket();
 
   return (
-    <div className="flex min-h-screen bg-slate-950 text-slate-100">
+    <div className="flex min-h-screen bg-[#0a0a0f] text-[#e0e0e0] font-mono">
       {/* Sidebar Navigation */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
@@ -34,3 +34,4 @@ export default function DashboardLayout({
     </div>
   );
 }
+

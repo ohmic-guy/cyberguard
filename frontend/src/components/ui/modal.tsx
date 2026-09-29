@@ -47,27 +47,39 @@ export function Modal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
-        className="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-black/85 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
       <div
         className={cn(
-          'relative w-full rounded-xl bg-slate-900 border border-slate-700 shadow-2xl p-6 z-10 max-h-[90vh] overflow-y-auto',
+          'cyber-chamfer relative w-full bg-[#12121a] border border-[#2a2a3a] shadow-[0_0_30px_rgba(0,255,136,0.2)] p-6 z-10 max-h-[90vh] overflow-y-auto font-mono',
           maxWidthClasses[maxWidth]
         )}
       >
-        <div className="flex items-start justify-between pb-4 border-b border-slate-800">
-          <div>
-            <h2 className="text-lg font-bold text-white tracking-tight">{title}</h2>
-            {description && <p className="text-xs text-slate-400 mt-1">{description}</p>}
+        {/* Terminal Header Decorator */}
+        <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#2a2a3a]">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-[#ff3366] shadow-[0_0_4px_#ff3366]" />
+            <span className="h-2 w-2 rounded-full bg-[#ffb800] shadow-[0_0_4px_#ffb800]" />
+            <span className="h-2 w-2 rounded-full bg-[#00ff88] shadow-[0_0_4px_#00ff88]" />
+            <span className="text-[10px] text-slate-500 uppercase tracking-widest pl-2">
+              {'MODAL // INTERCEPTOR'}
+            </span>
           </div>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="cyber-chamfer-sm p-1.5 text-slate-400 hover:text-[#ff3366] hover:bg-[#ff3366]/10 border border-transparent hover:border-[#ff3366]/40 transition-colors cursor-pointer"
+            aria-label="Close dialog"
           >
-            <X className="h-5 w-5" />
+            <X className="h-4 w-4" />
           </button>
         </div>
+
+        <div>
+          <h2 className="text-lg font-orbitron font-bold text-white tracking-wide uppercase">{title}</h2>
+          {description && <p className="text-xs text-slate-400 mt-1 font-mono">{description}</p>}
+        </div>
+
         <div className="pt-4">{children}</div>
       </div>
     </div>
@@ -101,16 +113,19 @@ export function Drawer({ isOpen, onClose, title, children }: DrawerProps) {
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
       <div
-        className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-black/80 backdrop-blur-xs transition-opacity"
         onClick={onClose}
       />
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-xl bg-slate-900 border-l border-slate-800 shadow-2xl flex flex-col">
-          <div className="p-5 border-b border-slate-800 flex items-center justify-between">
-            <h3 className="text-base font-bold text-white font-mono">{title}</h3>
+        <div className="w-screen max-w-xl bg-[#0a0a0f] border-l border-[#2a2a3a] shadow-2xl flex flex-col font-mono">
+          <div className="p-5 border-b border-[#2a2a3a] flex items-center justify-between bg-[#12121a]">
+            <div className="flex items-center gap-2">
+              <span className="text-[#00ff88] font-bold">&gt;</span>
+              <h3 className="text-base font-orbitron font-bold text-white tracking-wide uppercase">{title}</h3>
+            </div>
             <button
               onClick={onClose}
-              className="rounded-md p-1.5 text-slate-400 hover:text-white hover:bg-slate-800"
+              className="cyber-chamfer-sm p-1.5 text-slate-400 hover:text-[#ff3366] hover:bg-[#ff3366]/10 border border-transparent hover:border-[#ff3366]/40 transition-colors"
             >
               <X className="h-5 w-5" />
             </button>
@@ -121,3 +136,4 @@ export function Drawer({ isOpen, onClose, title, children }: DrawerProps) {
     </div>
   );
 }
+

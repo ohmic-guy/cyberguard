@@ -1,25 +1,25 @@
 import React from 'react';
 import Link from 'next/link';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { COMMON_MITRE_TECHNIQUES } from '@/lib/constants';
-import { Grid3X3, ExternalLink, ChevronRight } from 'lucide-react';
+import { Grid3X3, ChevronRight } from 'lucide-react';
 
 export function MitreMini() {
   return (
-    <Card className="border-slate-800 bg-slate-900/70 p-5">
-      <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+    <Card variant="terminal" terminalTitle="TACTICAL_MATRIX // MITRE_ATT&CK" className="p-5 font-mono">
+      <div className="flex items-center justify-between pb-3 border-b border-[#2a2a3a]">
         <div>
-          <h4 className="text-sm font-bold text-white font-mono flex items-center gap-2">
-            <Grid3X3 className="h-4 w-4 text-cyan-400" />
+          <h4 className="text-sm font-orbitron font-bold text-white uppercase flex items-center gap-2">
+            <Grid3X3 className="h-4 w-4 text-[#00d4ff]" />
             <span>Active MITRE ATT&CK Mapping</span>
           </h4>
-          <p className="text-xs text-slate-400">Adversary tactics correlated across observed incident stream</p>
+          <p className="text-xs text-slate-400 font-mono">Adversary tactics correlated across observed incident stream</p>
         </div>
         <Link
           href="/mitre"
-          className="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-semibold"
+          className="cyber-chamfer-sm text-xs font-mono text-[#00d4ff] hover:bg-[#00d4ff] hover:text-[#0a0a0f] border border-[#00d4ff]/40 px-3 py-1 flex items-center gap-1 font-bold uppercase tracking-wider transition-all duration-150 shadow-[0_0_8px_rgba(0,212,255,0.2)]"
         >
-          <span>Full Matrix</span>
+          <span>FULL MATRIX</span>
           <ChevronRight className="h-3.5 w-3.5" />
         </Link>
       </div>
@@ -28,19 +28,24 @@ export function MitreMini() {
         {COMMON_MITRE_TECHNIQUES.slice(0, 6).map((tech) => (
           <div
             key={tech.id}
-            className="p-3 rounded-lg bg-slate-950/70 border border-slate-800/80 hover:border-cyan-500/40 transition-colors font-mono space-y-1.5"
+            className="cyber-chamfer-sm p-3 bg-[#12121a] border border-[#2a2a3a] hover:border-[#00d4ff]/60 hover:shadow-[0_0_12px_rgba(0,212,255,0.2)] transition-all font-mono space-y-2 cursor-pointer"
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-1.5 py-0.5 rounded">
+              <span className="cyber-chamfer-sm text-xs font-bold text-[#00d4ff] bg-[#00d4ff]/15 border border-[#00d4ff]/40 px-1.5 py-0.5">
                 {tech.id}
               </span>
-              <span className="text-[10px] text-slate-400">{tech.detectedCount} hits</span>
+              <span className="text-[10px] text-[#00ff88] font-bold tracking-wider uppercase">
+                {tech.detectedCount} HITS
+              </span>
             </div>
-            <p className="text-xs font-semibold text-white truncate">{tech.name}</p>
-            <span className="text-[10px] text-slate-500 block uppercase">{tech.tactic}</span>
+            <p className="text-xs font-bold text-white truncate uppercase tracking-tight">{tech.name}</p>
+            <span className="text-[10px] text-slate-500 block uppercase tracking-wider">
+              TAC: {tech.tactic}
+            </span>
           </div>
         ))}
       </div>
     </Card>
   );
 }
+

@@ -6,24 +6,54 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   variant?: 'primary' | 'cyber' | 'outline' | 'ghost' | 'danger' | 'secondary';
   size?: 'sm' | 'md' | 'lg' | 'icon';
   isLoading?: boolean;
+  chamfer?: boolean;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'primary', size = 'md', isLoading, disabled, children, ...props }, ref) => {
+  (
+    {
+      className,
+      variant = 'primary',
+      size = 'md',
+      isLoading,
+      disabled,
+      children,
+      chamfer = true,
+      ...props
+    },
+    ref
+  ) => {
     const sizeClasses = {
-      sm: 'h-8 px-3 text-xs gap-1.5',
-      md: 'h-9 px-4 text-sm gap-2',
-      lg: 'h-11 px-6 text-base gap-2.5',
-      icon: 'h-9 w-9 p-0 justify-center',
+      sm: 'h-8 min-h-[34px] px-3.5 text-xs gap-1.5',
+      md: 'h-10 min-h-[40px] px-5 text-xs gap-2',
+      lg: 'h-12 min-h-[48px] px-7 text-sm gap-2.5',
+      icon: 'h-10 w-10 min-h-[40px] min-w-[40px] p-0 justify-center',
     };
 
     const variantClasses = {
-      primary: 'bg-cyan-600 hover:bg-cyan-500 text-white font-medium shadow-[0_0_12px_rgba(6,182,212,0.3)] border border-cyan-400/30 active:scale-[0.98]',
-      cyber: 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold shadow-[0_0_16px_rgba(6,182,212,0.4)] border border-cyan-400/50',
-      outline: 'bg-transparent border border-slate-700 hover:border-slate-500 hover:bg-slate-800/60 text-slate-200',
-      ghost: 'bg-transparent hover:bg-slate-800/80 text-slate-300 hover:text-white',
-      danger: 'bg-red-600/90 hover:bg-red-500 text-white font-medium border border-red-400/30 shadow-[0_0_12px_rgba(239,68,68,0.3)]',
-      secondary: 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80',
+      // Default / Primary: Neon Green outline, fills with green on hover
+      primary:
+        'bg-transparent text-[#00ff88] border-2 border-[#00ff88] hover:bg-[#00ff88] hover:text-[#0a0a0f] hover:shadow-[0_0_16px_rgba(0,255,136,0.6)] active:scale-[0.98]',
+
+      // Cyber / Glitch CTA: Solid electric green, high contrast dark text
+      cyber:
+        'bg-[#00ff88] text-[#0a0a0f] font-bold border-2 border-[#00ff88] hover:brightness-110 hover:shadow-[0_0_24px_rgba(0,255,136,0.7)] active:scale-[0.98]',
+
+      // Secondary: Magenta / Hot Pink Neon
+      secondary:
+        'bg-transparent text-[#ff00ff] border-2 border-[#ff00ff] hover:bg-[#ff00ff] hover:text-[#0a0a0f] hover:shadow-[0_0_16px_rgba(255,0,255,0.6)] active:scale-[0.98]',
+
+      // Outline: Dark border, neon green on hover
+      outline:
+        'bg-transparent border border-[#2a2a3a] text-slate-300 hover:border-[#00ff88]/80 hover:text-[#00ff88] hover:shadow-[0_0_12px_rgba(0,255,136,0.3)] active:scale-[0.98]',
+
+      // Ghost: Subtle highlight
+      ghost:
+        'bg-transparent text-slate-400 hover:bg-[#00ff88]/10 hover:text-[#00ff88]',
+
+      // Danger: Destructive Red-Pink
+      danger:
+        'bg-transparent text-[#ff3366] border-2 border-[#ff3366] hover:bg-[#ff3366] hover:text-white hover:shadow-[0_0_16px_rgba(255,51,102,0.6)] active:scale-[0.98]',
     };
 
     return (
@@ -31,7 +61,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || isLoading}
         className={cn(
-          'inline-flex items-center justify-center rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500/50 disabled:opacity-50 disabled:cursor-not-allowed select-none',
+          'inline-flex items-center justify-center font-mono font-bold uppercase tracking-wider transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#00ff88] focus:ring-offset-2 focus:ring-offset-[#0a0a0f] disabled:opacity-40 disabled:cursor-not-allowed select-none cursor-pointer',
+          chamfer ? 'cyber-chamfer-sm' : 'rounded-none',
           sizeClasses[size],
           variantClasses[variant],
           className
@@ -46,3 +77,4 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
+

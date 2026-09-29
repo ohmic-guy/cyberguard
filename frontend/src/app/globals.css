@@ -3,52 +3,90 @@
 @tailwind utilities;
 
 :root {
-  --background: #070b12;
-  --foreground: #f1f5f9;
+  --background: #0a0a0f;
+  --foreground: #e0e0e0;
+  --card: #12121a;
+  --muted: #1c1c2e;
+  --muted-foreground: #6b7280;
+  --accent: #00ff88;
+  --accent-secondary: #ff00ff;
+  --accent-tertiary: #00d4ff;
+  --border: #2a2a3a;
+  --input: #12121a;
+  --ring: #00ff88;
+  --destructive: #ff3366;
+
+  /* Neon Glow Tokens */
+  --box-shadow-neon: 0 0 5px #00ff88, 0 0 12px rgba(0, 255, 136, 0.45);
+  --box-shadow-neon-sm: 0 0 3px #00ff88, 0 0 6px rgba(0, 255, 136, 0.3);
+  --box-shadow-neon-lg: 0 0 10px #00ff88, 0 0 24px rgba(0, 255, 136, 0.65), 0 0 45px rgba(0, 255, 136, 0.35);
+  --box-shadow-neon-secondary: 0 0 5px #ff00ff, 0 0 18px rgba(255, 0, 255, 0.55);
+  --box-shadow-neon-tertiary: 0 0 5px #00d4ff, 0 0 18px rgba(0, 212, 255, 0.55);
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-jetbrains-mono), monospace;
   overflow-x: hidden;
 }
 
-/* Custom Cyber SOC Scrollbar */
+/* Custom Cyberpunk Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b1120;
+  background: #0a0a0f;
+  border-left: 1px solid #1c1c2e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 3px;
+  background: #1c1c2e;
+  border-radius: 0px;
+  border: 1px solid #2a2a3a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88;
 }
 
-/* Glassmorphism & Cyber Aesthetics */
-.glass-card {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(30, 41, 59, 0.7);
+/* Chamfered 45-degree Corner Cuts via clip-path */
+.cyber-chamfer {
+  clip-path: polygon(
+    0 10px, 10px 0,
+    calc(100% - 10px) 0, 100% 10px,
+    100% calc(100% - 10px), calc(100% - 10px) 100%,
+    10px 100%, 0 calc(100% - 10px)
+  );
 }
 
-.glass-card:hover {
-  border-color: rgba(56, 189, 248, 0.25);
+.cyber-chamfer-sm {
+  clip-path: polygon(
+    0 6px, 6px 0,
+    calc(100% - 6px) 0, 100% 6px,
+    100% calc(100% - 6px), calc(100% - 6px) 100%,
+    6px 100%, 0 calc(100% - 6px)
+  );
 }
 
+.cyber-chamfer-diagonal {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 12px) 0, 100% 12px,
+    100% 100%,
+    12px 100%, 0 calc(100% - 12px)
+  );
+}
+
+/* Circuit / Cyber Grid */
 .cyber-grid {
-  background-size: 32px 32px;
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0, 255, 136, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 136, 0.035) 1px, transparent 1px);
 }
 
 /* Scanline subtle CRT effect */
@@ -59,8 +97,135 @@ body {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-  background-size: 100% 4px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.35) 2px,
+    rgba(0, 0, 0, 0.35) 4px
+  );
   z-index: 9999;
-  opacity: 0.15;
+  opacity: 0.22;
 }
+
+/* Holographic Card Corners Bracket Overlay */
+.holographic-bracket {
+  position: relative;
+}
+.holographic-bracket::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+  pointer-events: none;
+}
+.holographic-bracket::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  pointer-events: none;
+}
+
+/* Chromatic Aberration & Glitch Text Effect */
+.cyber-glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.cyber-glitch::before,
+.cyber-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+}
+
+.cyber-glitch::before {
+  left: -1.5px;
+  text-shadow: 1.5px 0 #ff00ff;
+  animation: glitch-anim-1 3.5s infinite linear alternate-reverse;
+}
+
+.cyber-glitch::after {
+  left: 1.5px;
+  text-shadow: -1.5px 0 #00d4ff;
+  animation: glitch-anim-2 2.8s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0%, 92% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+  93% {
+    clip-path: inset(20% 0 50% 0);
+    opacity: 0.8;
+    transform: translate(-2px, 1px);
+  }
+  95% {
+    clip-path: inset(60% 0 10% 0);
+    opacity: 0.9;
+    transform: translate(2px, -1px);
+  }
+  97% {
+    clip-path: inset(10% 0 70% 0);
+    opacity: 0.8;
+    transform: translate(-1px, 2px);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0%, 94% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
+  95% {
+    clip-path: inset(40% 0 30% 0);
+    opacity: 0.85;
+    transform: translate(2px, -1px);
+  }
+  97% {
+    clip-path: inset(15% 0 65% 0);
+    opacity: 0.9;
+    transform: translate(-2px, 1px);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+    transform: translate(0);
+  }
+}
+
+/* Reduced Motion Safeguard */
+@media (prefers-reduced-motion: reduce) {
+  .cyber-glitch::before,
+  .cyber-glitch::after {
+    animation: none;
+    opacity: 0;
+  }
+  .animate-pulse,
+  .animate-ping,
+  .animate-glitch,
+  .animate-rgb-shift {
+    animation: none !important;
+  }
+}
+

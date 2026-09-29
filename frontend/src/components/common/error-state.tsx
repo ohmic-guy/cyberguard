@@ -10,31 +10,31 @@ interface ErrorStateProps {
 }
 
 export function ErrorState({
-  title = 'Security Telemetry Stream Error',
-  message = 'Failed to load telemetry data from CyberGuard SOC engine. The service may be restarting or uncontactable.',
+  title = 'TELEMETRY STREAM CORRUPTED',
+  message = 'Failed to load telemetry stream from CyberGuard SOC engine. The neural node may be rebooting or connection is unstable.',
   onRetry,
   details,
 }: ErrorStateProps) {
   const [showDetails, setShowDetails] = React.useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center p-8 rounded-xl border border-red-500/30 bg-red-950/20 text-center max-w-lg mx-auto my-6 shadow-[0_0_20px_rgba(239,68,68,0.15)]">
-      <div className="h-12 w-12 rounded-full bg-red-500/10 border border-red-500/40 flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
-        <AlertTriangle className="h-6 w-6 text-red-400" />
+    <div className="cyber-chamfer flex flex-col items-center justify-center p-8 border border-[#ff3366]/40 bg-[#12121a] text-center max-w-lg mx-auto my-6 shadow-[0_0_25px_rgba(255,51,102,0.2)] font-mono">
+      <div className="cyber-chamfer-sm h-12 w-12 bg-[#ff3366]/15 border border-[#ff3366]/60 flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(255,51,102,0.4)]">
+        <AlertTriangle className="h-6 w-6 text-[#ff3366]" />
       </div>
-      <h3 className="text-base font-bold text-white tracking-tight">{title}</h3>
-      <p className="text-xs text-slate-300 mt-2 leading-relaxed max-w-sm">{message}</p>
+      <h3 className="text-base font-orbitron font-bold text-white tracking-wide uppercase">{title}</h3>
+      <p className="text-xs text-slate-300 mt-2 leading-relaxed max-w-sm font-mono">{message}</p>
 
       {details && (
         <div className="w-full mt-4">
           <button
             onClick={() => setShowDetails(!showDetails)}
-            className="text-[11px] text-red-400/80 hover:text-red-300 underline font-mono"
+            className="text-[11px] text-[#ff3366] hover:underline font-mono uppercase tracking-wider cursor-pointer"
           >
-            {showDetails ? 'Hide Stack Trace' : 'View Diagnostics'}
+            {showDetails ? '[ - HIDE DIAGNOSTICS ]' : '[ + VIEW DIAGNOSTICS ]'}
           </button>
           {showDetails && (
-            <pre className="mt-2 p-3 rounded bg-slate-950 border border-red-500/20 text-[10px] text-red-300 font-mono text-left overflow-x-auto">
+            <pre className="cyber-chamfer-sm mt-2 p-3 bg-[#0a0a0f] border border-[#ff3366]/30 text-[10px] text-[#ff3366]/90 font-mono text-left overflow-x-auto">
               {details}
             </pre>
           )}
@@ -43,10 +43,10 @@ export function ErrorState({
 
       {onRetry && (
         <Button
-          variant="outline"
+          variant="danger"
           size="sm"
           onClick={onRetry}
-          className="mt-5 border-red-500/40 text-red-300 hover:bg-red-500/10 gap-2"
+          className="mt-5 gap-2"
         >
           <RefreshCw className="h-3.5 w-3.5" />
           Reconnect Feed
@@ -55,3 +55,4 @@ export function ErrorState({
     </div>
   );
 }
+

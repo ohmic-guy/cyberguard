@@ -10,7 +10,7 @@ import { MitreMini } from '@/components/dashboard/mitre-mini';
 import { TableSkeleton } from '@/components/common/loading-skeleton';
 import { ErrorState } from '@/components/common/error-state';
 import { Button } from '@/components/ui/button';
-import { ShieldCheck, PlusCircle, Sparkles, RefreshCw, Radio } from 'lucide-react';
+import { PlusCircle, RefreshCw } from 'lucide-react';
 
 export default function DashboardPage() {
   const { threats, metrics, isLoading, error, refetch } = useThreats();
@@ -19,8 +19,8 @@ export default function DashboardPage() {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <div className="h-6 w-48 bg-slate-800 animate-pulse rounded" />
-          <div className="h-8 w-32 bg-slate-800 animate-pulse rounded" />
+          <div className="h-6 w-48 bg-[#1c1c2e] animate-pulse cyber-chamfer-sm" />
+          <div className="h-8 w-32 bg-[#1c1c2e] animate-pulse cyber-chamfer-sm" />
         </div>
         <TableSkeleton rows={4} />
       </div>
@@ -32,28 +32,35 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7 font-mono">
       {/* Top Banner & Quick Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#2a2a3a]">
         <div>
-          <h1 className="text-xl sm:text-2xl font-black tracking-tight text-white font-mono flex items-center gap-2">
-            <span>SOC Master Command Overview</span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 px-2 py-0.5 text-[10px] font-bold text-cyan-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-ping" />
+          <div className="flex items-center gap-3 flex-wrap">
+            <h1
+              className="cyber-glitch text-xl sm:text-2xl lg:text-3xl font-orbitron font-black tracking-widest text-white uppercase"
+              data-text="SOC MASTER COMMAND OVERVIEW"
+            >
+              SOC MASTER COMMAND OVERVIEW
+            </h1>
+            <span className="text-[#00ff88] font-bold text-xl animate-blink">_</span>
+            <span className="cyber-chamfer-sm inline-flex items-center gap-1.5 bg-[#00ff88]/15 border border-[#00ff88]/50 px-2.5 py-0.5 text-[10px] font-bold text-[#00ff88] tracking-widest uppercase shadow-[0_0_10px_rgba(0,255,136,0.3)]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#00ff88] animate-ping" />
               LIVE TELEMETRY
             </span>
-          </h1>
-          <p className="text-xs text-slate-400 mt-1">
-            Real-time multi-agent threat detection, scoring consensus and response orchestration.
+          </div>
+          <p className="text-xs text-slate-400 mt-1.5 font-mono tracking-wide flex items-center gap-1.5">
+            <span className="text-[#00ff88]">&gt;</span>
+            <span>Real-time multi-agent threat consensus, neural scoring and response orchestration.</span>
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           <Button
             variant="outline"
             size="sm"
             onClick={refetch}
-            className="text-xs font-mono gap-1.5 text-slate-300"
+            className="text-xs font-mono gap-1.5"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Refresh
@@ -82,3 +89,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+
