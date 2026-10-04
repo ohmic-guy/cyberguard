@@ -5,6 +5,7 @@ import { Sidebar } from '@/components/common/sidebar';
 import { Topbar } from '@/components/common/topbar';
 import { LiveTicker } from '@/components/common/live-ticker';
 import { useWebSocket } from '@/hooks/use-websocket';
+import { NavigationLoader } from '@/components/ui/navigation-loader';
 
 export default function DashboardLayout({
   children,
@@ -16,6 +17,9 @@ export default function DashboardLayout({
 
   return (
     <div className="flex min-h-screen bg-[#0a0a0f] text-[#e0e0e0] font-mono">
+      {/* Cyber route-change loader */}
+      <NavigationLoader />
+
       {/* Sidebar Navigation */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
@@ -34,4 +38,3 @@ export default function DashboardLayout({
     </div>
   );
 }
-
