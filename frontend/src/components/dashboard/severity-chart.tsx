@@ -40,7 +40,7 @@ export function SeverityChart({ metrics }: SeverityChartProps) {
             </h4>
             <p className="text-xs text-slate-400 font-mono">Classification across all monitored endpoints</p>
           </div>
-          <span className="cyber-chamfer-sm text-[11px] font-mono font-bold text-[#00ff88] bg-[#00ff88]/15 border border-[#00ff88]/50 px-2.5 py-0.5 uppercase tracking-wider shadow-[0_0_8px_rgba(0,255,136,0.2)]">
+          <span className="cyber-chamfer-sm text-[11px] font-mono font-bold text-[#00ff88] bg-transparent border border-[#00ff88]/50 px-2.5 py-0.5 uppercase tracking-wider shadow-[0_0_8px_rgba(0,255,136,0.2)]">
             {totalRisks.toLocaleString()} TOTAL
           </span>
         </div>
@@ -112,7 +112,7 @@ export function SeverityChart({ metrics }: SeverityChartProps) {
             </h4>
             <p className="text-xs text-slate-400 font-mono">Autonomous ML detector agent distribution</p>
           </div>
-          <span className="cyber-chamfer-sm text-[11px] font-mono font-bold text-[#ff00ff] bg-[#ff00ff]/15 border border-[#ff00ff]/50 px-2.5 py-0.5 uppercase tracking-wider shadow-[0_0_8px_rgba(255,0,255,0.2)]">
+          <span className="cyber-chamfer-sm text-[11px] font-mono font-bold text-[#ff00ff] bg-transparent border border-[#ff00ff]/50 px-2.5 py-0.5 uppercase tracking-wider shadow-[0_0_8px_rgba(255,0,255,0.2)]">
             4 CORE AGENTS
           </span>
         </div>

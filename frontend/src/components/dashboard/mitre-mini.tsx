@@ -31,7 +31,7 @@ export function MitreMini() {
             className="cyber-chamfer-sm p-3 bg-[#12121a] border border-[#2a2a3a] hover:border-[#00d4ff]/60 hover:shadow-[0_0_12px_rgba(0,212,255,0.2)] transition-all font-mono space-y-2 cursor-pointer"
           >
             <div className="flex items-center justify-between">
-              <span className="cyber-chamfer-sm text-xs font-bold text-[#00d4ff] bg-[#00d4ff]/15 border border-[#00d4ff]/40 px-1.5 py-0.5">
+              <span className="cyber-chamfer-sm text-xs font-bold text-[#00d4ff] bg-transparent border border-[#00d4ff]/40 px-1.5 py-0.5">
                 {tech.id}
               </span>
               <span className="text-[10px] text-[#00ff88] font-bold tracking-wider uppercase">

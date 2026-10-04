@@ -14,7 +14,7 @@ export const RISK_LEVEL_CONFIG: Record<
 > = {
   critical: {
     label: 'CRITICAL',
-    badgeBg: 'bg-[#ff3366]/15',
+    badgeBg: 'bg-transparent',
     badgeText: 'text-[#ff3366]',
     border: 'border-[#ff3366]/60',
     glow: 'shadow-[0_0_12px_rgba(255,51,102,0.45)]',
@@ -23,7 +23,7 @@ export const RISK_LEVEL_CONFIG: Record<
   },
   high: {
     label: 'HIGH',
-    badgeBg: 'bg-[#ff8800]/15',
+    badgeBg: 'bg-transparent',
     badgeText: 'text-[#ff8800]',
     border: 'border-[#ff8800]/60',
     glow: 'shadow-[0_0_12px_rgba(255,136,0,0.4)]',
@@ -32,7 +32,7 @@ export const RISK_LEVEL_CONFIG: Record<
   },
   medium: {
     label: 'MEDIUM',
-    badgeBg: 'bg-[#ffb800]/15',
+    badgeBg: 'bg-transparent',
     badgeText: 'text-[#ffb800]',
     border: 'border-[#ffb800]/60',
     glow: 'shadow-[0_0_12px_rgba(255,184,0,0.35)]',
@@ -41,7 +41,7 @@ export const RISK_LEVEL_CONFIG: Record<
   },
   low: {
     label: 'LOW',
-    badgeBg: 'bg-[#00d4ff]/15',
+    badgeBg: 'bg-transparent',
     badgeText: 'text-[#00d4ff]',
     border: 'border-[#00d4ff]/60',
     glow: 'shadow-[0_0_12px_rgba(0,212,255,0.35)]',
@@ -50,7 +50,7 @@ export const RISK_LEVEL_CONFIG: Record<
   },
   safe: {
     label: 'SAFE',
-    badgeBg: 'bg-[#00ff88]/15',
+    badgeBg: 'bg-transparent',
     badgeText: 'text-[#00ff88]',
     border: 'border-[#00ff88]/60',
     glow: 'shadow-[0_0_12px_rgba(0,255,136,0.35)]',
@@ -71,31 +71,31 @@ export const CATEGORY_CONFIG: Record<
   phishing: {
     label: 'Phishing',
     description: 'Deceptive emails, forged URLs, credential harvest SMS, QR phishing',
-    color: 'text-[#ff00ff] bg-[#ff00ff]/10',
+    color: 'text-[#ff00ff] bg-transparent',
     border: 'border-[#ff00ff]/40 shadow-[0_0_8px_rgba(255,0,255,0.2)]',
   },
   deepfake: {
     label: 'Deepfake Media',
     description: 'Manipulated biometric media, synthetic voice audio, face swaps',
-    color: 'text-[#00d4ff] bg-[#00d4ff]/10',
+    color: 'text-[#00d4ff] bg-transparent',
     border: 'border-[#00d4ff]/40 shadow-[0_0_8px_rgba(0,212,255,0.2)]',
   },
   log_anomaly: {
     label: 'Log Anomaly',
     description: 'Privilege escalation, auth spray, credential stuffing, anomalous sys logs',
-    color: 'text-[#ffb800] bg-[#ffb800]/10',
+    color: 'text-[#ffb800] bg-transparent',
     border: 'border-[#ffb800]/40 shadow-[0_0_8px_rgba(255,184,0,0.2)]',
   },
   api_abuse: {
     label: 'API Abuse',
     description: 'Rate limit evasion, schema probing, token forgery, scraping',
-    color: 'text-[#00ff88] bg-[#00ff88]/10',
+    color: 'text-[#00ff88] bg-transparent',
     border: 'border-[#00ff88]/40 shadow-[0_0_8px_rgba(0,255,136,0.2)]',
   },
   unknown: {
     label: 'Unknown Threat',
     description: 'Unclassified security telemetry or unparsed payload',
-    color: 'text-slate-400 bg-slate-500/10',
+    color: 'text-slate-400 bg-transparent',
     border: 'border-slate-700/60',
   },
 };
@@ -127,12 +127,12 @@ export const STATUS_CONFIG: Record<
     pulse?: boolean;
   }
 > = {
-  received: { label: 'Received', color: 'text-slate-400 bg-[#12121a] border-[#2a2a3a]' },
-  processing: { label: 'Processing', color: 'text-[#00d4ff] bg-[#00d4ff]/10 border-[#00d4ff]/40 shadow-[0_0_6px_rgba(0,212,255,0.3)]', pulse: true },
-  scored: { label: 'Scored', color: 'text-[#ff00ff] bg-[#ff00ff]/10 border-[#ff00ff]/40' },
-  complete: { label: 'Complete', color: 'text-[#00ff88] bg-[#00ff88]/10 border-[#00ff88]/40 shadow-[0_0_6px_rgba(0,255,136,0.3)]' },
-  escalated: { label: 'Escalated', color: 'text-[#ff3366] bg-[#ff3366]/15 border-[#ff3366]/50 shadow-[0_0_8px_rgba(255,51,102,0.4)]', pulse: true },
-  failed: { label: 'Failed', color: 'text-rose-400 bg-rose-500/10 border-rose-500/30' },
+  received: { label: 'Received', color: 'text-slate-400 bg-transparent border-[#2a2a3a]' },
+  processing: { label: 'Processing', color: 'text-[#00d4ff] bg-transparent border-[#00d4ff]/40 shadow-[0_0_6px_rgba(0,212,255,0.3)]', pulse: true },
+  scored: { label: 'Scored', color: 'text-[#ff00ff] bg-transparent border-[#ff00ff]/40' },
+  complete: { label: 'Complete', color: 'text-[#00ff88] bg-transparent border-[#00ff88]/40 shadow-[0_0_6px_rgba(0,255,136,0.3)]' },
+  escalated: { label: 'Escalated', color: 'text-[#ff3366] bg-transparent border-[#ff3366]/50 shadow-[0_0_8px_rgba(255,51,102,0.4)]', pulse: true },
+  failed: { label: 'Failed', color: 'text-rose-400 bg-transparent border-rose-500/30' },
 };
 
 export const COMMON_MITRE_TECHNIQUES: MitreTechnique[] = [

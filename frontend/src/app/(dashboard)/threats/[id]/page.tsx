@@ -122,13 +122,13 @@ export default function ThreatDetailPage() {
       </div>
 
       {/* Incident Header Card */}
-      <div className="p-6 rounded-xl bg-slate-900/90 border border-slate-800 shadow-2xl relative overflow-hidden">
+      <div className="p-6 rounded-xl bg-black/90 border border-slate-800 shadow-2xl relative overflow-hidden">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div className="space-y-3 max-w-3xl">
             <div className="flex flex-wrap items-center gap-2.5">
               <Badge risk={threat.risk_level || 'safe'} variant="risk" size="md" />
               <Badge status={threat.status} variant="status" size="md" />
-              <span className="text-xs text-cyan-400 bg-cyan-950/80 border border-cyan-500/30 px-2.5 py-1 rounded font-bold uppercase">
+              <span className="text-xs text-cyan-400 bg-transparent border border-cyan-500/30 px-2.5 py-1 rounded font-bold uppercase">
                 {`${threat.category} // ${threat.modality}`}
               </span>
             </div>
@@ -151,7 +151,7 @@ export default function ThreatDetailPage() {
           </div>
 
           {/* Large Confidence Dial */}
-          <div className="shrink-0 flex items-center justify-center bg-slate-950/80 p-4 rounded-xl border border-slate-800">
+          <div className="shrink-0 flex items-center justify-center bg-black/80 p-4 rounded-xl border border-slate-800">
             <ConfidenceGauge
               confidence={threat.confidence || 0}
               size={120}
@@ -167,7 +167,7 @@ export default function ThreatDetailPage() {
         {/* Left 2 Columns */}
         <div className="lg:col-span-2 space-y-6">
           {/* AI Explanation Section */}
-          <Card className="border-slate-800 bg-slate-900/70 p-5 space-y-3">
+          <Card className="border-slate-800 bg-black/70 p-5 space-y-3">
             <h3 className="text-sm font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
               <ShieldAlert className="h-4 w-4 text-cyan-400" />
               <span>Multi-Agent Threat Explanation</span>
@@ -194,7 +194,7 @@ export default function ThreatDetailPage() {
           </Card>
 
           {/* Threat Indicators Section (IOCs) */}
-          <Card className="border-slate-800 bg-slate-900/70 p-5 space-y-3">
+          <Card className="border-slate-800 bg-black/70 p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
                 <AlertTriangle className="h-4 w-4 text-amber-400" />
@@ -208,7 +208,7 @@ export default function ThreatDetailPage() {
               {threat.indicators.map((indicator, i) => (
                 <div
                   key={i}
-                  className="p-3 rounded-lg bg-slate-950/70 border border-slate-800 flex items-start gap-2.5 text-xs text-slate-200"
+                  className="p-3 rounded-lg bg-black/70 border border-slate-800 flex items-start gap-2.5 text-xs text-slate-200"
                 >
                   <span className="h-2 w-2 rounded-full bg-amber-400 shrink-0 mt-1.5" />
                   <span className="font-mono">{indicator}</span>
@@ -218,7 +218,7 @@ export default function ThreatDetailPage() {
           </Card>
 
           {/* Recommended Remediation Actions Checklist */}
-          <Card className="border-slate-800 bg-slate-900/70 p-5 space-y-3">
+          <Card className="border-slate-800 bg-black/70 p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-emerald-400" />
@@ -238,14 +238,14 @@ export default function ThreatDetailPage() {
                     className={`p-3.5 rounded-lg border cursor-pointer transition-all flex items-start gap-3 select-none ${
                       isDone
                         ? 'bg-emerald-950/20 border-emerald-500/40 opacity-75'
-                        : 'bg-slate-950/60 border-slate-800 hover:border-slate-700'
+                        : 'bg-black/60 border-slate-800 hover:border-slate-700'
                     }`}
                   >
                     <div
                       className={`h-5 w-5 rounded flex items-center justify-center shrink-0 mt-0.5 border ${
                         isDone
                           ? 'bg-emerald-500 border-emerald-400 text-slate-950'
-                          : 'border-slate-600 bg-slate-900'
+                          : 'border-slate-600 bg-black'
                       }`}
                     >
                       {isDone && <Check className="h-3.5 w-3.5 stroke-[3]" />}
@@ -269,7 +269,7 @@ export default function ThreatDetailPage() {
         {/* Right Column: MITRE & Payload */}
         <div className="space-y-6">
           {/* MITRE ATT&CK Mapping */}
-          <Card className="border-slate-800 bg-slate-900/70 p-5 space-y-3">
+          <Card className="border-slate-800 bg-black/70 p-5 space-y-3">
             <h3 className="text-sm font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
               <Layers className="h-4 w-4 text-purple-400" />
               <span>MITRE ATT&CK Mapping</span>
@@ -300,7 +300,7 @@ export default function ThreatDetailPage() {
           </Card>
 
           {/* Raw Payload Inspector */}
-          <Card className="border-slate-800 bg-slate-900/70 p-5 space-y-3">
+          <Card className="border-slate-800 bg-black/70 p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
                 <Terminal className="h-4 w-4 text-cyan-400" />
@@ -308,7 +308,7 @@ export default function ThreatDetailPage() {
               </h3>
               <span className="text-[10px] text-slate-500 uppercase">{threat.modality}</span>
             </div>
-            <pre className="p-3.5 rounded-lg bg-slate-950 border border-slate-800/90 text-[11px] text-cyan-300 overflow-x-auto leading-relaxed max-h-96">
+            <pre className="p-3.5 rounded-lg bg-black border border-slate-800/90 text-[11px] text-cyan-300 overflow-x-auto leading-relaxed max-h-96">
               {JSON.stringify(threat.payload, null, 2)}
             </pre>
           </Card>

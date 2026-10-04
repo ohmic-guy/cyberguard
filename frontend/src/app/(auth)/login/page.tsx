@@ -37,7 +37,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-slate-950 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-black relative overflow-hidden">
       {/* Background glow effects */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -54,14 +54,14 @@ export default function LoginPage() {
           <p className="text-xs text-slate-400 font-mono">
             AI-Powered Cyber Threat, Phishing & Digital Impersonation Defense
           </p>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] font-mono text-cyan-400">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-transparent border border-slate-800 text-[11px] font-mono text-cyan-400">
             <Cpu className="h-3 w-3" />
             <span>BPUT Hackathon · Problem Statement 9</span>
           </div>
         </div>
 
         {/* Login Card */}
-        <Card className="border-slate-800/80 bg-slate-900/90 shadow-2xl backdrop-blur-xl">
+        <Card className="border-slate-800/80 bg-black/90 shadow-2xl backdrop-blur-xl">
           <CardHeader className="pb-4">
             <CardTitle className="text-base text-white font-mono flex items-center justify-between">
               <span>SOC Access Gateway</span>
@@ -109,7 +109,7 @@ export default function LoginPage() {
                 <select
                   value={role}
                   onChange={(e) => setRole(e.target.value)}
-                  className="w-full rounded-lg bg-slate-950/80 border border-slate-700/80 px-3.5 py-2 text-xs text-slate-200 font-mono focus:border-cyan-500 focus:outline-none"
+                  className="w-full rounded-lg bg-black border border-slate-700/80 px-3.5 py-2 text-xs text-slate-200 font-mono focus:border-cyan-500 focus:outline-none"
                 >
                   <option>Senior SOC Analyst (Level 3)</option>
                   <option>Incident Response Lead</option>
@@ -119,7 +119,7 @@ export default function LoginPage() {
               </div>
 
               {/* Quick Fill Helper */}
-              <div className="flex items-center justify-between p-2.5 rounded-lg bg-slate-950/50 border border-slate-800 text-[11px] font-mono text-slate-400">
+              <div className="flex items-center justify-between p-2.5 rounded-lg bg-black/50 border border-slate-800 text-[11px] font-mono text-slate-400">
                 <div className="flex items-center gap-1.5">
                   <KeyRound className="h-3.5 w-3.5 text-cyan-400" />
                   <span>Demo: <strong className="text-slate-200">admin</strong> / <strong className="text-slate-200">cyberguard2024</strong></span>

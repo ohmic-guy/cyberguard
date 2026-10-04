@@ -44,7 +44,7 @@ export default function DashboardPage() {
               SOC MASTER COMMAND OVERVIEW
             </h1>
             <span className="text-[#00ff88] font-bold text-xl animate-blink">_</span>
-            <span className="cyber-chamfer-sm inline-flex items-center gap-1.5 bg-[#00ff88]/15 border border-[#00ff88]/50 px-2.5 py-0.5 text-[10px] font-bold text-[#00ff88] tracking-widest uppercase shadow-[0_0_10px_rgba(0,255,136,0.3)]">
+            <span className="cyber-chamfer-sm inline-flex items-center gap-1.5 bg-transparent border border-[#00ff88]/50 px-2.5 py-0.5 text-[10px] font-bold text-[#00ff88] tracking-widest uppercase shadow-[0_0_10px_rgba(0,255,136,0.3)]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#00ff88] animate-ping" />
               LIVE TELEMETRY
             </span>

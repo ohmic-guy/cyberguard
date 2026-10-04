@@ -32,7 +32,7 @@ export function Badge({
     return (
       <span
         className={cn(
-          'inline-flex items-center gap-1.5 border uppercase font-mono transition-all duration-200 select-none',
+          'inline-flex items-center gap-1.5 border uppercase font-mono transition-all duration-200 select-none bg-transparent',
           chamfer ? 'cyber-chamfer-sm' : 'rounded-none',
           sizeClasses[size],
           config.badgeBg,
@@ -60,7 +60,7 @@ export function Badge({
     return (
       <span
         className={cn(
-          'inline-flex items-center gap-1.5 border font-mono uppercase transition-all duration-200 select-none',
+          'inline-flex items-center gap-1.5 border font-mono uppercase transition-all duration-200 select-none bg-transparent',
           chamfer ? 'cyber-chamfer-sm' : 'rounded-none',
           sizeClasses[size],
           config.color,
@@ -79,17 +79,17 @@ export function Badge({
   return (
     <span
       className={cn(
-        'inline-flex items-center font-mono uppercase tracking-wider transition-colors select-none',
+        'inline-flex items-center font-mono uppercase tracking-wider transition-colors select-none bg-transparent',
         chamfer ? 'cyber-chamfer-sm' : 'rounded-none',
         sizeClasses[size],
         variant === 'default' &&
-        'bg-[#12121a] text-slate-200 border border-[#2a2a3a]',
+        'text-slate-200 border border-[#2a2a3a]',
         variant === 'outline' &&
-        'border border-[#2a2a3a] text-slate-300 bg-transparent hover:border-[#00ff88]/50',
+        'border border-[#2a2a3a] text-slate-300 hover:border-[#00ff88]/50',
         variant === 'cyber' &&
-        'bg-[#00ff88]/15 text-[#00ff88] border border-[#00ff88]/50 shadow-[0_0_10px_rgba(0,255,136,0.25)]',
+        'text-[#00ff88] border border-[#00ff88]/50 shadow-[0_0_10px_rgba(0,255,136,0.25)]',
         variant === 'neon' &&
-        'bg-[#ff00ff]/15 text-[#ff00ff] border border-[#ff00ff]/50 shadow-[0_0_10px_rgba(255,0,255,0.25)]',
+        'text-[#ff00ff] border border-[#ff00ff]/50 shadow-[0_0_10px_rgba(255,0,255,0.25)]',
         className
       )}
       {...props}

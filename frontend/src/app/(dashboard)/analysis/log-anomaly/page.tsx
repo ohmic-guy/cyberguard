@@ -118,19 +118,19 @@ type=PATH msg=audit(1695029402.120:942): item=0 name="/etc/sudoers" nametype=NOR
         <span className="text-slate-500">Quick Test Scenarios:</span>
         <button
           onClick={() => handleSetPreset('spray')}
-          className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 hover:border-amber-500/50 text-amber-300 transition-colors"
+          className="px-2.5 py-1 rounded bg-black border border-slate-800 hover:border-amber-500/50 text-amber-300 transition-colors"
         >
           Password Spray
         </button>
         <button
           onClick={() => handleSetPreset('privesc')}
-          className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 hover:border-red-500/50 text-red-300 transition-colors"
+          className="px-2.5 py-1 rounded bg-black border border-slate-800 hover:border-red-500/50 text-red-300 transition-colors"
         >
           Privilege Escalation
         </button>
         <button
           onClick={() => handleSetPreset('apiscrape')}
-          className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 hover:border-cyan-500/50 text-cyan-300 transition-colors"
+          className="px-2.5 py-1 rounded bg-black border border-slate-800 hover:border-cyan-500/50 text-cyan-300 transition-colors"
         >
           BOLA API Scrape
         </button>
@@ -139,7 +139,7 @@ type=PATH msg=audit(1695029402.120:942): item=0 name="/etc/sudoers" nametype=NOR
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Input Column */}
         <div className="lg:col-span-7 space-y-6">
-          <Card className="border-slate-800 bg-slate-900/80 p-5">
+          <Card className="border-slate-800 bg-black/80 p-5">
             <CardHeader className="p-0 pb-4 border-b border-slate-800">
               <CardTitle className="text-sm font-bold text-white font-mono flex items-center justify-between">
                 <span>Ingest & Score Log Stream</span>
@@ -183,7 +183,7 @@ type=PATH msg=audit(1695029402.120:942): item=0 name="/etc/sudoers" nametype=NOR
         {/* Real-time Analysis Result Column */}
         <div className="lg:col-span-5">
           {analyzedResult ? (
-            <Card className="border-amber-500/40 bg-slate-900/90 p-5 shadow-[0_0_20px_rgba(245,158,11,0.15)] space-y-5">
+            <Card className="border-amber-500/40 bg-black/90 p-5 shadow-[0_0_20px_rgba(245,158,11,0.15)] space-y-5">
               <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                 <span className="text-xs font-bold text-white font-mono flex items-center gap-1.5">
                   <CheckCircle2 className="h-4 w-4 text-emerald-400" />
@@ -192,7 +192,7 @@ type=PATH msg=audit(1695029402.120:942): item=0 name="/etc/sudoers" nametype=NOR
                 <Badge risk={analyzedResult.risk_level || 'high'} variant="risk" size="sm" />
               </div>
 
-              <div className="flex items-center justify-center p-3 bg-slate-950/70 rounded-xl border border-slate-800">
+              <div className="flex items-center justify-center p-3 bg-black/70 rounded-xl border border-slate-800">
                 <ConfidenceGauge
                   confidence={analyzedResult.confidence || 0.88}
                   size={100}
@@ -210,7 +210,7 @@ type=PATH msg=audit(1695029402.120:942): item=0 name="/etc/sudoers" nametype=NOR
                 <div className="space-y-1.5">
                   <span className="text-[10px] uppercase font-bold text-amber-400 block">Anomalous Signals</span>
                   {analyzedResult.indicators.map((ind, i) => (
-                    <div key={i} className="p-2 rounded bg-slate-950 border border-slate-800 text-[11px] text-slate-300">
+                    <div key={i} className="p-2 rounded bg-black border border-slate-800 text-[11px] text-slate-300">
                       • {ind}
                     </div>
                   ))}
@@ -228,8 +228,8 @@ type=PATH msg=audit(1695029402.120:942): item=0 name="/etc/sudoers" nametype=NOR
               </Button>
             </Card>
           ) : (
-            <Card className="border-slate-800 bg-slate-900/40 p-8 text-center flex flex-col items-center justify-center h-full min-h-[300px]">
-              <div className="h-12 w-12 rounded-full bg-slate-800/80 border border-slate-700 flex items-center justify-center mb-3">
+            <Card className="border-slate-800 bg-black/40 p-8 text-center flex flex-col items-center justify-center h-full min-h-[300px]">
+              <div className="h-12 w-12 rounded-full bg-black/80 border border-slate-700 flex items-center justify-center mb-3">
                 <FileTerminal className="h-6 w-6 text-amber-400" />
               </div>
               <h4 className="text-sm font-bold text-white font-mono">Awaiting Log Stream</h4>

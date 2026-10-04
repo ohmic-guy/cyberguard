@@ -126,7 +126,7 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
                   <span>{item.name}</span>
                 </div>
                 {item.badge && (
-                  <span className="cyber-chamfer-sm bg-[#ff00ff]/20 border border-[#ff00ff]/50 px-1.5 py-0.5 text-[9px] font-bold text-[#ff00ff] uppercase tracking-wider shadow-[0_0_8px_rgba(255,0,255,0.3)]">
+                  <span className="cyber-chamfer-sm bg-transparent border border-[#ff00ff]/50 px-1.5 py-0.5 text-[9px] font-bold text-[#ff00ff] uppercase tracking-wider shadow-[0_0_8px_rgba(255,0,255,0.3)]">
                     {item.badge}
                   </span>
                 )}

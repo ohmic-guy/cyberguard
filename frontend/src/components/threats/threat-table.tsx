@@ -12,11 +12,11 @@ interface ThreatTableProps {
 
 export function ThreatTable({ threats, onSelectThreat }: ThreatTableProps) {
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/60 overflow-hidden shadow-xl">
+    <div className="rounded-xl border border-slate-800 bg-black overflow-hidden shadow-xl">
       <div className="overflow-x-auto">
         <table className="w-full text-left font-mono text-xs border-collapse">
           <thead>
-            <tr className="border-b border-slate-800 bg-slate-950/80 text-slate-400">
+            <tr className="border-b border-slate-800 bg-black text-slate-400">
               <th className="py-3 px-4 font-semibold">Incident ID & Time</th>
               <th className="py-3 px-4 font-semibold">Classification</th>
               <th className="py-3 px-4 font-semibold">Detection Summary</th>
@@ -31,7 +31,7 @@ export function ThreatTable({ threats, onSelectThreat }: ThreatTableProps) {
               <tr
                 key={threat.event_id}
                 onClick={() => onSelectThreat(threat)}
-                className="hover:bg-slate-800/50 cursor-pointer transition-colors group"
+                className="hover:bg-black/50 cursor-pointer transition-colors group"
               >
                 {/* ID & Timestamp */}
                 <td className="py-3.5 px-4 whitespace-nowrap">
@@ -50,7 +50,7 @@ export function ThreatTable({ threats, onSelectThreat }: ThreatTableProps) {
                     <span className="font-semibold text-slate-300 uppercase text-[11px]">
                       {threat.category}
                     </span>
-                    <span className="text-[10px] text-cyan-400 bg-cyan-950/40 border border-cyan-500/20 px-1.5 py-0.5 rounded w-fit uppercase">
+                    <span className="text-[10px] text-cyan-400 bg-transparent border border-cyan-500/20 px-1.5 py-0.5 rounded w-fit uppercase">
                       {threat.modality}
                     </span>
                   </div>
@@ -78,7 +78,7 @@ export function ThreatTable({ threats, onSelectThreat }: ThreatTableProps) {
                       <span className="text-slate-400">Score</span>
                       <span className="font-bold text-white">{formatConfidence(threat.confidence)}</span>
                     </div>
-                    <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+                    <div className="h-1.5 w-full bg-black rounded-full overflow-hidden">
                       <div
                         className="h-full bg-cyan-400 rounded-full"
                         style={{ width: `${Math.round((threat.confidence || 0) * 100)}%` }}

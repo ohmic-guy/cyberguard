@@ -22,12 +22,12 @@ export function ThreatQuickDrawer({ threat, onClose }: ThreatQuickDrawerProps) {
     <Drawer isOpen={Boolean(threat)} onClose={onClose} title={`INCIDENT: ${threat.event_id.slice(0, 18)}...`}>
       <div className="space-y-6 font-mono text-xs">
         {/* Top Summary Banner */}
-        <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-slate-950/80 border border-slate-800">
+        <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-black border border-slate-800">
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-2">
               <Badge risk={threat.risk_level || 'safe'} variant="risk" size="sm" />
               <Badge status={threat.status} variant="status" size="sm" />
-              <span className="text-cyan-400 bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded uppercase">
+              <span className="text-cyan-400 bg-transparent border border-cyan-500/30 px-2 py-0.5 rounded uppercase">
                 {threat.modality}
               </span>
             </div>
@@ -66,7 +66,7 @@ export function ThreatQuickDrawer({ threat, onClose }: ThreatQuickDrawerProps) {
         {activeTab === 'details' ? (
           <div className="space-y-5">
             {/* AI Explanation */}
-            <div className="space-y-1.5 p-3.5 rounded-lg bg-slate-950/50 border border-slate-800">
+            <div className="space-y-1.5 p-3.5 rounded-lg bg-black/50 border border-slate-800">
               <span className="text-[10px] uppercase font-bold text-cyan-400 block tracking-wider">
                 Multi-Agent Analysis
               </span>
@@ -86,7 +86,7 @@ export function ThreatQuickDrawer({ threat, onClose }: ThreatQuickDrawerProps) {
                   {threat.indicators.map((ind, i) => (
                     <div
                       key={i}
-                      className="p-2.5 rounded bg-slate-950/60 border border-slate-800/80 text-slate-300 text-[11px]"
+                      className="p-2.5 rounded bg-black/60 border border-slate-800/80 text-slate-300 text-[11px]"
                     >
                       • {ind}
                     </div>
@@ -126,7 +126,7 @@ export function ThreatQuickDrawer({ threat, onClose }: ThreatQuickDrawerProps) {
                   {threat.mitre_mapping.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2.5 py-1 rounded bg-purple-950/60 border border-purple-500/30 text-purple-300 font-bold text-xs"
+                      className="px-2.5 py-1 rounded bg-transparent border border-purple-500/30 text-purple-300 font-bold text-xs"
                     >
                       {tech}
                     </span>
@@ -144,7 +144,7 @@ export function ThreatQuickDrawer({ threat, onClose }: ThreatQuickDrawerProps) {
               </span>
               <span>application/json</span>
             </div>
-            <pre className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-cyan-300 overflow-x-auto leading-relaxed max-h-96">
+            <pre className="p-4 rounded-xl bg-black border border-slate-800 text-[11px] text-cyan-300 overflow-x-auto leading-relaxed max-h-96">
               {JSON.stringify(threat.payload, null, 2)}
             </pre>
           </div>

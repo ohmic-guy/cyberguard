@@ -30,7 +30,7 @@ export function ThreatFilters({
   const hasActiveFilters = Boolean(search || category || modality || risk);
 
   return (
-    <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-3 font-mono">
+    <div className="p-4 rounded-xl bg-black/80 border border-slate-800 space-y-3 font-mono">
       <div className="flex flex-col md:flex-row items-center gap-3">
         {/* Search input */}
         <div className="relative flex-1 w-full">
@@ -40,7 +40,7 @@ export function ThreatFilters({
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search incident ID, keyword, source, or payload..."
-            className="h-10 w-full rounded-lg bg-slate-950 border border-slate-700/80 pl-10 pr-4 text-xs text-white placeholder:text-slate-500 focus:border-cyan-500 focus:outline-none"
+            className="h-10 w-full rounded-lg bg-black border border-slate-700/80 pl-10 pr-4 text-xs text-white placeholder:text-slate-500 focus:border-cyan-500 focus:outline-none"
           />
           {search && (
             <button
@@ -58,7 +58,7 @@ export function ThreatFilters({
           <select
             value={risk || ''}
             onChange={(e) => onRiskChange((e.target.value as RiskLevel) || undefined)}
-            className="h-10 rounded-lg bg-slate-950 border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
+            className="h-10 rounded-lg bg-black border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
           >
             <option value="">All Risk Levels</option>
             <option value="critical">Critical</option>
@@ -72,7 +72,7 @@ export function ThreatFilters({
           <select
             value={category || ''}
             onChange={(e) => onCategoryChange((e.target.value as ThreatCategory) || undefined)}
-            className="h-10 rounded-lg bg-slate-950 border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
+            className="h-10 rounded-lg bg-black border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
           >
             <option value="">All Categories</option>
             <option value="phishing">Phishing</option>
@@ -85,7 +85,7 @@ export function ThreatFilters({
           <select
             value={modality || ''}
             onChange={(e) => onModalityChange((e.target.value as InputModality) || undefined)}
-            className="h-10 rounded-lg bg-slate-950 border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
+            className="h-10 rounded-lg bg-black border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
           >
             <option value="">All Modalities</option>
             <option value="email">Email</option>

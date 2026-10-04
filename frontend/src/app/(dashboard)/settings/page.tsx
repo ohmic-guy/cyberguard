@@ -53,7 +53,7 @@ export default function SettingsPage() {
       </div>
 
       {/* Health Status Card */}
-      <Card className="border-slate-800 bg-slate-900/80 p-5">
+      <Card className="border-slate-800 bg-black/80 p-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-lg bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center text-cyan-400">
@@ -63,10 +63,10 @@ export default function SettingsPage() {
               <div className="flex items-center gap-2">
                 <span className="text-sm font-bold text-white">FastAPI Backend Status</span>
                 <span
-                  className={`text-[10px] px-2 py-0.5 rounded font-bold uppercase ${
+                  className={`text-[10px] px-2 py-0.5 rounded font-bold uppercase bg-transparent border ${
                     healthStatus?.status === 'ok'
-                      ? 'bg-emerald-950/60 text-emerald-400 border border-emerald-500/40'
-                      : 'bg-amber-950/60 text-amber-400 border border-amber-500/40'
+                      ? 'text-emerald-400 border-emerald-500/40'
+                      : 'text-amber-400 border-amber-500/40'
                   }`}
                 >
                   {healthStatus?.status || 'CHECKING'}
@@ -91,7 +91,7 @@ export default function SettingsPage() {
 
       {/* Form Card */}
       <form onSubmit={handleSave}>
-        <Card className="border-slate-800 bg-slate-900/80 p-6 space-y-6">
+        <Card className="border-slate-800 bg-black/80 p-6 space-y-6">
           <div className="space-y-4">
             <h3 className="text-sm font-bold text-white pb-2 border-b border-slate-800 flex items-center gap-2">
               <Radio className="h-4 w-4 text-cyan-400" />
@@ -131,7 +131,7 @@ export default function SettingsPage() {
               ].map((stream) => (
                 <div
                   key={stream.name}
-                  className="p-2.5 rounded-lg bg-slate-950/70 border border-slate-800 flex items-center justify-between"
+                  className="p-2.5 rounded-lg bg-black/70 border border-slate-800 flex items-center justify-between"
                 >
                   <span className="text-cyan-400 font-bold">{stream.name}</span>
                   <span className="text-[10px] text-slate-400">{stream.desc}</span>

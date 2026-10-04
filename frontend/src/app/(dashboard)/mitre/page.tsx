@@ -97,7 +97,7 @@ export default function MitreMatrixPage() {
         {filteredTactics.map((tactic) => (
           <div key={tactic.name} className="space-y-3">
             {/* Tactic Header */}
-            <div className="p-3 rounded-lg bg-slate-900 border border-slate-800">
+            <div className="p-3 rounded-lg bg-black border border-slate-800">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-cyan-400 tracking-wide uppercase">
                   {tactic.name}
@@ -116,19 +116,19 @@ export default function MitreMatrixPage() {
               {tactic.techniques.map((tech) => (
                 <div
                   key={tech.id}
-                  className="p-3 rounded-lg bg-slate-950/80 border border-slate-800/80 hover:border-cyan-500/50 transition-all group space-y-1.5"
+                  className="p-3 rounded-lg bg-black/80 border border-slate-800/80 hover:border-cyan-500/50 transition-all group space-y-1.5"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[11px] font-bold text-white group-hover:text-cyan-400 transition-colors">
                       {tech.id}
                     </span>
                     <span
-                      className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded border ${
+                      className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded border bg-transparent ${
                         tech.severity === 'critical'
-                          ? 'text-red-400 border-red-500/30 bg-red-950/40'
+                          ? 'text-red-400 border-red-500/30'
                           : tech.severity === 'high'
-                          ? 'text-orange-400 border-orange-500/30 bg-orange-950/40'
-                          : 'text-amber-400 border-amber-500/30 bg-amber-950/40'
+                          ? 'text-orange-400 border-orange-500/30'
+                          : 'text-amber-400 border-amber-500/30'
                       }`}
                     >
                       {tech.hits} events
