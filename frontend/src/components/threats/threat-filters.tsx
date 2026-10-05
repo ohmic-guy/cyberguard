@@ -58,7 +58,7 @@ export function ThreatFilters({
           <select
             value={risk || ''}
             onChange={(e) => onRiskChange((e.target.value as RiskLevel) || undefined)}
-            className="h-10 rounded-lg bg-black border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
+            className="h-10 rounded-lg bg-black border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none cursor-pointer"
           >
             <option value="">All Risk Levels</option>
             <option value="critical">Critical</option>
@@ -72,7 +72,7 @@ export function ThreatFilters({
           <select
             value={category || ''}
             onChange={(e) => onCategoryChange((e.target.value as ThreatCategory) || undefined)}
-            className="h-10 rounded-lg bg-black border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
+            className="h-10 rounded-lg bg-black border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none cursor-pointer"
           >
             <option value="">All Categories</option>
             <option value="phishing">Phishing</option>
@@ -85,7 +85,7 @@ export function ThreatFilters({
           <select
             value={modality || ''}
             onChange={(e) => onModalityChange((e.target.value as InputModality) || undefined)}
-            className="h-10 rounded-lg bg-black border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none"
+            className="h-10 rounded-lg bg-black border border-slate-700/80 px-3 text-xs text-slate-200 focus:border-cyan-500 focus:outline-none cursor-pointer"
           >
             <option value="">All Modalities</option>
             <option value="email">Email</option>

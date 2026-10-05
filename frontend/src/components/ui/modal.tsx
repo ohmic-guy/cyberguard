@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { X } from 'lucide-react';
 
@@ -94,6 +94,22 @@ interface DrawerProps {
 }
 
 export function Drawer({ isOpen, onClose, title, children }: DrawerProps) {
+  const [mounted, setMounted] = React.useState(isOpen);
+  const [visible, setVisible] = React.useState(false);
+
+  // Mount then animate in; animate out then unmount
+  useEffect(() => {
+    if (isOpen) {
+      setMounted(true);
+      const t = setTimeout(() => setVisible(true), 16);
+      return () => clearTimeout(t);
+    } else {
+      setVisible(false);
+      const t = setTimeout(() => setMounted(false), 350);
+      return () => clearTimeout(t);
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -108,16 +124,25 @@ export function Drawer({ isOpen, onClose, title, children }: DrawerProps) {
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!mounted) return null;
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
+      {/* Backdrop fades in/out */}
       <div
-        className="fixed inset-0 bg-black/80 backdrop-blur-xs transition-opacity"
+        className="fixed inset-0 bg-black/80 backdrop-blur-xs"
+        style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.3s ease' }}
         onClick={onClose}
       />
+      {/* Panel slides in from right */}
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-xl bg-[#0a0a0f] border-l border-[#2a2a3a] shadow-2xl flex flex-col font-mono">
+        <div
+          className="w-screen max-w-xl bg-[#0a0a0f] border-l border-[#2a2a3a] shadow-2xl flex flex-col font-mono"
+          style={{
+            transform: visible ? 'translateX(0)' : 'translateX(100%)',
+            transition: 'transform 0.35s cubic-bezier(0.22,1,0.36,1)',
+          }}
+        >
           <div className="p-5 border-b border-[#2a2a3a] flex items-center justify-between bg-[#12121a]">
             <div className="flex items-center gap-2">
               <span className="text-[#00ff88] font-bold">&gt;</span>
@@ -125,7 +150,7 @@ export function Drawer({ isOpen, onClose, title, children }: DrawerProps) {
             </div>
             <button
               onClick={onClose}
-              className="cyber-chamfer-sm p-1.5 text-slate-400 hover:text-[#ff3366] hover:bg-[#ff3366]/10 border border-transparent hover:border-[#ff3366]/40 transition-colors"
+              className="cyber-chamfer-sm p-1.5 text-slate-400 hover:text-[#ff3366] hover:bg-[#ff3366]/10 border border-transparent hover:border-[#ff3366]/40 transition-colors cursor-pointer"
             >
               <X className="h-5 w-5" />
             </button>
@@ -136,4 +161,3 @@ export function Drawer({ isOpen, onClose, title, children }: DrawerProps) {
     </div>
   );
 }
-
