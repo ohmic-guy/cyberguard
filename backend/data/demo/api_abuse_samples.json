@@ -1,0 +1,304 @@
+{
+  "samples": [
+    {
+      "id": "net_attack_000",
+      "description": "Network traffic \u2014 1",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "features": {
+          "duration": 8.677,
+          "protocol": "udp",
+          "flag": "FIN",
+          "fwd_packets": 13.0,
+          "bwd_packets": 55.0,
+          "fwd_bytes": 52177.0,
+          "bwd_bytes": 15958.0,
+          "flow_rate": 3973.08,
+          "pkt_len_mean": 100.8,
+          "pkt_len_std": 216.7
+        }
+      }
+    },
+    {
+      "id": "net_attack_001",
+      "description": "Network traffic \u2014 1",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "features": {
+          "duration": 4.998,
+          "protocol": "icmp",
+          "flag": "FIN",
+          "fwd_packets": 28.0,
+          "bwd_packets": 56.0,
+          "fwd_bytes": 81091.0,
+          "bwd_bytes": 22306.0,
+          "flow_rate": 2927.67,
+          "pkt_len_mean": 76.6,
+          "pkt_len_std": 260.7
+        }
+      }
+    },
+    {
+      "id": "net_attack_002",
+      "description": "Network traffic \u2014 1",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "features": {
+          "duration": 0.089,
+          "protocol": "udp",
+          "flag": "FIN",
+          "fwd_packets": 79.0,
+          "bwd_packets": 16.0,
+          "fwd_bytes": 33882.0,
+          "bwd_bytes": 19528.0,
+          "flow_rate": 1163.48,
+          "pkt_len_mean": 405.8,
+          "pkt_len_std": 206.1
+        }
+      }
+    },
+    {
+      "id": "net_attack_003",
+      "description": "Network traffic \u2014 1",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "features": {
+          "duration": 2.14,
+          "protocol": "icmp",
+          "flag": "CON",
+          "fwd_packets": 94.0,
+          "bwd_packets": 89.0,
+          "fwd_bytes": 77251.0,
+          "bwd_bytes": 24264.0,
+          "flow_rate": 4396.66,
+          "pkt_len_mean": 1437.5,
+          "pkt_len_std": 90.4
+        }
+      }
+    },
+    {
+      "id": "net_attack_004",
+      "description": "Network traffic \u2014 1",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "features": {
+          "duration": 1.018,
+          "protocol": "udp",
+          "flag": "RST",
+          "fwd_packets": 86.0,
+          "bwd_packets": 25.0,
+          "fwd_bytes": 70496.0,
+          "bwd_bytes": 93702.0,
+          "flow_rate": 5309.99,
+          "pkt_len_mean": 215.2,
+          "pkt_len_std": 458.4
+        }
+      }
+    },
+    {
+      "id": "net_attack_005",
+      "description": "Network traffic \u2014 1",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "features": {
+          "duration": 5.207,
+          "protocol": "icmp",
+          "flag": "CON",
+          "fwd_packets": 184.0,
+          "bwd_packets": 61.0,
+          "fwd_bytes": 34045.0,
+          "bwd_bytes": 3282.0,
+          "flow_rate": 9204.76,
+          "pkt_len_mean": 192.4,
+          "pkt_len_std": 445.2
+        }
+      }
+    },
+    {
+      "id": "net_attack_006",
+      "description": "Network traffic \u2014 1",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "features": {
+          "duration": 1.904,
+          "protocol": "tcp",
+          "flag": "CON",
+          "fwd_packets": 138.0,
+          "bwd_packets": 82.0,
+          "fwd_bytes": 48698.0,
+          "bwd_bytes": 7503.0,
+          "flow_rate": 7874.66,
+          "pkt_len_mean": 1127.7,
+          "pkt_len_std": 302.4
+        }
+      }
+    },
+    {
+      "id": "net_attack_007",
+      "description": "Network traffic \u2014 1",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "features": {
+          "duration": 6.424,
+          "protocol": "tcp",
+          "flag": "SYN",
+          "fwd_packets": 117.0,
+          "bwd_packets": 89.0,
+          "fwd_bytes": 19771.0,
+          "bwd_bytes": 77350.0,
+          "flow_rate": 8002.27,
+          "pkt_len_mean": 1488.1,
+          "pkt_len_std": 30.3
+        }
+      }
+    },
+    {
+      "id": "net_normal_000",
+      "description": "Network traffic \u2014 0",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "features": {
+          "duration": 8.681,
+          "protocol": "tcp",
+          "flag": "SYN",
+          "fwd_packets": 10.0,
+          "bwd_packets": 42.0,
+          "fwd_bytes": 4444.0,
+          "bwd_bytes": 79320.0,
+          "flow_rate": 6917.93,
+          "pkt_len_mean": 360.1,
+          "pkt_len_std": 420.9
+        }
+      }
+    },
+    {
+      "id": "net_normal_001",
+      "description": "Network traffic \u2014 0",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "features": {
+          "duration": 6.444,
+          "protocol": "udp",
+          "flag": "RST",
+          "fwd_packets": 136.0,
+          "bwd_packets": 82.0,
+          "fwd_bytes": 65139.0,
+          "bwd_bytes": 73666.0,
+          "flow_rate": 7820.87,
+          "pkt_len_mean": 104.8,
+          "pkt_len_std": 385.2
+        }
+      }
+    },
+    {
+      "id": "net_normal_002",
+      "description": "Network traffic \u2014 0",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "features": {
+          "duration": 6.511,
+          "protocol": "icmp",
+          "flag": "CON",
+          "fwd_packets": 48.0,
+          "bwd_packets": 40.0,
+          "fwd_bytes": 39439.0,
+          "bwd_bytes": 86717.0,
+          "flow_rate": 241.11,
+          "pkt_len_mean": 768.0,
+          "pkt_len_std": 186.0
+        }
+      }
+    },
+    {
+      "id": "net_normal_003",
+      "description": "Network traffic \u2014 0",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "features": {
+          "duration": 9.155,
+          "protocol": "icmp",
+          "flag": "CON",
+          "fwd_packets": 161.0,
+          "bwd_packets": 27.0,
+          "fwd_bytes": 81363.0,
+          "bwd_bytes": 90852.0,
+          "flow_rate": 1345.25,
+          "pkt_len_mean": 539.4,
+          "pkt_len_std": 425.7
+        }
+      }
+    },
+    {
+      "id": "net_normal_004",
+      "description": "Network traffic \u2014 0",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "features": {
+          "duration": 9.438,
+          "protocol": "icmp",
+          "flag": "SYN",
+          "fwd_packets": 186.0,
+          "bwd_packets": 3.0,
+          "fwd_bytes": 79159.0,
+          "bwd_bytes": 49373.0,
+          "flow_rate": 9211.3,
+          "pkt_len_mean": 465.0,
+          "pkt_len_std": 74.2
+        }
+      }
+    },
+    {
+      "id": "net_normal_005",
+      "description": "Network traffic \u2014 0",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "features": {
+          "duration": 2.465,
+          "protocol": "udp",
+          "flag": "SYN",
+          "fwd_packets": 37.0,
+          "bwd_packets": 96.0,
+          "fwd_bytes": 40550.0,
+          "bwd_bytes": 3903.0,
+          "flow_rate": 6790.46,
+          "pkt_len_mean": 277.3,
+          "pkt_len_std": 458.3
+        }
+      }
+    },
+    {
+      "id": "net_normal_006",
+      "description": "Network traffic \u2014 0",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "features": {
+          "duration": 6.69,
+          "protocol": "tcp",
+          "flag": "RST",
+          "fwd_packets": 159.0,
+          "bwd_packets": 99.0,
+          "fwd_bytes": 69619.0,
+          "bwd_bytes": 96272.0,
+          "flow_rate": 7784.0,
+          "pkt_len_mean": 715.0,
+          "pkt_len_std": 344.0
+        }
+      }
+    }
+  ]
+}
