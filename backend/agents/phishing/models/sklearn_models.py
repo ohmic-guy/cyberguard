@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 
-MODEL_DIR = Path(__file__).resolve().parents[3] / "data" / "models"
+MODEL_DIR = Path(__file__).resolve().parents[3] / "models"
 
 
 def url_features(url: str, domain: str) -> dict[str, int]:

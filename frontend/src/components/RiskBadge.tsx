@@ -1,13 +1,17 @@
 import type { RiskLevel } from '../types'
 
-const labels: Record<RiskLevel, string> = {
-  safe: 'Safe',
-  low: 'Low',
-  medium: 'Medium',
-  high: 'High',
-  critical: 'Critical',
+const LABELS: Record<RiskLevel, string> = {
+  safe:     '● Safe',
+  low:      '● Low',
+  medium:   '▲ Medium',
+  high:     '▲ High',
+  critical: '■ Critical',
 }
 
 export function RiskBadge({ level }: { level: RiskLevel }) {
-  return <span className={`risk-badge risk-${level}`}>{labels[level]}</span>
+  return (
+    <span className={`risk-badge risk-${level}`} aria-label={`Risk level: ${level}`}>
+      {LABELS[level] ?? level}
+    </span>
+  )
 }

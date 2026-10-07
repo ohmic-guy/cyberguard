@@ -5,7 +5,7 @@ from pathlib import Path
 import joblib
 import pandas as pd
 
-MODEL_DIR = Path(__file__).resolve().parents[3] / "data" / "models"
+MODEL_DIR = Path(__file__).resolve().parents[3] / "models"
 FEATURES = ["user_enc", "device_enc", "act_enc", "hour"]
 
 
