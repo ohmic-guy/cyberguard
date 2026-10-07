@@ -9,13 +9,14 @@ motor>=3.4.0
 python-jose[cryptography]>=3.3.0
 python-multipart>=0.0.9
 transformers>=4.40.0
-# NVIDIA GPU/CUDA support: uncomment this line before installing if you use an NVIDIA GPU.
-# torch>=2.0.0
+torch>=2.0.0
 scikit-learn>=1.4.0
+pandas>=2.0.0
 Pillow>=10.0.0
 librosa>=0.10.0
 openai>=1.30.0
 anthropic>=0.28.0
+groq>=0.9.0
 beautifulsoup4>=4.12.0
 python-dotenv>=1.0.0
 pytest>=8.0.0

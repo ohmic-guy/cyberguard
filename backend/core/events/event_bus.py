@@ -23,6 +23,18 @@ class EventBus:
     async def connect(self) -> None:
         self._redis = aioredis.from_url(settings.REDIS_URL, decode_responses=True)
 
+    async def check(self) -> str:
+        try:
+            await self._require_redis().ping()
+            return "ok"
+        except Exception:
+            return "unavailable"
+
+    async def close(self) -> None:
+        if self._redis is not None:
+            await self._redis.aclose()
+            self._redis = None
+
     async def publish(self, stream: StreamKey, event: ThreatEvent) -> str:
         redis = self._require_redis()
         return await redis.xadd(self._stream_value(stream), {"data": event.model_dump_json()})

@@ -1,0 +1,184 @@
+{
+  "samples": [
+    {
+      "id": "em_phish_000",
+      "description": "Phishing email [spamassassin]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "raw_text": "When America's top companies compete for your business, you win. In today's world, it's important to expect the unexpected. When preparing for the future, we must always consider our family. To plan for your family's future, the right life insurance policy is a necessity. But who wants to pay too much for life insurance? Let us help you find the right quote, quickly and easily... Compare your coverage... $250,000... as low as $6.50 per month. $500,000... as low as $9.50 per month. $1,000,000... ",
+        "sender": "zzzzrubin@mx05.serveit21.com",
+        "subject": "$250,000 for only $6.50 per month.                    qkdjtqsscr",
+        "sender_domain": "mx05.serveit21.com"
+      }
+    },
+    {
+      "id": "em_phish_001",
+      "description": "Phishing email [spamassassin]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "raw_text": "As seen on NBC, CBS, CNN, and even Oprah! The health discovery that actually reverses aging while burning fat, without dieting or exercise! This proven discovery has even been reported on by the New England Journal of Medicine. Forget aging and dieting forever! And it's Guaranteed! Click here: http://web.kuhleersparnis.ch/hgh/index.html Would you like to lose weight while you sleep! No dieting! No hunger pains! No Cravings! No strenuous exercise! Change your life forever! 100% GUARANTEED! 1.Body",
+        "sender": "Adrienne <rkkss@redseven.de>",
+        "subject": "Shape up for summer now",
+        "sender_domain": "redseven.de"
+      }
+    },
+    {
+      "id": "em_phish_002",
+      "description": "Phishing email [spamassassin]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "raw_text": "Here is an excerpt from your local newspaper. A recent interview with a curious Computer User: Q: Is my computer supposed run this slow? A: NO, your computer should be as fast as the day you purchased it. The solution to your problem is NORTON SYSTEMWORKS 2002. Q: I think have a Virus, what do I do? A: QUICK! Before the virus spreads and infects your entire system you must get a copy of NORTON SYSTEMWORKS 2002! Q: I am worried that I may lose my data if my computer crashes, how do I backup my da",
+        "sender": "bert_327@hotmail.com",
+        "subject": "Attn: PROTECT YOURSELF AGAINST HARMFUL VIRUSES! SONLSNAIK",
+        "sender_domain": "hotmail.com"
+      }
+    },
+    {
+      "id": "em_phish_003",
+      "description": "Phishing email [spamassassin]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "raw_text": "FROM: DR. BEN KOKORI Compliments of the season. I would like to firstly send to you the best wishes of good health and success in your pursuits particularly through my proposal as Contained in this letter. Before going into details of my proposal to you, I must first implore you to treat with the utmost confidentiality, as this is required for its success. My colleagues and I are senior officials of the Federal Government of Nigeria\ufffds Contracts Review Panel (CRP) who are interested in diverting ",
+        "sender": "bebkokori@eircom.net",
+        "subject": "Request For Transfer Assistance",
+        "sender_domain": "eircom.net"
+      }
+    },
+    {
+      "id": "em_phish_004",
+      "description": "Phishing email [spamassassin]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "raw_text": "You are receiving this email because you have expressed an interest in making money with eBay and or on the Internet. How would you like to earn $750 a day using eBay and the Internet? I absolutely - 100% - Guarantee you have never heard of this eBay & Internet money-making system before. http://www.mailcomesandgoes.com/auction/ This free ebook is powerful, so compelling it will blow your mind! Mark W. Monday - The eBay Millionaire In just a few minutes reading my book, you will find an opportun",
+        "sender": "bbradee@hotmail.com",
+        "subject": "eBay and Auction Info                30314",
+        "sender_domain": "hotmail.com"
+      }
+    },
+    {
+      "id": "em_phish_005",
+      "description": "Phishing email [spamassassin]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "raw_text": "Expand your business! Make it easy for your customers to pay using Visa, Master Card, Discover, American Express, Debit Card and Checks via Phone/Fax/Internet. How? Through a business Merchant Account! By providing multiple methods of acceptable payment you automatically help ensure that it will be easier for them to pay you and build up trust. People DON'T want to send cash or checks via mail, because it is dangerous and gives them absolutely no guarantees whatsoever. So make it easier for your",
+        "sender": "gcw5ig@msn.com",
+        "subject": "Expand Your Business! [lzgsy]",
+        "sender_domain": "msn.com"
+      }
+    },
+    {
+      "id": "em_phish_006",
+      "description": "Phishing email [spamassassin]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "raw_text": "The following advertisement is being sponsored by AVIRTUALSHOPPER.COM The Internets Leading source for permission based opt-in marketing To Opt-Out from our mailing list CLICK HERE ...",
+        "sender": "marcia <acordovado66@ala.btk.utu.fi>",
+        "subject": "ALL NATURAL Viagra Alternative!",
+        "sender_domain": "ala.btk.utu.fi"
+      }
+    },
+    {
+      "id": "em_phish_007",
+      "description": "Phishing email [spamassassin]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "raw_text": "********************** \ufffd\ufffd\ufffd\ufffd\ufffd~\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdX\ufffd\ufffd ********************** \ufffdM\ufffd\ufffd\ufffdA\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdH\ufffdC \ufffdx\ufffd_\ufffdU\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdA\ufffdA\ufffdX\ufffdU\ufffd\ufffd\ufffd\ufffd\ufffd~\ufffd\ufffd\ufffdD\ufffdI\ufffdI \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdZ\ufffdq\ufffd\ufffd\ufffd\ufffd\ufffdT\ufffdB\ufffd\ufffd\ufffd\ufffd\ufffdh\ufffd\ufffd\ufffdY\ufffdn\ufffdX\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdA\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdz\ufffd\ufffd\ufffdD\ufffd\ufffd\ufffdA \ufffd@\ufffdw\ufffdn\ufffd\ufffd\ufffdz\ufffd\ufffd\ufffd\ufffd\ufffd@\ufffdB\ufffd\ufffd\ufffdA\ufffdX\ufffdz\ufffd\ufffd\ufffd{\ufffdz\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdI\ufffdI\ufffdI\ufffdI \ufffd|\ufffd\ufffd\ufffdp\ufffdU\ufffdG \ufffd\ufffd\ufffd\ufffd\ufffdG \ufffdj\ufffdw\ufffd\ufffd\ufffdG \ufffd\ufffd\ufffdR\ufffd\ufffd\ufffdB\ufffd\ufffd\ufffd\ufffd\ufffdn\ufffdB\ufffd_\ufffd\ufffd 50-300\ufffdW\ufffd]\ufffd\ufffd\ufffd\ufffd1200-2500\ufffd\ufffd\ufffd^\ufffdB \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffdj\ufffd\ufffd\ufffdA\ufffd{\ufffd\ufffd\ufffd\ufffd\ufffdU\ufffd\ufffd\ufffdC\ufffd]\ufffdK\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd^\ufffdB \ufffd\ufffd\ufffdW\ufffdi\ufffd\ufffd\ufffd\ufffd \ufffdH\ufffdq\ufffd\ufffd\ufffdG \ufffdH\ufffdq\ufffd\ufffd\ufffd@\ufffdB\ufffdG\ufffdB\ufffdT\ufffdB\ufffd|\ufffdB\ufffd\ufffd\ufffdq\ufffdC 30-500\ufffdW\ufffd]1200-2100\ufffd\ufffd\ufffd^ \ufffd\ufffd\ufffds\ufffd\ufffd\ufffd\ufffd\ufffdj\ufffd\ufffd\ufffdB\ufffd\ufffd\ufffd\ufffd\ufffdB\ufffd\ufffd\ufffdf\ufffdB\ufffd\ufffd\ufffdq\ufffd\ufffd\ufffdK \ufffd]\ufffd\ufffd\ufffd\ufffd\ufffdX\ufffdz\ufffdB\ufffdi",
+        "sender": "vcqztr_2gk1525@deutsche-bank.de",
+        "subject": "[ILUG] \ufffd\u00b0\u04f7~\ufffd\uc93d\ufffd\u01e5X\ufffd\ufffd",
+        "sender_domain": "deutsche-bank.de"
+      }
+    },
+    {
+      "id": "em_legit_000",
+      "description": "Legitimate email",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "raw_text": "HUBBLE SPOTS AN ICY WORLD FAR BEYOND PLUTO ------------------------------------------ Astronomers have discovered a distant body that appears to be the largest object in the Kuiper Belt, a body half the size of Pluto that raises new questions about the definition of a planet. The icy world 2002 LM60 has been dubbed \"Quaoar\". http://spaceflightnow.com/news/n0210/07quaoar/ ASTRONOMERS SLICE AND DICE GALAXIES ----------------------------------- New views of star birth and the heart of a spiral gala",
+        "sender": "Tim Chapman <timc@2ubh.com>",
+        "subject": "[zzzzteana] Astro bits",
+        "sender_domain": "2ubh.com"
+      }
+    },
+    {
+      "id": "em_legit_001",
+      "description": "Legitimate email",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "raw_text": "Done >>>Robert Elz said: > I suspect that as part of Chris' set of changes, he cleaned up the > use of the variable that was named \"L\" in FtocCommit (in ftoc.tcl). > Its name got changed from L to lineno > > But there's one reference of $L left. That causes tracebacks if > you attempt to use \"link\" with the current CVS version of exmh. > > I guess that most of us don't use \"link\" very often ... I noticed it > last week, but only got time to look and see why today. > > If someone with the ability",
+        "sender": "Brent Welch <welch@panasas.com>",
+        "subject": "Re: Patch to complete a change...",
+        "sender_domain": "panasas.com"
+      }
+    },
+    {
+      "id": "em_legit_002",
+      "description": "Legitimate email",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "raw_text": "R. A. Hettinga wrote: > And then there was the one from Prairie Home Companion: > > Q. Why is a viola larger than a violin? > A. It just looks that way because a violin player's head is bigger. Suggested variation: Q. Why does the concertmaster play a smaller violin than the rest of the violinists? A. It just looks that way because his head is bigger. &c&c&c http://xent.com/mailman/listinfo/fork",
+        "sender": "\"Joseph S. Barrera III\" <joe@barrera.org>",
+        "subject": "Re: \"Ouch. Ouch. Ouch. Ouch. Ouch....\"(was Re: My brain hurts)",
+        "sender_domain": "barrera.org"
+      }
+    },
+    {
+      "id": "em_legit_003",
+      "description": "Legitimate email",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "raw_text": "URL: http://www.askbjoernhansen.com/archives/2002/09/24.html Date: 2002-09-24T02:31:20-08:00 This Monkey Switch Ad is too funny. Huge smile on my face. :-) It was the winner of a competition MacRumors had set up. (Via Nathan)...",
+        "sender": "ask <rssfeeds@spamassassin.taint.org>",
+        "subject": "Apple Switch parodies",
+        "sender_domain": "spamassassin.taint.org"
+      }
+    },
+    {
+      "id": "em_legit_004",
+      "description": "Legitimate email",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "raw_text": "Bitte beachten Sie die Angebote unserer Werbepartner. Diese erm\u00f6glichen den kostenfreien Betrieb des Fax2Mail-Service. Vielen Dank. Der neue Cyberport-Katalog ist da! Reinschauen ist jetzt auch offline m\u00f6glich, mit dem druckfrischen Cyberport-Katalog. St\u00f6bern Sie in unserem Angebot, wann und wo Sie wollen. Entdecken Sie auf 322 Seiten sechs interessante Einkaufswelten, randvoll mit topaktuellen Highlights rund um den Computer, Telekommunikation und Multimedia - nat\u00fcrlich zu absoluten Hammerpreis",
+        "sender": "Fax2Mail <R-1-270241-5399979-2-24365-DE1-3A9F193C@xmr3.com>",
+        "subject": "F2M - Ihre kostenlose Faxnummer - Newsletter",
+        "sender_domain": "xmr3.com"
+      }
+    },
+    {
+      "id": "em_legit_005",
+      "description": "Legitimate email",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "raw_text": "20020719 Sausage Sizzler - Lockergnome - Webmaster Weekly 07.19.2002 WebREPORT Content Management Is Key: Need a reason your boss should be sending you to Gnomedex? Some of the leading experts on content management solutions (those things we affectionately call blogs) will be sharing the future of blogging and how you can adapt it to both the way you do business and the way you communicate in general. Join Evan Williams and Doc Searls as they share pearls of wisdom on blogging, Linux and other o",
+        "sender": "Lockergnome Webmaster Weekly <subscriptions@lockergnome.com>",
+        "subject": "[Lockergnome Webmaster Weekly]  Educational Capabilities",
+        "sender_domain": "lockergnome.com"
+      }
+    },
+    {
+      "id": "em_legit_006",
+      "description": "Legitimate email",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "raw_text": "URL: http://boingboing.net/#85506836 Date: Not supplied Slashdot's reporting that according to the current ish of Popular Science, an Easter Egg has been discovered in the transmission control software for the BMW M3: ...the proper combination of commands to the electronically controlled manual transmission will cause the car to rev up to 4000rpm and drop the clutch... Are we sure that this is a feature and not a bug? Link[1] Discuss[2] [1] http://slashdot.org/article.pl?sid=02/09/29/2232249&mod",
+        "sender": "boingboing <rssfeeds@spamassassin.taint.org>",
+        "subject": "Automotive software Easter Egg discovered",
+        "sender_domain": "spamassassin.taint.org"
+      }
+    }
+  ]
+}
