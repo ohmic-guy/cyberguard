@@ -12,7 +12,7 @@ build/
 .env
 *.env
 
-Data — never commit datasets
+# Data — never commit datasets
 backend/data/phishing/*/raw/
 backend/data/phishing/*/processed/
 backend/data/deepfake/image/real/
