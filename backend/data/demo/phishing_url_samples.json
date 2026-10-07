@@ -1,0 +1,204 @@
+{
+  "samples": [
+    {
+      "id": "url_bad_000",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "https://94.26.90.90/client.exe",
+        "domain": "94.26.90.90"
+      }
+    },
+    {
+      "id": "url_bad_001",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "http://80.11.25.16/AV.scr",
+        "domain": "80.11.25.16"
+      }
+    },
+    {
+      "id": "url_bad_002",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "https://raw.githubusercontent.com/ltrm5718/logoloom/main/bin/Software-3.8.zip",
+        "domain": "raw.githubusercontent.com"
+      }
+    },
+    {
+      "id": "url_bad_003",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "http://download.kaobeitu.com/kaobeitu/news/v1.0.7.31/news_01.exe",
+        "domain": "download.kaobeitu.com"
+      }
+    },
+    {
+      "id": "url_bad_004",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "http://76.53.38.126:8888//sshd",
+        "domain": "76.53.38.126:8888"
+      }
+    },
+    {
+      "id": "url_bad_005",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "http://124.163.212.119:800/m68k",
+        "domain": "124.163.212.119:800"
+      }
+    },
+    {
+      "id": "url_bad_006",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "http://103.179.240.227:54790/i",
+        "domain": "103.179.240.227:54790"
+      }
+    },
+    {
+      "id": "url_bad_007",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "http://217.60.195.161/aarch64",
+        "domain": "217.60.195.161"
+      }
+    },
+    {
+      "id": "url_bad_008",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "https://raw.githubusercontent.com/tanakids/FER-IT-Workplace-Emotion-Monitor/main/src/pages/Emotion-FE-I-Monitor-Workplace-v1.1-beta.2.zip",
+        "domain": "raw.githubusercontent.com"
+      }
+    },
+    {
+      "id": "url_bad_009",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "http://217.75.193.34:9432/i",
+        "domain": "217.75.193.34:9432"
+      }
+    },
+    {
+      "id": "url_bad_010",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "https://raw.githubusercontent.com/rustamG88/emotion-adaptive-multimodal-cbt-assistant/main/src/fusion/multimodal-cbt-emotion-assistant-adaptive-2.4-alpha.4.zip",
+        "domain": "raw.githubusercontent.com"
+      }
+    },
+    {
+      "id": "url_bad_011",
+      "description": "Malicious URL [urlhaus]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "url": "https://www.jozefinskiatelje.si/Tran.dsp",
+        "domain": "www.jozefinskiatelje.si"
+      }
+    },
+    {
+      "id": "url_safe_000",
+      "description": "Safe URL [example13.com]",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "url": "https://example13.com",
+        "domain": "example13.com"
+      }
+    },
+    {
+      "id": "url_safe_001",
+      "description": "Safe URL [example840.com]",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "url": "https://example840.com",
+        "domain": "example840.com"
+      }
+    },
+    {
+      "id": "url_safe_002",
+      "description": "Safe URL [example1477.com]",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "url": "https://example1477.com",
+        "domain": "example1477.com"
+      }
+    },
+    {
+      "id": "url_safe_003",
+      "description": "Safe URL [example1045.com]",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "url": "https://example1045.com",
+        "domain": "example1045.com"
+      }
+    },
+    {
+      "id": "url_safe_004",
+      "description": "Safe URL [example1694.com]",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "url": "https://example1694.com",
+        "domain": "example1694.com"
+      }
+    },
+    {
+      "id": "url_safe_005",
+      "description": "Safe URL [example1016.com]",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "url": "https://example1016.com",
+        "domain": "example1016.com"
+      }
+    },
+    {
+      "id": "url_safe_006",
+      "description": "Safe URL [example565.com]",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "url": "https://example565.com",
+        "domain": "example565.com"
+      }
+    },
+    {
+      "id": "url_safe_007",
+      "description": "Safe URL [example254.com]",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "url": "https://example254.com",
+        "domain": "example254.com"
+      }
+    }
+  ]
+}

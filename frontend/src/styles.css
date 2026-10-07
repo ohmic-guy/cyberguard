@@ -1,0 +1,46 @@
+:root {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #e7eee9;
+  background: #0d1415;
+  font-synthesis: none;
+  --ink: #e7eee9;
+  --muted: #8c9a94;
+  --line: #2a3936;
+  --panel: #15201f;
+  --panel-raised: #1b2927;
+  --mint: #a7e8c0;
+  --amber: #f1c78b;
+  --red: #f28b82;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; background: #0d1415; }
+button { font: inherit; }
+.app-shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 56px 0 80px; }
+.topbar { display: flex; align-items: end; justify-content: space-between; gap: 24px; border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 28px; }
+.eyebrow { color: var(--mint); font: 700 11px/1.2 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .13em; }
+h1 { font-size: clamp(32px, 5vw, 58px); font-weight: 400; line-height: .95; margin: 14px 0 0; letter-spacing: 0; }
+.live-status { color: var(--muted); font: 12px ui-monospace, SFMono-Regular, Consolas, monospace; white-space: nowrap; }
+.live-status i { display: inline-block; width: 7px; height: 7px; background: var(--mint); border-radius: 50%; margin-right: 8px; box-shadow: 0 0 0 4px #a7e8c01c; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 44px; }
+.stat-card { background: var(--panel); border: 1px solid var(--line); padding: 20px; min-height: 128px; display: flex; flex-direction: column; justify-content: space-between; }
+.stat-card span, .stat-card small, .muted, .event-id { color: var(--muted); font: 11px ui-monospace, SFMono-Regular, Consolas, monospace; }
+.stat-card strong { color: var(--ink); font: 400 32px Georgia, serif; }
+.workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr); gap: 24px; align-items: start; }
+.section-heading, .panel-heading, .card-topline { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.section-heading { color: var(--ink); font-size: 20px; margin-bottom: 14px; }
+.threat-card { width: 100%; text-align: left; cursor: pointer; color: var(--ink); background: var(--panel); border: 1px solid var(--line); padding: 22px; transition: border-color .2s, background .2s; }
+.threat-card:hover, .threat-card.selected { background: var(--panel-raised); border-color: #81b99b; }
+.card-topline { color: var(--mint); text-transform: uppercase; font: 700 11px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
+.threat-card h3 { font-size: 30px; font-weight: 400; margin: 32px 0 8px; }
+.threat-card p { color: var(--muted); font: 13px ui-monospace, SFMono-Regular, Consolas, monospace; margin: 0 0 26px; }
+.event-id { display: block; border-top: 1px solid var(--line); padding-top: 14px; }
+.risk-badge { border: 1px solid currentColor; padding: 5px 8px; font: 700 10px ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; }
+.risk-safe, .risk-low { color: var(--mint); }.risk-medium { color: var(--amber); }.risk-high, .risk-critical { color: var(--red); }
+.explain-panel { background: #edf2ec; color: #17211f; padding: 28px; border-top: 4px solid var(--red); }
+.panel-heading { font: 700 11px ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; letter-spacing: .08em; }
+.confidence { color: #9a4c45; }.explanation { font-size: 20px; line-height: 1.35; margin: 34px 0; }
+.explain-panel h4 { color: #698078; font: 700 10px ui-monospace, SFMono-Regular, Consolas, monospace; text-transform: uppercase; letter-spacing: .08em; margin: 24px 0 10px; }
+.explain-panel ul, .explain-panel ol { margin: 0; padding-left: 20px; line-height: 1.8; }.mitre-list { display: flex; flex-wrap: wrap; gap: 6px; }.mitre-badge { background: #d4e2d7; padding: 6px 8px; color: #315442; font: 11px ui-monospace, SFMono-Regular, Consolas, monospace; }
+@media (max-width: 760px) { .app-shell { width: min(100% - 28px, 560px); padding-top: 28px; }.topbar { align-items: start; flex-direction: column; }.stats-grid { grid-template-columns: repeat(2, 1fr); }.workspace { grid-template-columns: 1fr; }.explain-panel { order: -1; } }
+@media (max-width: 420px) { .stats-grid { gap: 7px; }.stat-card { padding: 14px; min-height: 110px; }.stat-card strong { font-size: 25px; } }

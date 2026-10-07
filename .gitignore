@@ -26,7 +26,7 @@ backend/data/logs/*/processed/
 !backend/data/**/.gitkeep
 
 # Node
-node_modules/
+/frontend/node_modules/
 .next/
 frontend/.env.local
 

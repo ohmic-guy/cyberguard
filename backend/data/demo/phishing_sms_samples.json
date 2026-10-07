@@ -1,0 +1,139 @@
+{
+  "samples": [
+    {
+      "id": "sms_fraud_000",
+      "description": "Fraud SMS [uci_sms]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "sms_text": "FREE MESSAGE Activate your 500 FREE Text Messages by replying to this message with the word FREE For terms & conditions, visit www.07781482378.com"
+      }
+    },
+    {
+      "id": "sms_fraud_001",
+      "description": "Fraud SMS [uci_sms]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "sms_text": "T-Mobile customer you may now claim your FREE CAMERA PHONE upgrade & a pay & go sim card for your loyalty. Call on 0845 021 3680.Offer ends 28thFeb.T&C's apply"
+      }
+    },
+    {
+      "id": "sms_fraud_002",
+      "description": "Fraud SMS [uci_sms]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "sms_text": "Kit Strip - you have been billed 150p. Netcollex Ltd. PO Box 1013 IG11 OJA"
+      }
+    },
+    {
+      "id": "sms_fraud_003",
+      "description": "Fraud SMS [uci_sms]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "sms_text": "URGENT This is our 2nd attempt to contact U. Your \u00c2\u00a3900 prize from YESTERDAY is still awaiting collection. To claim CALL NOW 09061702893. ACL03530150PM"
+      }
+    },
+    {
+      "id": "sms_fraud_004",
+      "description": "Fraud SMS [uci_sms]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "sms_text": "Call Germany for only 1 pence per minute! Call from a fixed line via access number 0844 861 85 85. No prepayment. Direct access!"
+      }
+    },
+    {
+      "id": "sms_fraud_005",
+      "description": "Fraud SMS [uci_sms]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "sms_text": "all the lastest from Stereophonics, Marley, Dizzee Racal, Libertines and The Strokes! Win Nookii games with Flirt!! Click TheMob WAP Bookmark or text WAP to 82468"
+      }
+    },
+    {
+      "id": "sms_fraud_006",
+      "description": "Fraud SMS [uci_sms]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "sms_text": "Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C's apply 08452810075over18's"
+      }
+    },
+    {
+      "id": "sms_fraud_007",
+      "description": "Fraud SMS [uci_sms]",
+      "expected_label": 1,
+      "expected_risk": "high",
+      "payload": {
+        "sms_text": "Dear Subscriber ur draw 4 \u00c2\u00a3100 gift voucher will b entered on receipt of a correct ans. When was Elvis Presleys Birthday? TXT answer to 80062"
+      }
+    },
+    {
+      "id": "sms_legit_000",
+      "description": "Legit SMS",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "sms_text": "You still coming tonight?"
+      }
+    },
+    {
+      "id": "sms_legit_001",
+      "description": "Legit SMS",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "sms_text": "\"HEY BABE! FAR 2 SPUN-OUT 2 SPK AT DA MO... DEAD 2 DA WRLD. BEEN SLEEPING ON DA SOFA ALL DAY, HAD A COOL NYTHO, TX 4 FONIN HON, CALL 2MWEN IM BK FRMCLOUD 9! J X\""
+      }
+    },
+    {
+      "id": "sms_legit_002",
+      "description": "Legit SMS",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "sms_text": "Ya even those cookies have jelly on them"
+      }
+    },
+    {
+      "id": "sms_legit_003",
+      "description": "Legit SMS",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "sms_text": "Sorry i've not gone to that place. I.ll do so tomorrow. Really sorry."
+      }
+    },
+    {
+      "id": "sms_legit_004",
+      "description": "Legit SMS",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "sms_text": "When are you going to ride your bike?"
+      }
+    },
+    {
+      "id": "sms_legit_005",
+      "description": "Legit SMS",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "sms_text": "Daddy, shu shu is looking 4 u... U wan me 2 tell him u're not in singapore or wat?"
+      }
+    },
+    {
+      "id": "sms_legit_006",
+      "description": "Legit SMS",
+      "expected_label": 0,
+      "expected_risk": "safe",
+      "payload": {
+        "sms_text": "Don't Think About \"What u Have Got\" Think About \"How to Use It That You Have Got\" gooD ni8"
+      }
+    }
+  ]
+}
