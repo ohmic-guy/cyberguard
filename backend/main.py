@@ -8,12 +8,18 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .api.routes.health import router as health_router
+from .api.routes.auth import router as auth_router
+from .api.routes.demo import router as demo_router
+from .api.routes.dashboard import router as dashboard_router
+from .api.routes.stream import router as stream_router
 from .api.routes.threats import router as threats_router
 from .api.routes.upload import router as upload_router
-from .core.container import orchestrator, phishing_agent, scoring_agent
+from .api.websocket import broadcast_completed_threats, websocket_endpoint
+from .core.container import deepfake_agent, log_agent, orchestrator, phishing_agent, response_agent, scoring_agent
 from .core.events.event_bus import event_bus
-from .core.events.streams import PHISHING_INPUT, RAW_INPUT, THREAT_DETECTED
-from .db.mongodb import close_db, connect_db, create_indexes
+from .core.events.streams import DEEPFAKE_INPUT, LOG_INPUT, PHISHING_INPUT, RAW_INPUT, THREAT_DETECTED, THREAT_SCORED
+from .db.mongodb import check_mongodb, close_db, connect_db, create_indexes, get_db
+from .db.repositories.threat_repository import ThreatRepository
 
 
 async def run_agent(agent: object, stream: str) -> None:
@@ -39,13 +45,19 @@ async def lifespan(app: FastAPI):
     try:
         await connect_db()
         await create_indexes()
+        if await check_mongodb() == "ok":
+            response_agent.attach_repository(ThreatRepository(get_db()))
     except Exception as error:
         print(f"[mongodb] Startup check failed: {error}")
 
     tasks = [
         asyncio.create_task(run_agent(orchestrator, RAW_INPUT)),
         asyncio.create_task(run_agent(phishing_agent, PHISHING_INPUT)),
+        asyncio.create_task(run_agent(deepfake_agent, DEEPFAKE_INPUT)),
+        asyncio.create_task(run_agent(log_agent, LOG_INPUT)),
         asyncio.create_task(run_agent(scoring_agent, THREAT_DETECTED)),
+        asyncio.create_task(run_agent(response_agent, THREAT_SCORED)),
+        asyncio.create_task(broadcast_completed_threats()),
     ]
     try:
         yield
@@ -66,5 +78,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(health_router)
+app.include_router(auth_router)
+app.include_router(demo_router)
+app.include_router(dashboard_router)
 app.include_router(upload_router)
 app.include_router(threats_router)
+app.include_router(stream_router)
+app.add_api_websocket_route("/ws/threats", websocket_endpoint)

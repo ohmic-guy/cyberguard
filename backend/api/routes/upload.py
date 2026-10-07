@@ -2,13 +2,14 @@ from __future__ import annotations
 
 import base64
 
-from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
 
 from ...core.events.event_bus import event_bus
 from ...core.events.event_types import InputModality, ThreatEvent
 from ...core.events.streams import RAW_INPUT
+from .auth import require_user
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(require_user)])
 
 
 @router.post("/api/v1/upload")
