@@ -1,0 +1,5 @@
+# Install the CUDA-enabled wheels with:
+# python -m pip install -r backend/requirements.txt
+# python -m pip install --index-url https://download.pytorch.org/whl/cu128 torch torchvision
+
+-r requirements.txt
