@@ -17,7 +17,7 @@ from .api.routes.upload import router as upload_router
 from .api.websocket import broadcast_completed_threats, websocket_endpoint
 from .core.container import deepfake_agent, log_agent, orchestrator, phishing_agent, response_agent, scoring_agent
 from .core.events.event_bus import event_bus
-from .core.events.streams import DEEPFAKE_INPUT, LOG_INPUT, PHISHING_INPUT, RAW_INPUT, THREAT_DETECTED, THREAT_SCORED
+from .core.events.streams import DEEPFAKE_INPUT, LOG_INPUT, PHISHING_INPUT, RAW_INPUT, THREAT_DETECTED, THREAT_SCORED, THREAT_ESCALATED
 from .db.mongodb import check_mongodb, close_db, connect_db, create_indexes, get_db
 from .db.repositories.threat_repository import ThreatRepository
 
@@ -57,6 +57,7 @@ async def lifespan(app: FastAPI):
         asyncio.create_task(run_agent(log_agent, LOG_INPUT)),
         asyncio.create_task(run_agent(scoring_agent, THREAT_DETECTED)),
         asyncio.create_task(run_agent(response_agent, THREAT_SCORED)),
+        asyncio.create_task(run_agent(response_agent, THREAT_ESCALATED)),
         asyncio.create_task(broadcast_completed_threats()),
     ]
     try:

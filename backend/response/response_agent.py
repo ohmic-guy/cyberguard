@@ -24,7 +24,7 @@ class ResponseAgent(BaseCyberAgent):
 		return x
 
 	def subscribes_to(self) -> list[str]:
-		return [THREAT_SCORED]
+		return [THREAT_SCORED, THREAT_ESCALATED]
 
 	def emits_to(self) -> list[str]:
 		return [THREAT_COMPLETE, THREAT_ESCALATED]
@@ -34,6 +34,11 @@ class ResponseAgent(BaseCyberAgent):
 
 	async def process(self, event: ThreatEvent) -> ThreatEvent:
 		try:
+			if event.status == EventStatus.ESCALATED:
+				if self._repository is not None:
+					await self._repository.save(event.model_dump(mode="json"))
+				return event
+
 			context = event.model_dump(mode="json")
 			completed = event.model_copy(update={
 				"status": EventStatus.COMPLETE,

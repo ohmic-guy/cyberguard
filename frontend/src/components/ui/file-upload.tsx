@@ -1,11 +1,19 @@
 "use client";
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { UploadCloud, File as FileIcon, X, CheckCircle2 } from 'lucide-react';
 
 export function FileUpload({ onFileSelect }: { onFileSelect?: (file: File | null) => void }) {
   const [dragActive, setDragActive] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Cleanup object URLs to avoid memory leaks
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -35,11 +43,20 @@ export function FileUpload({ onFileSelect }: { onFileSelect?: (file: File | null
 
   const handleFile = (selectedFile: File) => {
     setFile(selectedFile);
+    if (selectedFile.type.startsWith('image/')) {
+      setPreviewUrl(URL.createObjectURL(selectedFile));
+    } else {
+      setPreviewUrl(null);
+    }
     if (onFileSelect) onFileSelect(selectedFile);
   };
 
   const clearFile = () => {
     setFile(null);
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      setPreviewUrl(null);
+    }
     if (inputRef.current) inputRef.current.value = '';
     if (onFileSelect) onFileSelect(null);
   };
@@ -71,28 +88,39 @@ export function FileUpload({ onFileSelect }: { onFileSelect?: (file: File | null
           />
         </div>
       ) : (
-        <div className="relative border border-slate-700 rounded-xl p-4 bg-black/50 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
-              <FileIcon className="h-5 w-5 text-pink-400" />
+        <div className="relative border border-slate-700 rounded-xl p-4 bg-black/50 flex flex-col gap-4">
+          {previewUrl && (
+            <div className="w-full h-48 rounded-lg overflow-hidden border border-slate-700 bg-black/80 flex items-center justify-center">
+              <img src={previewUrl} alt="Preview" className="max-h-full max-w-full object-contain" />
             </div>
-            <div>
-              <p className="text-sm font-medium text-slate-200">{file.name}</p>
-              <p className="text-xs text-slate-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+          )}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-10 rounded-lg bg-pink-500/20 flex items-center justify-center overflow-hidden">
+                {previewUrl ? (
+                  <img src={previewUrl} alt="Thumb" className="h-full w-full object-cover" />
+                ) : (
+                  <FileIcon className="h-5 w-5 text-pink-400" />
+                )}
+              </div>
+              <div>
+                <p className="text-sm font-medium text-slate-200">{file.name}</p>
+                <p className="text-xs text-slate-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-5 w-5 text-emerald-400" />
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                clearFile();
-              }}
-              className="p-1.5 hover:bg-slate-800 rounded-md text-slate-400 hover:text-white transition-colors"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  clearFile();
+                }}
+                className="p-1.5 hover:bg-slate-800 rounded-md text-slate-400 hover:text-white transition-colors"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
       )}

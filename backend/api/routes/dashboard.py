@@ -10,3 +10,8 @@ router = APIRouter()
 @router.get("/api/v1/dashboard/stats")
 async def dashboard_stats() -> dict:
 	return await ThreatRepository(get_db()).get_stats()
+
+
+@router.get("/api/v1/dashboard/metrics")
+async def dashboard_metrics() -> dict:
+	return await ThreatRepository(get_db()).get_metrics()

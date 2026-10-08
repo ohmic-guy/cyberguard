@@ -15,29 +15,36 @@ class GroqProvider(LLMProvider):
 			self._client = Groq(api_key=settings.GROQ_API_KEY)
 
 	async def explain(self, context: Mapping[str, object]) -> str:
+		default_expl = (
+			f"{context.get('risk_level', 'Unknown').capitalize()} risk: "
+			f"the {context.get('category', 'threat')} detector reported "
+			f"{context.get('confidence', 0):.0%} confidence with "
+			f"{len(context.get('indicators', []))} supporting indicator(s)."
+		)
 		if self._client is None:
-			return (
-				f"{context.get('risk_level', 'Unknown').capitalize()} risk: "
-				f"the {context.get('category', 'threat')} detector reported "
-				f"{context.get('confidence', 0):.0%} confidence with "
-				f"{len(context.get('indicators', []))} supporting indicator(s)."
-			)
+			return default_expl
 		prompt = (
 			"You are a cybersecurity analyst. Explain this threat in 2 concise sentences. "
 			f"Category: {context.get('category')}\nModality: {context.get('modality')}\n"
 			f"Risk: {context.get('risk_level')}\nConfidence: {context.get('confidence')}\n"
 			f"Indicators: {', '.join(context.get('indicators', []))}"
 		)
-		return await self._complete(prompt, 180)
+		try:
+			return await self._complete(prompt, 180)
+		except Exception as e:
+			return default_expl
 
 	async def recommend(self, threat: ThreatEvent) -> list[str]:
 		if self._client is None:
 			return _default_actions(threat)
-		text = await self._complete(
-			f"List exactly 3 response actions for a {threat.risk_level} {threat.category} threat, one per line.",
-			120,
-		)
-		return [line.strip(" -*0123456789.)") for line in text.splitlines() if line.strip()][:3]
+		try:
+			text = await self._complete(
+				f"List exactly 3 response actions for a {threat.risk_level} {threat.category} threat, one per line.",
+				120,
+			)
+			return [line.strip(" -*0123456789.)") for line in text.splitlines() if line.strip()][:3]
+		except Exception as e:
+			return _default_actions(threat)
 
 	async def map_to_mitre(self, threat: ThreatEvent) -> list[str]:
 		return {
@@ -48,7 +55,7 @@ class GroqProvider(LLMProvider):
 
 	async def _complete(self, prompt: str, max_tokens: int) -> str:
 		response = self._client.chat.completions.create(
-			model="llama-3.1-8b-instant",
+			model="qwen/qwen3.8-27b",
 			messages=[{"role": "user", "content": prompt}],
 			max_tokens=max_tokens,
 		)

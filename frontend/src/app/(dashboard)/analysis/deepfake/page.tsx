@@ -35,9 +35,10 @@ export default function DeepfakeAnalysisPage() {
     setAnalyzedResult(null);
 
     try {
+      const fileModality = file.type.startsWith('image/') ? 'image' : file.type.startsWith('video/') ? 'video' : 'audio';
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('modality', activeModality);
+      formData.append('modality', fileModality);
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'}/upload`, {
         method: 'POST',
@@ -55,7 +56,7 @@ export default function DeepfakeAnalysisPage() {
           const threatRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'}/threats/${data.event_id}`);
           if (threatRes.ok) {
             const threatData = await threatRes.json();
-            if (threatData.status === 'complete') {
+            if (threatData.status === 'complete' || threatData.status === 'escalated' || threatData.status === 'failed') {
               finalResult = threatData;
               break;
             }

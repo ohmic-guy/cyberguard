@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { DashboardMetrics } from '@/types/threat';
 import { RISK_LEVEL_CONFIG, CATEGORY_CONFIG } from '@/lib/constants';
 
@@ -60,9 +60,9 @@ export function SeverityChart({ metrics }: SeverityChartProps) {
           {(['critical', 'high', 'medium', 'low', 'safe'] as const).map((lvl) => (
             <div
               key={lvl}
-              style={{ width: `${(riskDistribution[lvl] / totalRisks) * 100}%` }}
+              style={{ width: `${((riskDistribution[lvl] || 0) / totalRisks) * 100}%` }}
               className={`${riskColors[lvl]} transition-all`}
-              title={`${lvl}: ${riskDistribution[lvl]}`}
+              title={`${lvl}: ${riskDistribution[lvl] || 0}`}
             />
           ))}
         </div>
@@ -70,7 +70,7 @@ export function SeverityChart({ metrics }: SeverityChartProps) {
         {/* Legend */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {(['critical', 'high', 'medium', 'low', 'safe'] as const).map((lvl) => {
-            const count = riskDistribution[lvl];
+            const count = riskDistribution[lvl] || 0;
             const pct = ((count / totalRisks) * 100).toFixed(1);
             return (
               <div key={lvl} className="flex items-center justify-between p-2 rounded bg-[#0d0f14] border border-[#21262d]">

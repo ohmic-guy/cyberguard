@@ -51,6 +51,10 @@ class ImageModel(BaseMLModel):
 
 
 def _image_from_payload(payload: dict) -> Image.Image:
-	if payload.get("content_b64"):
-		return Image.open(io.BytesIO(base64.b64decode(str(payload["content_b64"])))).convert("RGB")
+	b64_data = payload.get("content_b64") or payload.get("image_base64")
+	if b64_data:
+		b64_str = str(b64_data)
+		if "," in b64_str and b64_str.startswith("data:image"):
+			b64_str = b64_str.split(",", 1)[1]
+		return Image.open(io.BytesIO(base64.b64decode(b64_str))).convert("RGB")
 	return Image.open(str(payload["path"])).convert("RGB")
