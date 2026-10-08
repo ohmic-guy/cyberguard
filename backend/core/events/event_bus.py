@@ -46,12 +46,13 @@ class EventBus:
         consumer: str,
         count: int = 10,
         block_ms: int = 0,
+        start_id: str = ">",
     ) -> list[StreamEntry]:
         redis = self._require_redis()
         entries = await redis.xreadgroup(
             groupname=group,
             consumername=consumer,
-            streams={self._stream_value(stream): ">"},
+            streams={self._stream_value(stream): start_id},
             count=count,
             block=block_ms,
         )

@@ -29,7 +29,10 @@ async def run_agent(agent: object, stream: str) -> None:
     await event_bus.create_consumer_group(stream, group)
     while True:
         try:
-            for entry_id, event in await event_bus.consume(stream, group, consumer, count=5, block_ms=1000):
+            entries = await event_bus.consume(stream, group, consumer, count=5, block_ms=0, start_id="0")
+            if not entries:
+                entries = await event_bus.consume(stream, group, consumer, count=5, block_ms=1000, start_id=">")
+            for entry_id, event in entries:
                 await process(event)
                 await event_bus.ack(stream, group, entry_id)
         except asyncio.CancelledError:
@@ -37,6 +40,9 @@ async def run_agent(agent: object, stream: str) -> None:
         except Exception as error:
             if "Timeout reading from" not in str(error):
                 print(f"[{consumer}] Error: {error}")
+                with open("C:/Users/omkar/.gemini/antigravity-ide/brain/3debf90c-5853-4c91-8548-2be2e36583c2/scratch/agent_errors.log", "a") as f:
+                    import traceback
+                    f.write(f"[{consumer}] Error: {traceback.format_exc()}\n")
             await asyncio.sleep(1)
 
 
