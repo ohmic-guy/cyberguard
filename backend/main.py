@@ -35,7 +35,8 @@ async def run_agent(agent: object, stream: str) -> None:
         except asyncio.CancelledError:
             raise
         except Exception as error:
-            print(f"[{consumer}] Error: {error}")
+            if "Timeout reading from" not in str(error):
+                print(f"[{consumer}] Error: {error}")
             await asyncio.sleep(1)
 
 
