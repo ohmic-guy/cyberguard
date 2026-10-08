@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { Menu, Bell, User, Zap } from 'lucide-react';
@@ -18,81 +18,71 @@ export function Topbar({
   criticalCount = 2,
 }: TopbarProps) {
   return (
-    <header className="sticky top-0 z-30 flex h-16 w-full items-center justify-between border-b border-[#2a2a3a] bg-[#0a0a0f]/90 px-4 sm:px-6 backdrop-blur-md font-mono">
-      {/* Left: Mobile hamburger & Cluster telemetry */}
+    <header className="sticky top-0 z-30 flex h-14 w-full items-center justify-between border-b border-[#21262d] bg-[#0d0f14]/95 px-4 sm:px-5 backdrop-blur-sm">
+      {/* Left */}
       <div className="flex items-center gap-3">
         <button
           onClick={onToggleSidebar}
-          className="cyber-chamfer-sm p-2 text-slate-400 hover:bg-[#1c1c2e] hover:text-[#00ff88] border border-[#2a2a3a] lg:hidden cursor-pointer"
+          className="p-1.5 rounded-md text-[#6e7681] hover:bg-[#161b22] hover:text-[#c9d1d9] transition-colors lg:hidden cursor-pointer"
           aria-label="Toggle navigation"
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="h-4 w-4" />
         </button>
-        <div className="hidden sm:flex items-center gap-2.5 text-xs font-mono">
-          <span className="text-slate-500 font-bold">&gt; CLUSTER:</span>
-          <span className="cyber-chamfer-sm bg-[#12121a] border border-[#2a2a3a] px-2 py-0.5 text-slate-200 font-semibold tracking-wider">
-            CYBERGUARD-PROD-EAST
-          </span>
-          <span className="text-slate-700">|</span>
-          <span className="text-slate-500 font-bold">AGENT SCOPE:</span>
-          <span className="text-[#00d4ff] font-bold tracking-wider">1.0.21-CYBER</span>
+        <div className="hidden sm:flex items-center gap-2 text-xs text-[#6e7681]">
+          <span className="font-medium text-[#8b949e]">Cluster:</span>
+          <span className="font-mono text-[#c9d1d9]">cyberguard-prod</span>
+          <span className="text-[#30363d]">·</span>
+          <span className="font-mono text-[#58a6ff]">v1.0.21</span>
         </div>
       </div>
 
-      {/* Right Actions */}
-      <div className="flex items-center gap-3">
-        {/* Real-time Connection Indicator */}
-        <div className="cyber-chamfer-sm flex items-center gap-2 border border-[#2a2a3a] bg-[#12121a] px-3 py-1 text-xs">
+      {/* Right */}
+      <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#161b22] border border-[#21262d] text-xs">
           <span
-            className={`h-2 w-2 rounded-full ${
-              isConnected
-                ? 'bg-[#00ff88] shadow-[0_0_8px_#00ff88] animate-pulse'
-                : 'bg-[#ffb800] shadow-[0_0_8px_#ffb800]'
+            className={`h-1.5 w-1.5 rounded-full flex-shrink-0 ${
+              isConnected ? 'bg-[#3fb950]' : 'bg-[#d29922]'
             }`}
           />
-          <span className="text-slate-300 hidden md:inline font-bold tracking-wider uppercase text-[11px]">
-            {isConnected ? 'LIVE WEBSOCKET' : 'DEMO STREAM SIMULATOR'}
+          <span className="text-[#8b949e] hidden md:inline">
+            {isConnected ? 'Live' : 'Demo'}
           </span>
         </div>
 
-        {/* Trigger Test Ingestion Button */}
         {onSimulateEvent && (
           <Button
             variant="outline"
             size="sm"
             onClick={onSimulateEvent}
-            className="hidden sm:inline-flex border-[#00d4ff]/40 text-[#00d4ff] hover:border-[#00d4ff] hover:text-[#0a0a0f] hover:bg-[#00d4ff] hover:shadow-[0_0_15px_rgba(0,212,255,0.6)] gap-1.5 font-mono text-xs"
-            title="Inject simulated live threat into pipeline"
+            className="hidden sm:inline-flex gap-1.5 text-xs"
+            title="Inject simulated live threat"
           >
             <Zap className="h-3.5 w-3.5" />
-            Simulate Event
+            Simulate
           </Button>
         )}
 
-        {/* Critical Threat Alert Indicator */}
         <div className="relative">
-          <div className="cyber-chamfer-sm p-2 text-slate-400 hover:bg-[#12121a] hover:text-[#ff3366] border border-[#2a2a3a] hover:border-[#ff3366]/40 transition-colors cursor-pointer">
+          <button className="p-1.5 rounded-md text-[#6e7681] hover:bg-[#161b22] hover:text-[#c9d1d9] transition-colors cursor-pointer">
             <Bell className="h-4 w-4" />
             {criticalCount > 0 && (
-              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center bg-[#ff3366] text-[9px] font-black text-white shadow-[0_0_10px_rgba(255,51,102,0.9)] animate-pulse">
+              <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#f85149] text-[8px] font-bold text-white">
                 {criticalCount}
               </span>
             )}
-          </div>
+          </button>
         </div>
 
-        {/* User / Analyst Avatar */}
-        <div className="flex items-center gap-2 pl-2 border-l border-[#2a2a3a]">
-          <div className="cyber-chamfer-sm flex h-8 w-8 items-center justify-center bg-[#12121a] border border-[#00ff88]/40 text-[#00ff88] shadow-[0_0_8px_rgba(0,255,136,0.2)]">
-            <User className="h-4 w-4" />
+        <div className="flex items-center gap-2 pl-2 border-l border-[#21262d]">
+          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#161b22] border border-[#30363d] text-[#8b949e]">
+            <User className="h-3.5 w-3.5" />
           </div>
           <div className="hidden md:flex flex-col text-left">
-            <span className="text-xs font-bold font-mono text-slate-200 uppercase tracking-wider">admin</span>
-            <span className="text-[9px] text-[#00ff88] font-mono uppercase tracking-widest">SOC Level 3</span>
+            <span className="text-xs font-medium text-[#c9d1d9]">admin</span>
+            <span className="text-[10px] text-[#6e7681]">SOC Level 3</span>
           </div>
         </div>
       </div>
     </header>
   );
 }
-

@@ -17,10 +17,10 @@ export default function DashboardPage() {
 
   if (isLoading && !threats.length) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-5">
         <div className="flex items-center justify-between">
-          <div className="h-6 w-48 bg-[#1c1c2e] animate-pulse cyber-chamfer-sm" />
-          <div className="h-8 w-32 bg-[#1c1c2e] animate-pulse cyber-chamfer-sm" />
+          <div className="h-5 w-36 bg-[#21262d] animate-pulse rounded" />
+          <div className="h-8 w-28 bg-[#21262d] animate-pulse rounded" />
         </div>
         <TableSkeleton rows={4} />
       </div>
@@ -32,44 +32,39 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="space-y-7 font-mono">
-      {/* Top Banner & Quick Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#2a2a3a]">
+    <div className="space-y-6">
+      {/* Page header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-3 flex-wrap">
-            <h1
-              className="cyber-glitch text-xl sm:text-2xl lg:text-3xl font-orbitron font-black tracking-widest text-white uppercase"
-              data-text="SOC MASTER COMMAND OVERVIEW"
-            >
-              SOC MASTER COMMAND OVERVIEW
+          <div className="flex items-center gap-2.5 mb-1">
+            <h1 className="text-xl font-semibold text-[#e6edf3] tracking-tight">
+              SOC Overview
             </h1>
-            <span className="text-[#00ff88] font-bold text-xl animate-blink">_</span>
-            <span className="cyber-chamfer-sm inline-flex items-center gap-1.5 bg-transparent border border-[#00ff88]/50 px-2.5 py-0.5 text-[10px] font-bold text-[#00ff88] tracking-widest uppercase shadow-[0_0_10px_rgba(0,255,136,0.3)]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#00ff88] animate-ping" />
-              LIVE TELEMETRY
+            <span className="inline-flex items-center gap-1 rounded-full bg-[#3fb950]/10 border border-[#3fb950]/25 px-2 py-0.5 text-[10px] font-medium text-[#3fb950]">
+              <span className="h-1 w-1 rounded-full bg-[#3fb950] animate-pulse" />
+              Live
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1.5 font-mono tracking-wide flex items-center gap-1.5">
-            <span className="text-[#00ff88]">&gt;</span>
-            <span>Real-time multi-agent threat consensus, neural scoring and response orchestration.</span>
+          <p className="text-sm text-[#6e7681]">
+            Real-time multi-agent threat detection and response.
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={refetch}
-            className="text-xs font-mono gap-1.5"
+            className="gap-1.5"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Refresh
           </Button>
 
           <Link href="/analysis/phishing">
-            <Button variant="cyber" size="sm" className="text-xs font-mono gap-1.5">
+            <Button variant="primary" size="sm" className="gap-1.5">
               <PlusCircle className="h-3.5 w-3.5" />
-              Analyze Incident
+              Analyze
             </Button>
           </Link>
         </div>

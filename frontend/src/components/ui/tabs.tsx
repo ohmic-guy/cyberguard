@@ -1,52 +1,52 @@
-import React from 'react';
-import { cn } from '@/lib/utils';
+﻿import * as React from "react"
+import * as TabsPrimitive from "@radix-ui/react-tabs"
+import { cn } from "@/lib/utils"
 
-interface TabItem {
-  id: string;
-  label: string;
-  count?: number;
-  icon?: React.ReactNode;
-}
+const Tabs = TabsPrimitive.Root
 
-interface TabsProps {
-  tabs: TabItem[];
-  activeTab: string;
-  onChange: (id: string) => void;
-  className?: string;
-}
+const TabsList = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.List>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.List
+    ref={ref}
+    className={cn(
+      "inline-flex h-9 items-center justify-center rounded-lg bg-[#161b22] p-1 border border-[#30363d]",
+      className
+    )}
+    {...props}
+  />
+))
+TabsList.displayName = TabsPrimitive.List.displayName
 
-export function Tabs({ tabs, activeTab, onChange, className }: TabsProps) {
-  return (
-    <div className={cn('flex items-center gap-2 border-b border-[#2a2a3a] pb-1.5 overflow-x-auto', className)}>
-      {tabs.map((tab) => {
-        const isActive = tab.id === activeTab;
-        return (
-          <button
-            key={tab.id}
-            onClick={() => onChange(tab.id)}
-            className={cn(
-              'cyber-chamfer-sm flex items-center gap-2 px-4 py-2 text-xs font-mono font-bold uppercase tracking-wider transition-all duration-200 whitespace-nowrap cursor-pointer select-none',
-              isActive
-                ? 'bg-[#00ff88]/15 text-[#00ff88] border border-[#00ff88]/60 shadow-[0_0_12px_rgba(0,255,136,0.3)]'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-[#1c1c2e]/60 border border-transparent'
-            )}
-          >
-            {tab.icon && <span className="h-4 w-4">{tab.icon}</span>}
-            <span>{tab.label}</span>
-            {tab.count !== undefined && (
-              <span
-                className={cn(
-                  'cyber-chamfer-sm px-1.5 py-0.2 text-[10px] font-mono',
-                  isActive ? 'bg-[#00ff88]/25 text-[#00ff88]' : 'bg-[#1c1c2e] text-slate-400'
-                )}
-              >
-                {tab.count}
-              </span>
-            )}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
+const TabsTrigger = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.Trigger
+    ref={ref}
+    className={cn(
+      "inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1 text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58a6ff] disabled:pointer-events-none disabled:opacity-50 text-[#8b949e] data-[state=active]:bg-[#21262d] data-[state=active]:text-[#c9d1d9] data-[state=active]:shadow",
+      className
+    )}
+    {...props}
+  />
+))
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
+const TabsContent = React.forwardRef<
+  React.ElementRef<typeof TabsPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
+>(({ className, ...props }, ref) => (
+  <TabsPrimitive.Content
+    ref={ref}
+    className={cn(
+      "mt-2 ring-offset-[#0d0f14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58a6ff] focus-visible:ring-offset-2",
+      className
+    )}
+    {...props}
+  />
+))
+TabsContent.displayName = TabsPrimitive.Content.displayName
+
+export { Tabs, TabsList, TabsTrigger, TabsContent }

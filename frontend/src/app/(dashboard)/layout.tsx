@@ -16,7 +16,7 @@ export default function DashboardLayout({
   const { isConnected, latestEvent, triggerManualSimulation } = useWebSocket();
 
   return (
-    <div className="flex min-h-screen bg-[#0a0a0f] text-[#e0e0e0] font-mono">
+    <div className="flex min-h-screen bg-[#0d0f14] text-[#c9d1d9]">
       {/* Cyber route-change loader */}
       <NavigationLoader />
 
@@ -24,7 +24,7 @@ export default function DashboardLayout({
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main Content Area */}
-      <div className="flex flex-1 flex-col lg:pl-64">
+      <div className="flex flex-1 flex-col lg:pl-60">
         <Topbar
           onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
           isConnected={isConnected}

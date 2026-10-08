@@ -23,7 +23,7 @@ interface SidebarProps {
 
 const NAV_ITEMS = [
   {
-    name: 'Dashboard Overview',
+    name: 'Dashboard',
     href: '/',
     icon: LayoutDashboard,
   },
@@ -49,12 +49,12 @@ const NAV_ITEMS = [
     icon: FileTerminal,
   },
   {
-    name: 'MITRE ATT&CK Matrix',
+    name: 'MITRE ATT&CK',
     href: '/mitre',
     icon: Grid3X3,
   },
   {
-    name: 'SOC Settings',
+    name: 'Settings',
     href: '/settings',
     icon: Sliders,
   },
@@ -68,38 +68,37 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
       {/* Mobile backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/85 backdrop-blur-xs lg:hidden"
+          className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
           onClick={onClose}
         />
       )}
 
       <aside
         className={cn(
-          'fixed top-0 bottom-0 left-0 z-40 flex w-64 flex-col bg-[#0a0a0f] border-r border-[#2a2a3a] transition-transform duration-300 lg:translate-x-0',
+          'fixed top-0 bottom-0 left-0 z-40 flex w-60 flex-col bg-[#0d0f14] border-r border-[#21262d] transition-transform duration-200 lg:translate-x-0',
           isOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
-        {/* Brand Header */}
-        <div className="flex h-16 items-center gap-3 px-5 border-b border-[#2a2a3a] bg-[#12121a]/95">
-          <div className="cyber-chamfer-sm flex h-9 w-9 items-center justify-center bg-[#00ff88]/15 border border-[#00ff88]/50 text-[#00ff88] shadow-[0_0_12px_rgba(0,255,136,0.35)]">
-            <ShieldAlert className="h-5 w-5" />
+        {/* Brand */}
+        <div className="flex h-14 items-center gap-2.5 px-4 border-b border-[#21262d]">
+          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#58a6ff]/10 border border-[#58a6ff]/20 text-[#58a6ff]">
+            <ShieldAlert className="h-4 w-4" />
           </div>
           <div className="flex flex-col">
-            <span className="text-base font-orbitron font-black tracking-widest text-white flex items-center gap-1">
-              CYBER<span className="text-[#00ff88]">GUARD</span>
+            <span className="text-sm font-semibold text-[#e6edf3] tracking-tight">
+              CyberGuard
             </span>
-            <span className="text-[9px] text-[#00d4ff] font-mono tracking-widest uppercase font-semibold">
-              {'SOC // DYSTOPIA DEFENSE'}
+            <span className="text-[10px] text-[#6e7681] font-medium">
+              SOC Platform
             </span>
           </div>
         </div>
 
-        {/* Navigation Items */}
-        <div className="flex-1 overflow-y-auto px-3 py-4 space-y-1.5">
-          <div className="px-3 pb-2 text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest flex items-center justify-between">
-            <span>&gt; COMMAND & CONTROL</span>
-            <span className="h-1 w-1 bg-[#00ff88] rounded-full animate-ping" />
-          </div>
+        {/* Navigation */}
+        <div className="flex-1 overflow-y-auto px-2 py-3 space-y-0.5">
+          <p className="px-3 pb-2 text-[10px] font-medium text-[#6e7681] uppercase tracking-wider">
+            Navigation
+          </p>
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
@@ -110,23 +109,23 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
                 href={item.href}
                 onClick={onClose}
                 className={cn(
-                  'cyber-chamfer-sm flex items-center justify-between px-3 py-2.5 text-xs font-mono font-bold uppercase tracking-wider transition-all duration-150 group cursor-pointer select-none',
+                  'flex items-center justify-between px-3 py-2 text-sm rounded-md transition-colors duration-150 group cursor-pointer select-none',
                   isActive
-                    ? 'bg-[#00ff88]/15 text-[#00ff88] border border-[#00ff88]/60 shadow-[0_0_14px_rgba(0,255,136,0.25)]'
-                    : 'text-slate-400 hover:bg-[#12121a] hover:text-[#e0e0e0] border border-transparent hover:border-[#2a2a3a]'
+                    ? 'bg-[#58a6ff]/10 text-[#58a6ff]'
+                    : 'text-[#8b949e] hover:bg-[#161b22] hover:text-[#c9d1d9]'
                 )}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5">
                   <Icon
                     className={cn(
-                      'h-4 w-4 transition-colors',
-                      isActive ? 'text-[#00ff88] filter drop-shadow-[0_0_4px_#00ff88]' : 'text-slate-500 group-hover:text-slate-300'
+                      'h-4 w-4 flex-shrink-0',
+                      isActive ? 'text-[#58a6ff]' : 'text-[#6e7681] group-hover:text-[#8b949e]'
                     )}
                   />
-                  <span>{item.name}</span>
+                  <span className="font-medium">{item.name}</span>
                 </div>
                 {item.badge && (
-                  <span className="cyber-chamfer-sm bg-transparent border border-[#ff00ff]/50 px-1.5 py-0.5 text-[9px] font-bold text-[#ff00ff] uppercase tracking-wider shadow-[0_0_8px_rgba(255,0,255,0.3)]">
+                  <span className="rounded-full bg-[#3fb950]/15 border border-[#3fb950]/25 px-1.5 py-0.5 text-[9px] font-semibold text-[#3fb950] uppercase tracking-wide">
                     {item.badge}
                   </span>
                 )}
@@ -135,24 +134,22 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
           })}
         </div>
 
-        {/* Real-time Stream Status Footer */}
-        <div className="p-3 border-t border-[#2a2a3a] bg-[#0a0a0f]">
-          <div className="cyber-chamfer-sm flex items-center justify-between bg-[#12121a] border border-[#2a2a3a] p-3 hover:border-[#00ff88]/40 transition-colors">
-            <div className="flex items-center gap-2.5">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff88] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00ff88] shadow-[0_0_6px_#00ff88]"></span>
+        {/* Status Footer */}
+        <div className="p-3 border-t border-[#21262d]">
+          <div className="flex items-center gap-2.5 px-3 py-2 rounded-md bg-[#161b22]">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3fb950] opacity-60" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#3fb950]" />
+            </span>
+            <div className="flex flex-col min-w-0">
+              <span className="text-xs font-medium text-[#c9d1d9] truncate">
+                Agent Ingestion
               </span>
-              <div className="flex flex-col">
-                <span className="text-[11px] font-bold text-slate-200 font-mono tracking-wider uppercase">
-                  AGENT INGESTION
-                </span>
-                <span className="text-[9px] text-[#00ff88] font-mono tracking-widest">
-                  {'REDIS STREAM // SYNCED'}
-                </span>
-              </div>
+              <span className="text-[10px] text-[#6e7681]">
+                Redis stream synced
+              </span>
             </div>
-            <Radio className="h-4 w-4 text-[#00ff88] animate-pulse filter drop-shadow-[0_0_4px_#00ff88]" />
+            <Radio className="h-3.5 w-3.5 text-[#3fb950] flex-shrink-0 ml-auto animate-pulse" />
           </div>
         </div>
       </aside>

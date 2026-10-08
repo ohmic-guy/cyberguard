@@ -1,51 +1,64 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
-import { Card } from '@/components/ui/card';
-import { COMMON_MITRE_TECHNIQUES } from '@/lib/constants';
-import { Grid3X3, ChevronRight } from 'lucide-react';
+import { Grid3X3, ArrowRight } from 'lucide-react';
+import { TACTICS_CONFIG } from '@/lib/constants';
+import { DashboardMetrics } from '@/types/threat';
 
-export function MitreMini() {
+interface MitreMiniProps {
+  metrics: DashboardMetrics | null;
+}
+
+export function MitreMini({ metrics }: MitreMiniProps) {
+  const tacticsDist = metrics?.tactic_distribution || {};
+
   return (
-    <Card variant="terminal" terminalTitle="TACTICAL_MATRIX // MITRE_ATT&CK" className="p-5 font-mono">
-      <div className="flex items-center justify-between pb-3 border-b border-[#2a2a3a]">
-        <div>
-          <h4 className="text-sm font-orbitron font-bold text-white uppercase flex items-center gap-2">
-            <Grid3X3 className="h-4 w-4 text-[#00d4ff]" />
-            <span>Active MITRE ATT&CK Mapping</span>
-          </h4>
-          <p className="text-xs text-slate-400 font-mono">Adversary tactics correlated across observed incident stream</p>
+    <div className="rounded-lg bg-[#161b22] border border-[#21262d] overflow-hidden flex flex-col h-full">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-[#21262d]">
+        <div className="flex items-center gap-2.5">
+          <Grid3X3 className="h-4.5 w-4.5 text-[#58a6ff]" />
+          <h4 className="text-sm font-medium text-[#e6edf3]">MITRE ATT&CK</h4>
         </div>
         <Link
           href="/mitre"
-          className="cyber-chamfer-sm text-xs font-mono text-[#00d4ff] hover:bg-[#00d4ff] hover:text-[#0a0a0f] border border-[#00d4ff]/40 px-3 py-1 flex items-center gap-1 font-bold uppercase tracking-wider transition-all duration-150 shadow-[0_0_8px_rgba(0,212,255,0.2)]"
+          className="text-xs text-[#58a6ff] hover:text-[#79b8ff] hover:underline flex items-center gap-1 font-medium transition-colors"
         >
-          <span>FULL MATRIX</span>
-          <ChevronRight className="h-3.5 w-3.5" />
+          Matrix
+          <ArrowRight className="h-3.5 w-3.5" />
         </Link>
       </div>
 
-      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        {COMMON_MITRE_TECHNIQUES.slice(0, 6).map((tech) => (
-          <div
-            key={tech.id}
-            className="cyber-chamfer-sm p-3 bg-[#12121a] border border-[#2a2a3a] hover:border-[#00d4ff]/60 hover:shadow-[0_0_12px_rgba(0,212,255,0.2)] transition-all font-mono space-y-2 cursor-pointer"
-          >
-            <div className="flex items-center justify-between">
-              <span className="cyber-chamfer-sm text-xs font-bold text-[#00d4ff] bg-transparent border border-[#00d4ff]/40 px-1.5 py-0.5">
-                {tech.id}
-              </span>
-              <span className="text-[10px] text-[#00ff88] font-bold tracking-wider uppercase">
-                {tech.detectedCount} HITS
-              </span>
-            </div>
-            <p className="text-xs font-bold text-white truncate uppercase tracking-tight">{tech.name}</p>
-            <span className="text-[10px] text-slate-500 block uppercase tracking-wider">
-              TAC: {tech.tactic}
-            </span>
-          </div>
-        ))}
+      <div className="flex-1 p-5 overflow-y-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+          {Object.entries(TACTICS_CONFIG).map(([key, config]) => {
+            const count = tacticsDist[key] || 0;
+            return (
+              <Link
+                key={key}
+                href={`/mitre?tactic=${key}`}
+                className="group p-3 rounded bg-[#0d0f14] border border-[#21262d] hover:border-[#30363d] transition-colors flex flex-col justify-between min-h-[80px]"
+              >
+                <div>
+                  <div className="text-[10px] text-[#8b949e] font-medium uppercase tracking-wider mb-1">
+                    {config.id}
+                  </div>
+                  <div className="text-xs text-[#e6edf3] font-medium leading-tight">
+                    {config.name}
+                  </div>
+                </div>
+                {count > 0 ? (
+                  <span className="inline-flex mt-2 w-max items-center rounded-full bg-[#f85149]/10 px-2 py-0.5 text-[10px] font-medium text-[#f85149]">
+                    {count}
+                  </span>
+                ) : (
+                  <span className="inline-flex mt-2 w-max items-center rounded-full bg-[#21262d] px-2 py-0.5 text-[10px] font-medium text-[#6e7681]">
+                    0
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+        </div>
       </div>
-    </Card>
+    </div>
   );
 }
-

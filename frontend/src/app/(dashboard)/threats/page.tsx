@@ -44,42 +44,39 @@ export default function ThreatsPage() {
   };
 
   return (
-    <div className="space-y-6 font-mono">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#2a2a3a]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-3 flex-wrap">
-            <h1
-              className="cyber-glitch text-xl sm:text-2xl font-orbitron font-black tracking-widest text-white uppercase"
-              data-text="THREAT INCIDENTS & TELEMETRY STREAM"
-            >
-              THREAT INCIDENTS & TELEMETRY STREAM
+          <div className="flex items-center gap-2.5 mb-1">
+            <h1 className="text-xl font-semibold text-[#e6edf3] tracking-tight">
+              Threat Incidents
             </h1>
-            <span className="cyber-chamfer-sm text-xs font-bold text-[#00ff88] bg-[#00ff88]/15 border border-[#00ff88]/50 px-2.5 py-0.5 uppercase tracking-wider shadow-[0_0_8px_rgba(0,255,136,0.2)]">
-              {threats.length} EVENTS
+            <span className="inline-flex items-center rounded-full bg-[#58a6ff]/10 border border-[#58a6ff]/25 px-2 py-0.5 text-[10px] font-medium text-[#58a6ff]">
+              {threats.length} Events
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1.5 font-mono">
-            &gt; Real-time feed of multi-agent scored threats across Email, URLs, Biometric Media, and System Logs.
+          <p className="text-sm text-[#6e7681]">
+            Real-time feed of multi-agent scored threats.
           </p>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={handleExportJSON}
-            className="text-xs font-mono gap-1.5"
+            className="gap-1.5"
             disabled={!threats.length}
           >
             <Download className="h-3.5 w-3.5" />
-            Export IOCs
+            Export
           </Button>
           <Button
             variant="outline"
             size="sm"
             onClick={refetch}
-            className="text-xs font-mono gap-1.5"
+            className="gap-1.5"
           >
             <RefreshCw className="h-3.5 w-3.5" />
             Sync

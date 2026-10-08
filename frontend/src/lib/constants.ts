@@ -1,195 +1,108 @@
-import { ThreatCategory, InputModality, RiskLevel, EventStatus, MitreTechnique } from '@/types/threat';
+﻿import { RiskLevel, EventStatus, ThreatCategory } from '@/types/threat';
 
 export const RISK_LEVEL_CONFIG: Record<
   RiskLevel,
-  {
-    label: string;
-    badgeBg: string;
-    badgeText: string;
-    border: string;
-    glow: string;
-    hex: string;
-    dotBg: string;
-  }
+  { label: string; bg: string; badgeText: string; border: string; hex: string; dotBg: string }
 > = {
   critical: {
     label: 'CRITICAL',
-    badgeBg: 'bg-transparent',
-    badgeText: 'text-[#ff3366]',
-    border: 'border-[#ff3366]/60',
-    glow: 'shadow-[0_0_12px_rgba(255,51,102,0.45)]',
-    hex: '#ff3366',
-    dotBg: 'bg-[#ff3366]',
+    bg: 'bg-[#f85149]/10',
+    badgeText: 'text-[#f85149]',
+    border: 'border-[#f85149]/25',
+    hex: '#f85149',
+    dotBg: 'bg-[#f85149]',
   },
   high: {
     label: 'HIGH',
-    badgeBg: 'bg-transparent',
-    badgeText: 'text-[#ff8800]',
-    border: 'border-[#ff8800]/60',
-    glow: 'shadow-[0_0_12px_rgba(255,136,0,0.4)]',
-    hex: '#ff8800',
-    dotBg: 'bg-[#ff8800]',
+    bg: 'bg-[#d29922]/10',
+    badgeText: 'text-[#d29922]',
+    border: 'border-[#d29922]/25',
+    hex: '#d29922',
+    dotBg: 'bg-[#d29922]',
   },
   medium: {
     label: 'MEDIUM',
-    badgeBg: 'bg-transparent',
-    badgeText: 'text-[#ffb800]',
-    border: 'border-[#ffb800]/60',
-    glow: 'shadow-[0_0_12px_rgba(255,184,0,0.35)]',
-    hex: '#ffb800',
-    dotBg: 'bg-[#ffb800]',
+    bg: 'bg-[#58a6ff]/10',
+    badgeText: 'text-[#58a6ff]',
+    border: 'border-[#58a6ff]/25',
+    hex: '#58a6ff',
+    dotBg: 'bg-[#58a6ff]',
   },
   low: {
     label: 'LOW',
-    badgeBg: 'bg-transparent',
-    badgeText: 'text-[#00d4ff]',
-    border: 'border-[#00d4ff]/60',
-    glow: 'shadow-[0_0_12px_rgba(0,212,255,0.35)]',
-    hex: '#00d4ff',
-    dotBg: 'bg-[#00d4ff]',
+    bg: 'bg-[#3fb950]/10',
+    badgeText: 'text-[#3fb950]',
+    border: 'border-[#3fb950]/25',
+    hex: '#3fb950',
+    dotBg: 'bg-[#3fb950]',
   },
   safe: {
     label: 'SAFE',
-    badgeBg: 'bg-transparent',
-    badgeText: 'text-[#00ff88]',
-    border: 'border-[#00ff88]/60',
-    glow: 'shadow-[0_0_12px_rgba(0,255,136,0.35)]',
-    hex: '#00ff88',
-    dotBg: 'bg-[#00ff88]',
+    bg: 'bg-[#8b949e]/10',
+    badgeText: 'text-[#8b949e]',
+    border: 'border-[#30363d]',
+    hex: '#8b949e',
+    dotBg: 'bg-[#8b949e]',
   },
 };
 
 export const CATEGORY_CONFIG: Record<
   ThreatCategory,
-  {
-    label: string;
-    description: string;
-    color: string;
-    border: string;
-  }
+  { label: string; color: string; border: string; icon: string }
 > = {
   phishing: {
     label: 'Phishing',
-    description: 'Deceptive emails, forged URLs, credential harvest SMS, QR phishing',
-    color: 'text-[#ff00ff] bg-transparent',
-    border: 'border-[#ff00ff]/40 shadow-[0_0_8px_rgba(255,0,255,0.2)]',
+    color: 'text-[#f85149] bg-transparent',
+    border: 'border-[#f85149]/25',
+    icon: 'MailWarning',
   },
   deepfake: {
-    label: 'Deepfake Media',
-    description: 'Manipulated biometric media, synthetic voice audio, face swaps',
-    color: 'text-[#00d4ff] bg-transparent',
-    border: 'border-[#00d4ff]/40 shadow-[0_0_8px_rgba(0,212,255,0.2)]',
+    label: 'Deepfake',
+    color: 'text-[#58a6ff] bg-transparent',
+    border: 'border-[#58a6ff]/25',
+    icon: 'Eye',
   },
   log_anomaly: {
     label: 'Log Anomaly',
-    description: 'Privilege escalation, auth spray, credential stuffing, anomalous sys logs',
-    color: 'text-[#ffb800] bg-transparent',
-    border: 'border-[#ffb800]/40 shadow-[0_0_8px_rgba(255,184,0,0.2)]',
+    color: 'text-[#d29922] bg-transparent',
+    border: 'border-[#d29922]/25',
+    icon: 'FileTerminal',
   },
   api_abuse: {
     label: 'API Abuse',
-    description: 'Rate limit evasion, schema probing, token forgery, scraping',
-    color: 'text-[#00ff88] bg-transparent',
-    border: 'border-[#00ff88]/40 shadow-[0_0_8px_rgba(0,255,136,0.2)]',
+    color: 'text-[#3fb950] bg-transparent',
+    border: 'border-[#3fb950]/25',
+    icon: 'Activity',
   },
   unknown: {
-    label: 'Unknown Threat',
-    description: 'Unclassified security telemetry or unparsed payload',
-    color: 'text-slate-400 bg-transparent',
-    border: 'border-slate-700/60',
+    label: 'Unknown',
+    color: 'text-[#8b949e] bg-transparent',
+    border: 'border-[#30363d]',
+    icon: 'HelpCircle',
   },
 };
 
-export const MODALITY_CONFIG: Record<
-  InputModality,
-  {
-    label: string;
-    category: ThreatCategory;
-  }
-> = {
-  email: { label: 'Email', category: 'phishing' },
-  url: { label: 'URL / Domain', category: 'phishing' },
-  sms: { label: 'SMS / Smishing', category: 'phishing' },
-  qr: { label: 'QR Code / Quishing', category: 'phishing' },
-  image: { label: 'Image', category: 'deepfake' },
-  video: { label: 'Video', category: 'deepfake' },
-  audio: { label: 'Audio / Voice', category: 'deepfake' },
-  auth_log: { label: 'Auth Log', category: 'log_anomaly' },
-  system_log: { label: 'System Log', category: 'log_anomaly' },
-  api_log: { label: 'API Log', category: 'api_abuse' },
+export const STATUS_CONFIG: Record<EventStatus, { label: string; color: string; pulse?: boolean }> = {
+  received: { label: 'Received', color: 'text-[#8b949e] bg-transparent border-[#30363d]' },
+  processing: { label: 'Processing', color: 'text-[#58a6ff] bg-transparent border-[#58a6ff]/25', pulse: true },
+  scored: { label: 'Scored', color: 'text-[#d29922] bg-transparent border-[#d29922]/25' },
+  complete: { label: 'Complete', color: 'text-[#3fb950] bg-transparent border-[#3fb950]/25' },
+  escalated: { label: 'Escalated', color: 'text-[#f85149] bg-transparent border-[#f85149]/25', pulse: true },
 };
 
-export const STATUS_CONFIG: Record<
-  EventStatus,
-  {
-    label: string;
-    color: string;
-    pulse?: boolean;
-  }
-> = {
-  received: { label: 'Received', color: 'text-slate-400 bg-transparent border-[#2a2a3a]' },
-  processing: { label: 'Processing', color: 'text-[#00d4ff] bg-transparent border-[#00d4ff]/40 shadow-[0_0_6px_rgba(0,212,255,0.3)]', pulse: true },
-  scored: { label: 'Scored', color: 'text-[#ff00ff] bg-transparent border-[#ff00ff]/40' },
-  complete: { label: 'Complete', color: 'text-[#00ff88] bg-transparent border-[#00ff88]/40 shadow-[0_0_6px_rgba(0,255,136,0.3)]' },
-  escalated: { label: 'Escalated', color: 'text-[#ff3366] bg-transparent border-[#ff3366]/50 shadow-[0_0_8px_rgba(255,51,102,0.4)]', pulse: true },
-  failed: { label: 'Failed', color: 'text-rose-400 bg-transparent border-rose-500/30' },
-};
+export const WEBSOCKET_URL = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8000/ws/events';
 
-export const COMMON_MITRE_TECHNIQUES: MitreTechnique[] = [
-  {
-    id: 'T1566.001',
-    name: 'Phishing: Spearphishing Attachment',
-    tactic: 'Initial Access',
-    description: 'Adversaries send spearphishing emails with malicious attachments to gain code execution.',
-    url: 'https://attack.mitre.org/techniques/T1566/001/',
-    detectedCount: 42,
-  },
-  {
-    id: 'T1566.002',
-    name: 'Phishing: Spearphishing Link',
-    tactic: 'Initial Access',
-    description: 'Adversaries send spearphishing emails with malicious links to lure victims into credential harvest sites.',
-    url: 'https://attack.mitre.org/techniques/T1566/002/',
-    detectedCount: 68,
-  },
-  {
-    id: 'T1110.003',
-    name: 'Brute Force: Password Spraying',
-    tactic: 'Credential Access',
-    description: 'Adversaries use a single password against many accounts to avoid account lockouts.',
-    url: 'https://attack.mitre.org/techniques/T1110/003/',
-    detectedCount: 29,
-  },
-  {
-    id: 'T1078.004',
-    name: 'Valid Accounts: Cloud Accounts',
-    tactic: 'Defense Evasion',
-    description: 'Adversaries obtain credentials of cloud administrative or service accounts.',
-    url: 'https://attack.mitre.org/techniques/T1078/004/',
-    detectedCount: 14,
-  },
-  {
-    id: 'T1059.006',
-    name: 'Command and Scripting Interpreter: Python',
-    tactic: 'Execution',
-    description: 'Adversaries may execute malicious payloads leveraging Python interpreters.',
-    url: 'https://attack.mitre.org/techniques/T1059/006/',
-    detectedCount: 9,
-  },
-  {
-    id: 'T1656',
-    name: 'Impersonation: Synthetic Audio & Video',
-    tactic: 'Initial Access / Defense Evasion',
-    description: 'Adversaries synthesize voice or video avatars to impersonate company executives.',
-    url: 'https://attack.mitre.org/techniques/T1656/',
-    detectedCount: 19,
-  },
-  {
-    id: 'T1071.001',
-    name: 'Application Layer Protocol: Web Protocols',
-    tactic: 'Command and Control',
-    description: 'Adversaries communicate using HTTP/HTTPS to blend in with legitimate network traffic.',
-    url: 'https://attack.mitre.org/techniques/T1071/001/',
-    detectedCount: 51,
-  },
-];
+export const TACTICS_CONFIG: Record<string, { id: string; name: string }> = {
+  initial_access: { id: 'TA0001', name: 'Initial Access' },
+  execution: { id: 'TA0002', name: 'Execution' },
+  persistence: { id: 'TA0003', name: 'Persistence' },
+  privilege_escalation: { id: 'TA0004', name: 'Privilege Escalation' },
+  defense_evasion: { id: 'TA0005', name: 'Defense Evasion' },
+  credential_access: { id: 'TA0006', name: 'Credential Access' },
+  discovery: { id: 'TA0007', name: 'Discovery' },
+  lateral_movement: { id: 'TA0008', name: 'Lateral Movement' },
+  collection: { id: 'TA0009', name: 'Collection' },
+  command_and_control: { id: 'TA0011', name: 'Command & Control' },
+  exfiltration: { id: 'TA0010', name: 'Exfiltration' },
+  impact: { id: 'TA0040', name: 'Impact' },
+};

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 
@@ -24,36 +24,25 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const sizeClasses = {
-      sm: 'h-8 min-h-[34px] px-3.5 text-xs gap-1.5',
-      md: 'h-10 min-h-[40px] px-5 text-xs gap-2',
-      lg: 'h-12 min-h-[48px] px-7 text-sm gap-2.5',
-      icon: 'h-10 w-10 min-h-[40px] min-w-[40px] p-0 justify-center',
+      sm: 'h-8 px-3 text-xs gap-1.5',
+      md: 'h-9 px-4 text-sm gap-2',
+      lg: 'h-10 px-5 text-sm gap-2',
+      icon: 'h-9 w-9 p-0 justify-center',
     };
 
     const variantClasses = {
-      // Default / Primary: Neon Green outline, fills with green on hover
       primary:
-        'bg-transparent text-[#00ff88] border-2 border-[#00ff88] hover:bg-[#00ff88] hover:text-[#0a0a0f] hover:shadow-[0_0_16px_rgba(0,255,136,0.6)] active:scale-[0.98]',
-
-      // Cyber / Glitch CTA: Solid electric green, high contrast dark text
+        'bg-[#238636] text-white border border-[#2ea043] hover:bg-[#2ea043] active:bg-[#238636]',
       cyber:
-        'bg-[#00ff88] text-[#0a0a0f] font-bold border-2 border-[#00ff88] hover:brightness-110 hover:shadow-[0_0_24px_rgba(0,255,136,0.7)] active:scale-[0.98]',
-
-      // Secondary: Magenta / Hot Pink Neon
+        'bg-[#58a6ff] text-[#0d1117] font-semibold border border-[#58a6ff] hover:bg-[#79b8ff] active:bg-[#58a6ff]',
       secondary:
-        'bg-transparent text-[#ff00ff] border-2 border-[#ff00ff] hover:bg-[#ff00ff] hover:text-[#0a0a0f] hover:shadow-[0_0_16px_rgba(255,0,255,0.6)] active:scale-[0.98]',
-
-      // Outline: Dark border, neon green on hover
+        'bg-[#21262d] text-[#c9d1d9] border border-[#30363d] hover:bg-[#30363d] hover:border-[#8b949e]',
       outline:
-        'bg-transparent border border-[#2a2a3a] text-slate-300 hover:border-[#00ff88]/80 hover:text-[#00ff88] hover:shadow-[0_0_12px_rgba(0,255,136,0.3)] active:scale-[0.98]',
-
-      // Ghost: Subtle highlight
+        'bg-transparent border border-[#30363d] text-[#c9d1d9] hover:bg-[#161b22] hover:border-[#8b949e]',
       ghost:
-        'bg-transparent text-slate-400 hover:bg-[#00ff88]/10 hover:text-[#00ff88]',
-
-      // Danger: Destructive Red-Pink
+        'bg-transparent text-[#8b949e] hover:bg-[#161b22] hover:text-[#c9d1d9]',
       danger:
-        'bg-transparent text-[#ff3366] border-2 border-[#ff3366] hover:bg-[#ff3366] hover:text-white hover:shadow-[0_0_16px_rgba(255,51,102,0.6)] active:scale-[0.98]',
+        'bg-transparent text-[#f85149] border border-[#f85149]/40 hover:bg-[#f85149]/10 hover:border-[#f85149]',
     };
 
     return (
@@ -61,15 +50,14 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || isLoading}
         className={cn(
-          'inline-flex items-center justify-center font-mono font-bold uppercase tracking-wider transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#00ff88] focus:ring-offset-2 focus:ring-offset-[#0a0a0f] disabled:opacity-40 disabled:cursor-not-allowed select-none cursor-pointer',
-          chamfer ? 'cyber-chamfer-sm' : 'rounded-none',
+          'inline-flex items-center justify-center font-medium rounded-md transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#58a6ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0f14] disabled:opacity-40 disabled:cursor-not-allowed select-none cursor-pointer',
           sizeClasses[size],
           variantClasses[variant],
           className
         )}
         {...props}
       >
-        {isLoading && <Loader2 className="h-4 w-4 animate-spin text-current" />}
+        {isLoading && <Loader2 className="h-3.5 w-3.5 animate-spin text-current" />}
         {children}
       </button>
     );
@@ -77,4 +65,3 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
-

@@ -5,7 +5,7 @@ from ...core.events.event_types import ThreatEvent
 from ...core.events.streams import RAW_INPUT
 from .auth import require_user
 
-router = APIRouter(dependencies=[Depends(require_user)])
+router = APIRouter()
 
 
 @router.post("/api/v1/stream/ingest")

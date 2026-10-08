@@ -10,6 +10,7 @@ import { Input, Textarea } from '@/components/ui/input';
 import { Tabs } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { ConfidenceGauge } from '@/components/ui/progress';
+import { FileUpload } from '@/components/ui/file-upload';
 import { Eye, Mic, Video, Image as ImageIcon, Sparkles, CheckCircle2, ArrowRight, AudioWaveform as WaveformIcon, Activity } from 'lucide-react';
 
 export default function DeepfakeAnalysisPage() {
@@ -19,10 +20,7 @@ export default function DeepfakeAnalysisPage() {
   const [analyzedResult, setAnalyzedResult] = useState<ThreatEvent | null>(null);
 
   // Form states
-  const [sourceChannel, setSourceChannel] = useState('VoIP SIP Trunk - Gateway NY-01');
-  const [targetIdentity, setTargetIdentity] = useState('Chief Executive Officer (CEO)');
-  const [audioTranscript, setAudioTranscript] = useState('This is John. I am calling from the Frankfurt summit. Authorize the urgent security acquisition wire transfer immediately before the banks close.');
-  const [fileName, setFileName] = useState('ceo_emergency_call_16khz.wav');
+  const [file, setFile] = useState<File | null>(null);
 
   const modalityTabs = [
     { id: 'audio', label: 'Synthetic Audio / Voice Clone', icon: <Mic className="h-4 w-4" /> },
@@ -32,25 +30,42 @@ export default function DeepfakeAnalysisPage() {
 
   const handleRunAnalysis = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!file) return;
     setIsSubmitting(true);
     setAnalyzedResult(null);
 
-    const payload = {
-      source_channel: sourceChannel,
-      target_identity: targetIdentity,
-      transcript: audioTranscript,
-      file_name: fileName,
-      sample_rate: '16000Hz',
-    };
-
     try {
-      const result = await api.submitAnalysis(
-        'deepfake',
-        activeModality,
-        `Deepfake_Sensor_${activeModality.toUpperCase()}`,
-        payload
-      );
-      setAnalyzedResult(result);
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('modality', activeModality);
+
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'}/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) throw new Error('Upload failed');
+      const data = await res.json();
+      
+      if (data.event_id) {
+        let attempts = 0;
+        let finalResult = null;
+        while (attempts < 15) {
+          await new Promise(r => setTimeout(r, 1000));
+          const threatRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1'}/threats/${data.event_id}`);
+          if (threatRes.ok) {
+            const threatData = await threatRes.json();
+            if (threatData.status === 'complete') {
+              finalResult = threatData;
+              break;
+            }
+          }
+          attempts++;
+        }
+        if (finalResult) {
+          setAnalyzedResult(finalResult);
+        }
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -96,66 +111,14 @@ export default function DeepfakeAnalysisPage() {
             </CardHeader>
 
             <form onSubmit={handleRunAnalysis} className="pt-4 space-y-4">
-              <Input
-                label="Media Asset Name"
-                value={fileName}
-                onChange={(e) => setFileName(e.target.value)}
-                required
-              />
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <Input
-                  label="Ingress Telemetry Source"
-                  value={sourceChannel}
-                  onChange={(e) => setSourceChannel(e.target.value)}
-                  required
-                />
-                <Input
-                  label="Target Person of Interest"
-                  value={targetIdentity}
-                  onChange={(e) => setTargetIdentity(e.target.value)}
-                  required
-                />
-              </div>
-
-              <Textarea
-                label="Audio Transcript / Visual Scene Description"
-                value={audioTranscript}
-                onChange={(e) => setAudioTranscript(e.target.value)}
-                rows={3}
-                required
-              />
-
-              {/* Simulated Spectral Waveform Visualizer */}
-              <div className="p-4 rounded-xl bg-black border border-slate-800 space-y-2">
-                <div className="flex items-center justify-between text-[10px] text-slate-400">
-                  <span className="flex items-center gap-1">
-                    <Activity className="h-3 w-3 text-pink-400" />
-                    <span>Spectral Waveform Monitor (0 - 8,000 Hz)</span>
-                  </span>
-                  <span className="text-pink-400">FFT Window: 1024</span>
-                </div>
-                <div className="flex items-end gap-1 h-12 pt-2 px-1">
-                  {Array.from({ length: 40 }).map((_, i) => {
-                    const height = Math.min(Math.max((Math.sin(i * 0.4) * 35 + 40), 10), 95);
-                    return (
-                      <div
-                        key={i}
-                        style={{ height: `${height}%` }}
-                        className={`flex-1 rounded-xs transition-all ${
-                          height > 70 ? 'bg-red-500' : height > 45 ? 'bg-pink-500' : 'bg-cyan-500/60'
-                        }`}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
+              <FileUpload onFileSelect={setFile} />
 
               <Button
                 type="submit"
                 variant="cyber"
                 className="w-full justify-center text-xs h-10 gap-2"
                 isLoading={isSubmitting}
+                disabled={!file}
               >
                 <Sparkles className="h-4 w-4" />
                 <span>Execute Deepfake Detector Model</span>

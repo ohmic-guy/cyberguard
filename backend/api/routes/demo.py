@@ -10,7 +10,7 @@ from ...core.events.event_types import InputModality, ThreatEvent
 from ...core.events.streams import RAW_INPUT
 from .auth import require_user
 
-router = APIRouter(dependencies=[Depends(require_user)])
+router = APIRouter()
 DEMO_DIR = Path(__file__).resolve().parents[2] / "data" / "demo"
 DEMO_FILES = {
 	"phishing_url": ("phishing_url_samples.json", InputModality.URL),
