@@ -22,7 +22,7 @@ For NVIDIA GPU support, uncomment `torch>=2.0.0` in `backend/requirements.txt` b
 | Phishing ML | [ Dev 1 ] |
 | Deepfake ML | [ Dev 2 ] |
 | Log Analysis ML | [ Dev 3 ] |
-| FastAPI + Ingestion | Sitesh & Kunal |
+| FastAPI + Ingestion | [ Dev 4 ] |
 | Frontend Dashboard | Kunal Meher |
 
 ## Docs
