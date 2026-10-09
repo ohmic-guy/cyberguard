@@ -1,7 +1,25 @@
 import { ThreatEvent, DashboardMetrics, ThreatCategory, InputModality, RiskLevel } from '@/types/threat';
 import { INITIAL_THREATS, INITIAL_METRICS } from './mock-data';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000/api/v1';
+
+/**
+ * Fast-failing fetch wrapper.
+ * Prevents Windows loopback TCP SYN timeout hangs (which last 15-25s on unresponding ports)
+ * by aborting after a sensible timeout (1200ms) and gracefully triggering the fallback mock data.
+ */
+async function safeFetch(url: string, options: RequestInit = {}, timeoutMs = 1200): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, {
+      ...options,
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 class ApiService {
   private inMemoryThreats: ThreatEvent[] = [...INITIAL_THREATS];
@@ -27,7 +45,7 @@ class ApiService {
 
   async checkHealth(): Promise<{ status: string; service: string }> {
     try {
-      const res = await fetch(`${API_BASE_URL}/health`, { method: 'GET', cache: 'no-store' });
+      const res = await safeFetch(`${API_BASE_URL}/health`, { method: 'GET', cache: 'no-store' }, 800);
       if (res.ok) return await res.json();
     } catch {}
     return { status: 'mock_active', service: 'CyberGuard SOC Engine (Demo Fallback)' };
@@ -35,7 +53,7 @@ class ApiService {
 
   async getMetrics(): Promise<DashboardMetrics> {
     try {
-      const res = await fetch(`${API_BASE_URL}/dashboard/metrics`, { cache: 'no-store' });
+      const res = await safeFetch(`${API_BASE_URL}/dashboard/metrics`, { cache: 'no-store' }, 1200);
       if (res.ok) return await res.json();
     } catch {}
     
@@ -67,7 +85,7 @@ class ApiService {
       if (params?.risk) query.append('risk', params.risk);
       if (params?.search) query.append('search', params.search);
 
-      const res = await fetch(`${API_BASE_URL}/threats?${query.toString()}`, { cache: 'no-store' });
+      const res = await safeFetch(`${API_BASE_URL}/threats?${query.toString()}`, { cache: 'no-store' }, 1200);
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data)) return data;
@@ -92,7 +110,7 @@ class ApiService {
 
   async getThreatById(id: string): Promise<ThreatEvent | null> {
     try {
-      const res = await fetch(`${API_BASE_URL}/threats/${id}`, { cache: 'no-store' });
+      const res = await safeFetch(`${API_BASE_URL}/threats/${id}`, { cache: 'no-store' }, 1200);
       if (res.ok) return await res.json();
     } catch {}
     const found = this.inMemoryThreats.find((t) => t.event_id === id);
@@ -106,11 +124,11 @@ class ApiService {
     payload: Record<string, any>
   ): Promise<ThreatEvent> {
     try {
-      const res = await fetch(`${API_BASE_URL}/threats/analyze`, {
+      const res = await safeFetch(`${API_BASE_URL}/threats/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ category, modality, source, payload }),
-      });
+      }, 3000);
       if (res.ok) return await res.json();
     } catch {}
 

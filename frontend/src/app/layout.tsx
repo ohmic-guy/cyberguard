@@ -5,15 +5,17 @@ import './globals.css';
 const orbitron = Orbitron({
   subsets: ['latin'],
   variable: '--font-orbitron',
-  weight: ['400', '600', '700', '900'],
+  weight: ['600', '700', '900'],
   display: 'swap',
+  fallback: ['system-ui', 'sans-serif'],
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-jetbrains-mono',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '600', '700'],
   display: 'swap',
+  fallback: ['monospace'],
 });
 
 const shareTechMono = Share_Tech_Mono({
@@ -21,6 +23,7 @@ const shareTechMono = Share_Tech_Mono({
   variable: '--font-share-tech-mono',
   weight: ['400'],
   display: 'swap',
+  fallback: ['monospace'],
 });
 
 export const metadata: Metadata = {
