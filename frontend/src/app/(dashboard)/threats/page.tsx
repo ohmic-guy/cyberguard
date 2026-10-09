@@ -104,11 +104,9 @@ export default function ThreatsPage() {
         <ErrorState message={error} onRetry={refetch} />
       ) : threats.length === 0 ? (
         <EmptyState
-          isSearch={Boolean(search || category || modality || risk)}
           title="No Incident Records Match Selected Filters"
-          description="Try broadening your search query or reset the risk level and modality filters."
-          actionLabel="Clear Active Filters"
-          onAction={handleResetFilters}
+          message="Try broadening your search query or reset the risk level and modality filters."
+          action={{ label: 'Clear Active Filters', onClick: handleResetFilters }}
         />
       ) : (
         <ThreatTable threats={threats} onSelectThreat={setSelectedThreat} />

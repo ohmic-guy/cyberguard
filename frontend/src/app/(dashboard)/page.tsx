@@ -80,7 +80,7 @@ export default function DashboardPage() {
       <RecentThreats threats={threats} />
 
       {/* MITRE ATT&CK Mini Matrix */}
-      <MitreMini />
+      <MitreMini metrics={metrics} />
     </div>
   );
 }

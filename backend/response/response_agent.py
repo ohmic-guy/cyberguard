@@ -9,6 +9,7 @@ from ..core.events.event_types import EventStatus, ThreatEvent
 from ..core.events.streams import THREAT_COMPLETE, THREAT_ESCALATED, THREAT_SCORED
 from ..core.interfaces.base_agent import BaseCyberAgent
 from ..core.interfaces.llm_provider import LLMProvider
+from ..core.runtime_store import save_event
 from ..db.repositories.threat_repository import ThreatRepository
 
 
@@ -35,6 +36,7 @@ class ResponseAgent(BaseCyberAgent):
 	async def process(self, event: ThreatEvent) -> ThreatEvent:
 		try:
 			if event.status == EventStatus.ESCALATED:
+				save_event(event.model_dump(mode="json"))
 				if self._repository is not None:
 					await self._repository.save(event.model_dump(mode="json"))
 				return event
@@ -47,6 +49,7 @@ class ResponseAgent(BaseCyberAgent):
 				"mitre_mapping": await self._llm.map_to_mitre(event),
 				"updated_at": datetime.now(timezone.utc),
 			})
+			save_event(completed.model_dump(mode="json"))
 			if self._repository is not None:
 				await self._repository.save(completed.model_dump(mode="json"))
 			await self._event_bus.publish(THREAT_COMPLETE, completed)

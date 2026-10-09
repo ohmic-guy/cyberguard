@@ -10,7 +10,8 @@ AI-Powered Cyber Threat, Phishing & Digital Impersonation Detection and Response
 ```bash
 cp backend/.env.example backend/.env
 docker compose up -d
-cd backend && pip install -r requirements.txt && uvicorn main:app --reload
+pip install -r backend/requirements.txt
+uvicorn backend.main:app --reload
 ```
 
 For NVIDIA GPU support, uncomment `torch>=2.0.0` in `backend/requirements.txt` before installing the requirements.

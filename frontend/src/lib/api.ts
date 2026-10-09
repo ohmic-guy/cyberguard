@@ -91,6 +91,11 @@ class ApiService {
   }
 
   async getThreatById(id: string): Promise<ThreatEvent | null> {
+    // Demo records are browser-local and do not exist in the backend database.
+    if (id.startsWith('evt-')) {
+      return this.inMemoryThreats.find((t) => t.event_id === id) || null;
+    }
+
     try {
       const res = await fetch(`${API_BASE_URL}/threats/${id}`, { cache: 'no-store' });
       if (res.ok) return await res.json();
@@ -111,7 +116,17 @@ class ApiService {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ category, modality, source, payload }),
       });
-      if (res.ok) return await res.json();
+      if (res.ok) {
+        const queued = await res.json() as ThreatEvent;
+        for (let attempt = 0; attempt < 20; attempt += 1) {
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          const completed = await this.getThreatById(queued.event_id);
+          if (completed && ['complete', 'escalated', 'failed'].includes(completed.status)) {
+            return completed;
+          }
+        }
+        return queued;
+      }
     } catch {}
 
     // Generate analyzed threat event in demo fallback

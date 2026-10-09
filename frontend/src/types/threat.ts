@@ -64,6 +64,7 @@ export interface DashboardMetrics {
   active_agents: number;
   category_distribution: Record<ThreatCategory, number>;
   risk_distribution: Record<RiskLevel, number>;
+  tactic_distribution?: Record<string, number>;
 }
 
 export interface MitreTechnique {

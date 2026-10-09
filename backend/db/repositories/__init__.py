@@ -1,2 +1,1 @@
-# TODO: implement
-# Owner: [ assign from master documentation ]
+"""Database repository implementations."""

@@ -55,5 +55,4 @@ class DeepfakeAgent(BaseCyberAgent):
 			"updated_at": datetime.now(timezone.utc),
 		})
 		await self._event_bus.publish(THREAT_ESCALATED, escalated)
-		return escalated# TODO: implement
-# Owner: [ assign from master documentation ]
+		return escalated

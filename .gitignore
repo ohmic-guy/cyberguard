@@ -15,12 +15,13 @@ build/
 # Data — never commit datasets
 backend/data/phishing/*/raw/
 backend/data/phishing/*/processed/
-backend/data/deepfake/image/real/
-backend/data/deepfake/image/fake/
-backend/data/deepfake/video/real/
-backend/data/deepfake/video/fake/
-backend/data/deepfake/audio/genuine/
-backend/data/deepfake/audio/spoof/
+backend/data/deepfake/*/real/
+backend/data/deepfake/*/fake/
+backend/data/deepfake/*/genuine/
+backend/data/deepfake/*/spoof/
+backend/data/deepfake/*/train/
+backend/data/deepfake/*/test/
+backend/data/deepfake/*/val/
 backend/data/logs/*/raw/
 backend/data/logs/*/processed/
 !backend/data/**/.gitkeep
@@ -34,3 +35,9 @@ frontend/.env.local
 .vscode/
 .idea/
 *.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+coverage/
+.coverage

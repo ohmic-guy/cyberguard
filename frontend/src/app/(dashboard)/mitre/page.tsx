@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { COMMON_MITRE_TECHNIQUES } from '@/lib/constants';
 import { Grid3X3, Search, ExternalLink, ShieldAlert, ArrowRight } from 'lucide-react';
 
 export default function MitreMatrixPage() {

@@ -6,6 +6,7 @@ from ..core.events.event_bus import EventBus
 from ..core.events.event_types import EventStatus, InputModality, ThreatCategory, ThreatEvent
 from ..core.events.streams import (
 	DEEPFAKE_INPUT,
+	API_ABUSE_INPUT,
 	LOG_INPUT,
 	PHISHING_INPUT,
 	RAW_INPUT,
@@ -22,8 +23,10 @@ class OrchestratorAgent:
 			return PHISHING_INPUT, ThreatCategory.PHISHING
 		if modality in {InputModality.IMAGE, InputModality.VIDEO, InputModality.AUDIO}:
 			return DEEPFAKE_INPUT, ThreatCategory.DEEPFAKE
-		if modality in {InputModality.AUTH_LOG, InputModality.SYSTEM_LOG, InputModality.API_LOG}:
+		if modality in {InputModality.AUTH_LOG, InputModality.SYSTEM_LOG}:
 			return LOG_INPUT, ThreatCategory.LOG_ANOMALY
+		if modality == InputModality.API_LOG:
+			return API_ABUSE_INPUT, ThreatCategory.API_ABUSE
 		raise ValueError(f"Unsupported input modality: {modality.value}")
 
 	async def process(self, event: ThreatEvent) -> ThreatEvent:
@@ -54,4 +57,4 @@ class OrchestratorAgent:
 		return [RAW_INPUT]
 
 	def emits_to(self) -> list[str]:
-		return [PHISHING_INPUT, DEEPFAKE_INPUT, LOG_INPUT, THREAT_ESCALATED]
+		return [PHISHING_INPUT, DEEPFAKE_INPUT, LOG_INPUT, API_ABUSE_INPUT, THREAT_ESCALATED]

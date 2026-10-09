@@ -90,16 +90,8 @@ export function ThreatQuickDrawer({ threat, onClose }: ThreatQuickDrawerProps) {
                 <div className="space-y-2">
                   {threat.indicators && threat.indicators.length > 0 ? (
                     threat.indicators.map((ind, idx) => (
-                      <div key={idx} className="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 bg-[#161b22] border border-[#21262d] rounded-md gap-2">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[10px] bg-[#30363d] text-[#c9d1d9] px-1.5 py-0.5 rounded font-mono uppercase tracking-wide">
-                            {ind.type}
-                          </span>
-                          <span className="text-sm text-[#e6edf3] font-mono break-all">{ind.value}</span>
-                        </div>
-                        <span className="text-xs font-medium text-[#d29922]">
-                          Score: {Math.round(ind.malicious_probability * 100)}%
-                        </span>
+                      <div key={idx} className="p-2.5 bg-[#161b22] border border-[#21262d] rounded-md">
+                        <span className="text-sm text-[#e6edf3] font-mono break-all">{ind}</span>
                       </div>
                     ))
                   ) : (

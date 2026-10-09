@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import base64
 import io
+import json
 from pathlib import Path
 
 import torch
@@ -10,12 +11,14 @@ from torchvision import models, transforms
 
 from ....core.interfaces.base_ml_model import BaseMLModel
 
-MODEL_PATH = Path(__file__).resolve().parents[3] / "data" / "models" / "deepfake_image.pth"
+MODEL_PATH = Path(__file__).resolve().parents[3] / "data" / "models" / "deepfake" / "efficientnet_v1.pth"
+METADATA_PATH = Path(__file__).resolve().parents[3] / "data" / "models" / "deepfake" / "efficientnet_v1_metadata.json"
 
 
 class ImageModel(BaseMLModel):
-	def __init__(self, path: Path | str = MODEL_PATH) -> None:
+	def __init__(self, path: Path | str = MODEL_PATH, metadata_path: Path | str = METADATA_PATH) -> None:
 		self._path = Path(path)
+		self._metadata_path = Path(metadata_path)
 		self._model = None
 		self._classes: list[str] = []
 		self._device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -26,11 +29,14 @@ class ImageModel(BaseMLModel):
 		])
 
 	async def load(self) -> None:
-		checkpoint = torch.load(self._path, map_location=self._device, weights_only=False)
-		self._classes = checkpoint["classes"]
+		with open(self._metadata_path, "r") as f:
+			metadata = json.load(f)
+		self._classes = metadata["output_labels"]
+		
+		state_dict = torch.load(self._path, map_location=self._device, weights_only=True)
 		model = models.efficientnet_b0(weights=None)
 		model.classifier[1] = torch.nn.Linear(model.classifier[1].in_features, len(self._classes))
-		model.load_state_dict(checkpoint["state_dict"])
+		model.load_state_dict(state_dict)
 		self._model = model.to(self._device).eval()
 
 	async def predict(self, input_data: dict) -> dict:

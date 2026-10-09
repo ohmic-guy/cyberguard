@@ -50,7 +50,12 @@ export function useWebSocket() {
   }, []);
 
   useEffect(() => {
-    const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8000/api/v1/ws';
+    const token = window.localStorage.getItem('access_token') ?? window.localStorage.getItem('token');
+    if (!token) return;
+
+    const configuredUrl = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8000/ws/threats';
+    const separator = configuredUrl.includes('?') ? '&' : '?';
+    const wsUrl = `${configuredUrl}${separator}token=${encodeURIComponent(token)}`;
     let socket: WebSocket | null = null;
 
     try {

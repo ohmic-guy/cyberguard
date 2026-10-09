@@ -1,8 +1,22 @@
 from ....core.interfaces.base_detector import BaseDetector, DetectionResult
 
 
+from ....core.threat_intel_feed import feed
+
 class UrlDetector(BaseDetector):
 	async def detect(self, payload: dict) -> DetectionResult:
+		url = str(payload.get("url", ""))
+		
+		# USP 06: Threat Intel Feed
+		await feed.refresh()
+		if feed.is_known_malicious(url):
+			return DetectionResult(
+				label="phishing",
+				confidence=0.99,
+				indicators=["URL confirmed in live threat intelligence feed",
+							"Matched in URLhaus / OpenPhish real-time database"],
+			)
+			
 		prediction = await self._model.predict(payload)
 		url = str(payload.get("url", ""))
 		domain = str(payload.get("domain", ""))

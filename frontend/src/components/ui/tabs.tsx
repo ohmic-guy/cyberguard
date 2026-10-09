@@ -2,7 +2,47 @@
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 import { cn } from "@/lib/utils"
 
-const Tabs = TabsPrimitive.Root
+interface NavigationTab {
+  id: string
+  label: string
+  icon?: React.ReactNode
+}
+
+interface NavigationTabsProps {
+  tabs: NavigationTab[]
+  activeTab: string
+  onChange: (id: string) => void
+  className?: string
+}
+
+const Tabs = ({ tabs, activeTab, onChange, className }: NavigationTabsProps) => (
+  <div
+    role="tablist"
+    className={cn(
+      "flex flex-wrap items-center gap-1 rounded-lg border border-[#30363d] bg-[#161b22] p-1",
+      className
+    )}
+  >
+    {tabs.map((tab) => (
+      <button
+        key={tab.id}
+        type="button"
+        role="tab"
+        aria-selected={activeTab === tab.id}
+        onClick={() => onChange(tab.id)}
+        className={cn(
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md px-3 py-1.5 text-xs font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#58a6ff]",
+          activeTab === tab.id
+            ? "bg-[#21262d] text-[#c9d1d9] shadow"
+            : "text-[#8b949e] hover:bg-[#21262d]/60 hover:text-[#c9d1d9]"
+        )}
+      >
+        {tab.icon}
+        {tab.label}
+      </button>
+    ))}
+  </div>
+)
 
 const TabsList = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.List>,

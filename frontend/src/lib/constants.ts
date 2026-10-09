@@ -88,6 +88,7 @@ export const STATUS_CONFIG: Record<EventStatus, { label: string; color: string; 
   scored: { label: 'Scored', color: 'text-[#d29922] bg-transparent border-[#d29922]/25' },
   complete: { label: 'Complete', color: 'text-[#3fb950] bg-transparent border-[#3fb950]/25' },
   escalated: { label: 'Escalated', color: 'text-[#f85149] bg-transparent border-[#f85149]/25', pulse: true },
+  failed: { label: 'Failed', color: 'text-[#f85149] bg-transparent border-[#f85149]/25' },
 };
 
 export const WEBSOCKET_URL = process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:8000/ws/events';
