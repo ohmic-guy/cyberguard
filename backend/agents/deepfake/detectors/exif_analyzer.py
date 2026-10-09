@@ -23,7 +23,7 @@ class EXIFAnalyzer(BaseDetector):
         return "image"
 
     async def detect(self, payload: dict) -> DetectionResult:
-        b64 = payload.get("image_base64", "").split(",")[-1]
+        b64 = (payload.get("image_base64") or payload.get("content_b64") or "").split(",")[-1]
         if not b64:
             return DetectionResult(
                 label="unknown", confidence=0.5,

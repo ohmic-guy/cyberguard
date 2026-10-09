@@ -10,7 +10,7 @@ class ThreatScorer(BaseScorer):
 	def score(self, event: ThreatEvent) -> tuple[RiskLevel, float]:
 		confidence = event.confidence or 0.0
 		label = (event.label or "").strip().lower()
-		suspicious = label not in {"", "0", "safe", "benign", "normal", "legitimate"}
+		suspicious = label not in {"", "0", "safe", "benign", "normal", "legitimate", "unknown", "likely_authentic"}
 		indicator_score = min(len(event.indicators) * 0.05, 0.25)
 		value = confidence + indicator_score if suspicious else confidence * 0.25
 		value = round(min(max(value, 0.0), 1.0), 4)

@@ -39,6 +39,7 @@ class ResponseAgent(BaseCyberAgent):
 				save_event(event.model_dump(mode="json"))
 				if self._repository is not None:
 					await self._repository.save(event.model_dump(mode="json"))
+				await self._event_bus.publish(THREAT_COMPLETE, event)
 				return event
 
 			context = event.model_dump(mode="json")
