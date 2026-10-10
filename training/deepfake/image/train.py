@@ -71,7 +71,7 @@ def train_model():
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.classifier.parameters(), lr=0.001)
     
-    epochs = 2 # Keeping it small for demonstration/quick run
+    epochs = 20 # Keeping it small for demonstration/quick run
     
     print("Starting training...")
     for epoch in range(epochs):
